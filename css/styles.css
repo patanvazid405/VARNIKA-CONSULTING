@@ -1256,9 +1256,19 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   .footer-brand p { max-width: none; }
   .logo-strip { margin-top: 0; }
   .logo-strip__label { flex: 1 1 100%; border-right: 0; border-bottom: 1px solid var(--line); }
-  /* Release the single-row constraint so the marks wrap instead of overflowing */
-  .logo-strip__items { flex-wrap: wrap; }
-  .logo-strip__items li { flex: 1 1 33%; border-bottom: 1px solid var(--line); }
+  /* Grid, not wrapped flex: eight logos over four columns gives two even rows
+     instead of a stretched, ragged last row. */
+  .logo-strip__items {
+    flex: 1 1 100%; width: 100%;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .logo-strip__items li {
+    padding: 15px 6px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo-strip__items li:nth-child(4n) { border-right: 0; }
+  .logo-strip__items li:nth-last-child(-n + 4) { border-bottom: 0; }
   .trust-row li { flex: 1 1 44%; border-right: 0; }
   .stats-bar .stat { border-right: 0; }
   .cta-contacts li { border-right: 0; padding-left: 0; flex: 1 1 240px; }
@@ -1267,6 +1277,21 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 
 @media (max-width: 640px) {
   :root { --gutter: 18px; }
+
+  /* Two columns x four rows — still even, and each cell stays wide enough
+     for the longest label ("Google Cloud"). */
+  .logo-strip__items { grid-template-columns: repeat(2, 1fr); }
+  .logo-strip__items li:nth-child(4n) { border-right: 1px solid var(--line); }
+  .logo-strip__items li:nth-child(2n) { border-right: 0; }
+  .logo-strip__items li:nth-last-child(-n + 4) { border-bottom: 1px solid var(--line); }
+  .logo-strip__items li:nth-last-child(-n + 2) { border-bottom: 0; }
+
+  /* Full-width cards: let headings use the line rather than wrapping at 15ch */
+  .card--center h3 { max-width: none; }
+
+  /* Stacked hero CTAs share one width instead of sizing to their labels */
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { justify-content: center; }
   .grid--2, .grid--3, .grid--4, .grid--5, .grid--6 { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .industry-strip { grid-template-columns: repeat(2, 1fr); }
