@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insights | Varnika Consulting</title>
+<meta name="description" content="Expert perspectives, industry trends and practical insights on maritime ERP, EDI integration, digital transformation, operational excellence, financial integration and AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body data-page="insights">
+
+<div id="site-header"></div>
+
+<main id="main">
+
+  <!-- ====================================================================
+       HERO — headline + category filter tags
+       REPLACE: /images/hero-vessel-dusk.jpg
+       ==================================================================== -->
+  <section class="hero hero--compact" style="--hero-img: url('images/hero-vessel-dusk.jpg')">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Insights</p>
+          <h1>Insights That Navigate<br>Complexity</h1>
+          <div class="rule"></div>
+          <p>
+            Stay informed with expert perspectives, industry trends and practical
+            insights to help you make confident, data-driven decisions.
+          </p>
+
+          <!-- data-filter values are matched against each card's data-category -->
+          <div class="filter-tags" role="group" aria-label="Filter insights by category">
+            <button class="filter-tag is-active" type="button" data-filter="all" aria-pressed="true">All Insights</button>
+            <button class="filter-tag" type="button" data-filter="maritime-erp" aria-pressed="false">Maritime ERP</button>
+            <button class="filter-tag" type="button" data-filter="edi" aria-pressed="false">EDI &amp; Integration</button>
+            <button class="filter-tag" type="button" data-filter="digital" aria-pressed="false">Digital Transformation</button>
+            <button class="filter-tag" type="button" data-filter="operational" aria-pressed="false">Operational Excellence</button>
+            <button class="filter-tag" type="button" data-filter="financial" aria-pressed="false">Financial Integration</button>
+            <button class="filter-tag" type="button" data-filter="ai" aria-pressed="false">AI &amp; Analytics</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       ARTICLE GRID + SIDEBAR
+       ==================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="insights-layout">
+
+        <!-- ---------------- Articles ---------------- -->
+        <div>
+          <div class="grid grid--3">
+
+            <!-- REPLACE: article thumbnails — /images/insight-*.jpg.
+                 Each card carries data-category for the filter buttons above. -->
+            <article class="article-card" data-category="maritime-erp">
+              <div class="article-card__media">
+                <img src="images/insight-erp.jpg" alt="" loading="lazy" onerror="this.remove()">
+                <span class="article-card__tag">Maritime ERP</span>
+              </div>
+              <div class="article-card__body">
+                <h3><a href="#">Choosing the Right ERP for Maritime &amp; Logistics Operations</a></h3>
+                <p>Key considerations and best practices to select and implement an ERP that fits your business.</p>
+              </div>
+              <div class="article-card__meta">
+                <span class="article-card__date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>May 10, 2024</span>
+                <a class="learn-more" href="#">Read More <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+            </article>
+
+            <article class="article-card" data-category="edi">
+              <div class="article-card__media">
+                <img src="images/insight-edi.jpg" alt="" loading="lazy" onerror="this.remove()">
+                <span class="article-card__tag">EDI &amp; Integration</span>
+              </div>
+              <div class="article-card__body">
+                <h3><a href="#">The Future of EDI in a Connected Maritime World</a></h3>
+                <p>How modern EDI and API integrations improve visibility, compliance and collaboration.</p>
+              </div>
+              <div class="article-card__meta">
+                <span class="article-card__date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>May 02, 2024</span>
+                <a class="learn-more" href="#">Read More <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+            </article>
+
+            <article class="article-card" data-category="digital">
+              <div class="article-card__media">
+                <img src="images/insight-digital.jpg" alt="" loading="lazy" onerror="this.remove()">
+                <span class="article-card__tag">Digital Transformation</span>
+              </div>
+              <div class="article-card__body">
+                <h3><a href="#">Digital Transformation Roadmap for Logistics Companies</a></h3>
+                <p>A step-by-step approach to modernize processes, enable automation and deliver measurable outcomes.</p>
+              </div>
+              <div class="article-card__meta">
+                <span class="article-card__date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Apr 25, 2024</span>
+                <a class="learn-more" href="#">Read More <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+            </article>
+
+            <article class="article-card" data-category="ai">
+              <div class="article-card__media">
+                <img src="images/insight-ai.jpg" alt="" loading="lazy" onerror="this.remove()">
+                <span class="article-card__tag">AI &amp; Analytics</span>
+              </div>
+              <div class="article-card__body">
+                <h3><a href="#">AI in Logistics: From Insight to Impact</a></h3>
+                <p>Leveraging AI and analytics to optimize operations, predict disruptions and improve decision-making.</p>
+              </div>
+              <div class="article-card__meta">
+                <span class="article-card__date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Apr 18, 2024</span>
+                <a class="learn-more" href="#">Read More <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+            </article>
+
+            <article class="article-card" data-category="financial">
+              <div class="article-card__media">
+                <img src="images/insight-finance.jpg" alt="" loading="lazy" onerror="this.remove()">
+                <span class="article-card__tag">Financial Integration</span>
+              </div>
+              <div class="article-card__body">
+                <h3><a href="#">Integrating Finance with Operations</a></h3>
+                <p>Bridging operational and financial data for accurate reporting, better control and improved profitability.</p>
+              </div>
+              <div class="article-card__meta">
+                <span class="article-card__date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Apr 11, 2024</span>
+                <a class="learn-more" href="#">Read More <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+            </article>
+
+            <article class="article-card" data-category="operational">
+              <div class="article-card__media">
+                <img src="images/insight-operations.jpg" alt="" loading="lazy" onerror="this.remove()">
+                <span class="article-card__tag">Operational Excellence</span>
+              </div>
+              <div class="article-card__body">
+                <h3><a href="#">Building Operational Excellence in Maritime Operations</a></h3>
+                <p>Proven frameworks and strategies to eliminate waste, improve performance and drive sustainable growth.</p>
+              </div>
+              <div class="article-card__meta">
+                <span class="article-card__date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>Apr 04, 2024</span>
+                <a class="learn-more" href="#">Read More <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Shown by main.js when a filter matches nothing -->
+          <p id="insights-empty" hidden style="text-align:center;padding:40px 0">
+            No insights in this category yet — check back soon.
+          </p>
+        </div>
+
+        <!-- ---------------- Sidebar ---------------- -->
+        <aside>
+          <div class="sidebar-box">
+            <h3>Popular Topics</h3>
+            <ul class="topic-list">
+              <li><a href="#"><svg class="icon" aria-hidden="true"><use href="#i-ship"></use></svg>Maritime ERP<svg class="icon topic-arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></li>
+              <li><a href="#"><svg class="icon" aria-hidden="true"><use href="#i-exchange"></use></svg>EDI &amp; Integration<svg class="icon topic-arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></li>
+              <li><a href="#"><svg class="icon" aria-hidden="true"><use href="#i-rocket"></use></svg>Digital Transformation<svg class="icon topic-arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></li>
+              <li><a href="#"><svg class="icon" aria-hidden="true"><use href="#i-gear"></use></svg>Operational Excellence<svg class="icon topic-arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></li>
+              <li><a href="#"><svg class="icon" aria-hidden="true"><use href="#i-dollar"></use></svg>Financial Integration<svg class="icon topic-arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></li>
+              <li><a href="#"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>AI &amp; Analytics<svg class="icon topic-arrow" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></li>
+            </ul>
+          </div>
+
+          <!-- Newsletter — validated client-side by main.js (no backend yet) -->
+          <div class="newsletter">
+            <div class="newsletter__head">
+              <div>
+                <h3>Stay Ahead with Expert Insights</h3>
+                <p>Subscribe to our newsletter and receive the latest updates.</p>
+              </div>
+              <svg class="icon" aria-hidden="true"><use href="#i-mail-open"></use></svg>
+            </div>
+
+            <form class="newsletter__form" data-validate
+                  data-success="You're subscribed — thanks for joining." novalidate>
+              <label class="sr-only" for="newsletter-email">Email address</label>
+              <input id="newsletter-email" name="email" type="email" required
+                     placeholder="Enter your email address"
+                     data-msg-required="Please enter your email address.">
+              <button type="submit">Subscribe</button>
+              <div class="form-status" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

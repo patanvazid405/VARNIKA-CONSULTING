@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Us | Varnika Consulting</title>
+<meta name="description" content="Talk to Varnika Consulting about maritime and logistics consulting, ERP advisory, EDI integration and digital transformation. Email advisory@varnikaconsulting.com or call +91 98745 12345.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body data-page="contact">
+
+<div id="site-header"></div>
+
+<main id="main">
+
+  <!-- ====================================================================
+       HERO
+       REPLACE: /images/hero-harbour.jpg
+       ==================================================================== -->
+  <section class="hero hero--compact" style="--hero-img: url('images/hero-harbour.jpg')">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
+        <span class="current" aria-current="page">Contact Us</span>
+      </nav>
+
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Contact Us</p>
+          <h1>Get in Touch with Our<br>Maritime &amp; Logistics Experts</h1>
+          <div class="rule"></div>
+          <p>
+            Tell us about your operations, systems and goals. We'll get back to you
+            within one business day with a clear view of how we can help.
+          </p>
+
+          <ul class="hero-caps">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-headset"></use></svg>Response Within 1 Business Day</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>Confidential Discussion</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg>Vendor-Neutral Advice</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>Global Delivery Coverage</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       FORM + CONTACT DETAILS
+       ==================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- ---------------- Contact form ----------------
+             Validated client-side by main.js. There is no backend yet:
+             REPLACE the success branch in js/main.js (initForms) with a
+             fetch() to your endpoint when the API is ready. -->
+        <div class="form-card">
+          <h2 style="font-size:22px">Request a Consultation</h2>
+          <div class="rule rule--left"></div>
+          <p style="font-size:13.5px;margin-bottom:22px">
+            Fields marked <span style="color:var(--orange)">*</span> are required.
+          </p>
+
+          <form data-validate novalidate
+                data-success="Thank you — your request has been received. One of our consultants will contact you within one business day.">
+
+            <div class="form-status" role="status" aria-live="polite"></div>
+
+            <div class="form-grid">
+
+              <div class="field">
+                <label for="c-name">Full Name <span class="req">*</span></label>
+                <input id="c-name" name="name" type="text" required minlength="2"
+                       autocomplete="name" placeholder="Your full name"
+                       data-msg-required="Please enter your name.">
+                <span class="error" aria-live="polite"></span>
+              </div>
+
+              <div class="field">
+                <label for="c-email">Work Email <span class="req">*</span></label>
+                <input id="c-email" name="email" type="email" required
+                       autocomplete="email" placeholder="you@company.com"
+                       data-msg-required="Please enter your email address.">
+                <span class="error" aria-live="polite"></span>
+              </div>
+
+              <div class="field">
+                <label for="c-company">Company <span class="req">*</span></label>
+                <input id="c-company" name="company" type="text" required
+                       autocomplete="organization" placeholder="Company name"
+                       data-msg-required="Please enter your company name.">
+                <span class="error" aria-live="polite"></span>
+              </div>
+
+              <div class="field">
+                <label for="c-phone">Phone</label>
+                <input id="c-phone" name="phone" type="tel"
+                       autocomplete="tel" placeholder="+91 98745 12345">
+                <span class="error" aria-live="polite"></span>
+              </div>
+
+              <div class="field field--full">
+                <label for="c-interest">Area of Interest</label>
+                <select id="c-interest" name="interest">
+                  <option value="">Select a service</option>
+                  <option>Business Consulting</option>
+                  <option>Maritime ERP Advisory</option>
+                  <option>EDI &amp; Integration</option>
+                  <option>AI Advisory</option>
+                  <option>Financial Integration</option>
+                  <option>Digital Transformation</option>
+                  <option>Operational Excellence</option>
+                  <option>Business Intelligence</option>
+                </select>
+                <span class="error" aria-live="polite"></span>
+              </div>
+
+              <div class="field field--full">
+                <label for="c-message">Message <span class="req">*</span></label>
+                <textarea id="c-message" name="message" required minlength="10"
+                          placeholder="Tell us about your operations, systems and what you'd like to achieve."
+                          data-msg-required="Please tell us how we can help."></textarea>
+                <span class="error" aria-live="polite"></span>
+              </div>
+
+            </div>
+
+            <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:22px">
+              <button class="btn btn--primary" type="submit">
+                Send Message <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+              </button>
+              <p class="form-note">
+                <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+                Your details stay confidential and are never shared.
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <!-- ---------------- Contact details + map ---------------- -->
+        <aside>
+          <div class="sidebar-box">
+            <h3>Contact Details</h3>
+            <ul class="contact-info">
+              <li>
+                <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg></span>
+                <div>
+                  <h4>Email</h4>
+                  <a href="mailto:advisory@varnikaconsulting.com">advisory@varnikaconsulting.com</a>
+                </div>
+              </li>
+              <li>
+                <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg></span>
+                <div>
+                  <h4>Phone</h4>
+                  <a href="tel:+919874512345">+91 98745 12345</a>
+                </div>
+              </li>
+              <li>
+                <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span>
+                <div>
+                  <h4>Website</h4>
+                  <a href="index.html">www.varnikaconsulting.com</a>
+                </div>
+              </li>
+              <li>
+                <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"></use></svg></span>
+                <div>
+                  <h4>LinkedIn</h4>
+                  <a href="#">Varnika Consulting (Company Page)</a>
+                </div>
+              </li>
+              <li>
+                <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span>
+                <div>
+                  <h4>Office</h4>
+                  <p>Global delivery — client engagements across Asia, the Middle East and Europe.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- REPLACE: paste the real Google Maps embed here, e.g.
+               <iframe src="https://www.google.com/maps/embed?pb=..."
+                       loading="lazy" title="Varnika Consulting office location"
+                       referrerpolicy="no-referrer-when-downgrade"></iframe>
+               The styled placeholder below is shown until then. -->
+          <div class="map-embed">
+            <div>
+              <svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>
+              <p style="margin-top:8px"><strong>Google Map placeholder</strong><br>
+              Replace with your Maps embed iframe.</p>
+            </div>
+          </div>
+
+          <div class="newsletter" style="margin-top:20px">
+            <div class="newsletter__head">
+              <div>
+                <h3>Prefer a Scheduled Call?</h3>
+                <p>Send your availability and we'll confirm a slot that works for you.</p>
+              </div>
+              <svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>
+            </div>
+            <a class="btn btn--primary btn--block btn--sm" href="mailto:advisory@varnikaconsulting.com?subject=Discovery%20Call%20Request">
+              Email to Schedule <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            </a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script src="js/main.js"></script>
+</body>
+</html>
