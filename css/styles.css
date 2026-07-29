@@ -466,7 +466,8 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 .hero-stats .stat:last-child { border-right: 0; padding-right: 0; margin-right: 0; }
 .hero-stats .stat__icon .icon { width: 32px; height: 32px; }
 .hero-stats .stat__num { font-size: 19px; }
-.hero-stats .stat__label { font-size: 10px; max-width: 106px; }
+/* 11px floor — 10px was below comfortable reading size on the Services hero */
+.hero-stats .stat__label { font-size: 11px; max-width: 108px; }
 
 /* ------------------------------- 7. CARDS ------------------------------- */
 .grid { display: grid; gap: 20px; }
@@ -1193,6 +1194,12 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 /* ----------------------------- 10. RESPONSIVE --------------------------- */
 
 @media (max-width: 1180px) {
+  /* Keep all five figures on one row — the stat's min-content (icon + label)
+     otherwise exceeds its flex-basis and pushes the last one onto its own line. */
+  .stats-bar .stat { flex: 1 1 150px; padding: 8px 10px; }
+  .stats-bar .stat__label { max-width: 108px; }
+  .stats-bar .stat__icon .icon { width: 30px; height: 30px; }
+
   .footer-grid { grid-template-columns: 1.4fr repeat(3, 1fr); }
   .industry-strip { grid-template-columns: repeat(5, 1fr); }
   .industry-strip a:nth-child(5n) { border-right: 0; }
@@ -1275,6 +1282,29 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   .section { padding: 46px 0; }
 }
 
+/* The orbit's nodes sit absolutely positioned outside the ring, so on narrow
+   screens they get clipped by the hero's overflow:hidden — labels such as
+   "Implementation & Integration" lose their ends. Below this width, lay the
+   same content out as a centred badge above a two-column list instead. */
+@media (max-width: 760px) {
+  .orbit {
+    max-width: 430px; aspect-ratio: auto; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px 14px;
+  }
+  .orbit__ring, .orbit__pin { display: none; }
+  .orbit__center {
+    position: static; inset: auto; grid-column: 1 / -1;
+    width: 186px; height: 186px; margin: 2px auto 6px;
+    border: 1px solid rgba(96, 156, 224, 0.8);
+  }
+  .orbit__node,
+  .orbit__node--left,
+  .orbit__node--center {
+    position: static; left: auto; top: auto; transform: none;
+    width: auto; flex-direction: row; text-align: left; gap: 10px;
+  }
+}
+
 @media (max-width: 640px) {
   :root { --gutter: 18px; }
 
@@ -1292,6 +1322,7 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   /* Stacked hero CTAs share one width instead of sizing to their labels */
   .hero-actions { flex-direction: column; align-items: stretch; }
   .hero-actions .btn { justify-content: center; }
+
   .grid--2, .grid--3, .grid--4, .grid--5, .grid--6 { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .industry-strip { grid-template-columns: repeat(2, 1fr); }
@@ -1316,6 +1347,16 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   }
   .flow__code { padding: 7px 0; }
   .flow__caption { text-align: center; }
+}
+
+/* Narrow phones (iPhone SE and similar). Long CTA labels such as
+   "Schedule a Discovery Call" are wider than a 320px viewport while
+   `white-space: nowrap` holds them on one line, so let them wrap here. */
+@media (max-width: 400px) {
+  .btn {
+    white-space: normal; text-align: center;
+    padding: 12px 16px; font-size: 12px; line-height: 1.35;
+  }
 }
 
 /* Users who prefer reduced motion get no transforms */
