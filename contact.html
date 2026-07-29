@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact Us | Varnika Consulting</title>
-<meta name="description" content="Talk to Varnika Consulting about maritime and logistics consulting, ERP advisory, EDI integration and digital transformation. Email advisory@varnikaconsulting.com or call +91 98745 12345.">
+<meta name="description" content="Talk to Varnika Consulting about maritime and logistics consulting, ERP advisory, EDI integration and digital transformation. Email advisory@varnikaconsulting.com.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,201 +18,209 @@
 <main id="main">
 
   <!-- ====================================================================
-       HERO
-       REPLACE: /images/hero-harbour.jpg
+       HERO — contact details on the left, message panel on the right
+       REPLACE: /images/hero-harbour.jpg (shared port artwork shows until then)
        ==================================================================== -->
-  <section class="hero hero--compact" style="--hero-img: url('images/hero-harbour.jpg')">
+  <section class="hero" style="--hero-img: url('images/hero-harbour.jpg')">
     <div class="container">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html">Home</a>
-        <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"></use></svg>
-        <span class="current" aria-current="page">Contact Us</span>
-      </nav>
-
       <div class="hero-grid">
+
         <div class="hero-copy">
           <p class="eyebrow">Contact Us</p>
-          <h1>Get in Touch with Our<br>Maritime &amp; Logistics Experts</h1>
+          <h1>Let's Connect.<br>Let's Create Impact.</h1>
           <div class="rule"></div>
           <p>
-            Tell us about your operations, systems and goals. We'll get back to you
-            within one business day with a clear view of how we can help.
+            Have a question, need expert advice, or want to explore how
+            we can help you transform your operations — we're here to help.
           </p>
 
-          <ul class="hero-caps">
-            <li><svg class="icon" aria-hidden="true"><use href="#i-headset"></use></svg>Response Within 1 Business Day</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>Confidential Discussion</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg>Vendor-Neutral Advice</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg>Global Delivery Coverage</li>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg></span>
+              <div>
+                <h4>Email Us</h4>
+                <a href="mailto:advisory@varnikaconsulting.com">advisory@varnikaconsulting.com</a>
+              </div>
+            </li>
+            <li>
+              <span class="contact-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg></span>
+              <div>
+                <h4>Phone (Placeholder)</h4>
+                <!-- REPLACE: swap in the real number when confirmed -->
+                <p>+91 XXX XX XXXXX</p>
+              </div>
+            </li>
+            <li>
+              <span class="contact-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"></use></svg></span>
+              <div>
+                <h4>Connect on LinkedIn</h4>
+                <a href="#">Varnika Consulting (Company Page)</a>
+              </div>
+            </li>
+            <li>
+              <span class="contact-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span>
+              <div>
+                <h4>Visit Our Website</h4>
+                <a href="index.html">www.varnikaconsulting.com</a>
+              </div>
+            </li>
           </ul>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ====================================================================
-       FORM + CONTACT DETAILS
-       ==================================================================== -->
-  <section class="section">
-    <div class="container">
-      <div class="contact-layout">
-
-        <!-- ---------------- Contact form ----------------
-             Validated client-side by main.js. There is no backend yet:
-             REPLACE the success branch in js/main.js (initForms) with a
-             fetch() to your endpoint when the API is ready. -->
-        <div class="form-card">
-          <h2 style="font-size:22px">Request a Consultation</h2>
-          <div class="rule rule--left"></div>
-          <p style="font-size:13.5px;margin-bottom:22px">
-            Fields marked <span style="color:var(--orange)">*</span> are required.
-          </p>
+        <!-- Message panel. Validated client-side by main.js; there is no
+             backend yet — see the success branch in initForms(). -->
+        <div class="form-panel">
+          <div class="form-panel__head">
+            <div class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-send"></use></svg></div>
+            <div>
+              <h2>Send Us a Message</h2>
+              <p>We'll get back to you within <strong>24 business hours.</strong></p>
+            </div>
+          </div>
 
           <form data-validate novalidate
-                data-success="Thank you — your request has been received. One of our consultants will contact you within one business day.">
+                data-success="Thank you — your request has been received. One of our consultants will contact you within 24 business hours.">
 
             <div class="form-status" role="status" aria-live="polite"></div>
 
             <div class="form-grid">
 
-              <div class="field">
+              <div class="field field--box">
                 <label for="c-name">Full Name <span class="req">*</span></label>
                 <input id="c-name" name="name" type="text" required minlength="2"
                        autocomplete="name" placeholder="Your full name"
                        data-msg-required="Please enter your name.">
+                <svg class="icon fb-icon" aria-hidden="true"><use href="#i-user"></use></svg>
                 <span class="error" aria-live="polite"></span>
               </div>
 
-              <div class="field">
-                <label for="c-email">Work Email <span class="req">*</span></label>
-                <input id="c-email" name="email" type="email" required
-                       autocomplete="email" placeholder="you@company.com"
-                       data-msg-required="Please enter your email address.">
-                <span class="error" aria-live="polite"></span>
-              </div>
-
-              <div class="field">
+              <div class="field field--box">
                 <label for="c-company">Company <span class="req">*</span></label>
                 <input id="c-company" name="company" type="text" required
                        autocomplete="organization" placeholder="Company name"
                        data-msg-required="Please enter your company name.">
+                <svg class="icon fb-icon" aria-hidden="true"><use href="#i-building"></use></svg>
                 <span class="error" aria-live="polite"></span>
               </div>
 
-              <div class="field">
-                <label for="c-phone">Phone</label>
+              <div class="field field--box">
+                <label for="c-email">Work Email <span class="req">*</span></label>
+                <input id="c-email" name="email" type="email" required
+                       autocomplete="email" placeholder="you@company.com"
+                       data-msg-required="Please enter your email address.">
+                <svg class="icon fb-icon" aria-hidden="true"><use href="#i-mail"></use></svg>
+                <span class="error" aria-live="polite"></span>
+              </div>
+
+              <div class="field field--box">
+                <label for="c-phone">Phone (Placeholder)</label>
                 <input id="c-phone" name="phone" type="tel"
-                       autocomplete="tel" placeholder="+91 98745 12345">
+                       autocomplete="tel" placeholder="+91 XXX XX XXXXX">
+                <svg class="icon fb-icon" aria-hidden="true"><use href="#i-phone"></use></svg>
                 <span class="error" aria-live="polite"></span>
               </div>
 
-              <div class="field field--full">
-                <label for="c-interest">Area of Interest</label>
-                <select id="c-interest" name="interest">
-                  <option value="">Select a service</option>
-                  <option>Business Consulting</option>
-                  <option>Maritime ERP Advisory</option>
-                  <option>EDI &amp; Integration</option>
-                  <option>AI Advisory</option>
-                  <option>Financial Integration</option>
-                  <option>Digital Transformation</option>
-                  <option>Operational Excellence</option>
-                  <option>Business Intelligence</option>
+              <div class="field field--box field--full">
+                <label for="c-role">What best describes you? <span class="req">*</span></label>
+                <select id="c-role" name="role" required
+                        data-msg-required="Please choose the option that best describes you.">
+                  <option value="">Select an option</option>
+                  <option>Shipping Line / Liner Operator</option>
+                  <option>NVOCC</option>
+                  <option>Freight Forwarder</option>
+                  <option>Shipping Agency</option>
+                  <option>Port / Terminal Operator</option>
+                  <option>Container Depot</option>
+                  <option>Logistics Provider / 3PL / 4PL</option>
+                  <option>Customs Broker</option>
+                  <option>Other</option>
                 </select>
+                <svg class="icon fb-icon" aria-hidden="true"><use href="#i-chevron-down"></use></svg>
                 <span class="error" aria-live="polite"></span>
               </div>
 
-              <div class="field field--full">
-                <label for="c-message">Message <span class="req">*</span></label>
+              <div class="field field--box field--area field--full">
+                <label for="c-message">How can we help you? <span class="req">*</span></label>
                 <textarea id="c-message" name="message" required minlength="10"
-                          placeholder="Tell us about your operations, systems and what you'd like to achieve."
+                          placeholder="Tell us about your business challenges and goals..."
                           data-msg-required="Please tell us how we can help."></textarea>
+                <svg class="icon fb-icon" aria-hidden="true"><use href="#i-pencil"></use></svg>
                 <span class="error" aria-live="polite"></span>
               </div>
 
             </div>
 
-            <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:22px">
-              <button class="btn btn--primary" type="submit">
-                Send Message <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
-              </button>
-              <p class="form-note">
-                <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
-                Your details stay confidential and are never shared.
-              </p>
+            <div class="field consent">
+              <input id="c-consent" name="consent" type="checkbox" required
+                     data-msg-required="Please accept the Privacy Policy and Terms of Use.">
+              <label for="c-consent">
+                I agree to the <a href="#">Privacy Policy</a> and <a href="#">Terms of Use</a>.
+              </label>
+              <span class="error" aria-live="polite"></span>
             </div>
+
+            <button class="btn btn--primary btn--block" type="submit" style="margin-top:12px">
+              Request Consultation <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+            </button>
+
+            <p class="form-secure">
+              <svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg>
+              Your information is safe and secure. We respect your privacy.
+            </p>
           </form>
         </div>
 
-        <!-- ---------------- Contact details + map ---------------- -->
-        <aside>
-          <div class="sidebar-box">
-            <h3>Contact Details</h3>
-            <ul class="contact-info">
-              <li>
-                <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg></span>
-                <div>
-                  <h4>Email</h4>
-                  <a href="mailto:advisory@varnikaconsulting.com">advisory@varnikaconsulting.com</a>
-                </div>
-              </li>
-              <li>
-                <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg></span>
-                <div>
-                  <h4>Phone</h4>
-                  <a href="tel:+919874512345">+91 98745 12345</a>
-                </div>
-              </li>
-              <li>
-                <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-globe"></use></svg></span>
-                <div>
-                  <h4>Website</h4>
-                  <a href="index.html">www.varnikaconsulting.com</a>
-                </div>
-              </li>
-              <li>
-                <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"></use></svg></span>
-                <div>
-                  <h4>LinkedIn</h4>
-                  <a href="#">Varnika Consulting (Company Page)</a>
-                </div>
-              </li>
-              <li>
-                <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg></span>
-                <div>
-                  <h4>Office</h4>
-                  <p>Global delivery — client engagements across Asia, the Middle East and Europe.</p>
-                </div>
-              </li>
-            </ul>
-          </div>
+      </div>
+    </div>
+  </section>
 
-          <!-- REPLACE: paste the real Google Maps embed here, e.g.
-               <iframe src="https://www.google.com/maps/embed?pb=..."
-                       loading="lazy" title="Varnika Consulting office location"
-                       referrerpolicy="no-referrer-when-downgrade"></iframe>
-               The styled placeholder below is shown until then. -->
-          <div class="map-embed">
-            <div>
-              <svg class="icon" aria-hidden="true"><use href="#i-map-pin"></use></svg>
-              <p style="margin-top:8px"><strong>Google Map placeholder</strong><br>
-              Replace with your Maps embed iframe.</p>
-            </div>
-          </div>
+  <!-- ====================================================================
+       WHY CLIENTS WORK WITH VARNIKA — 6 cards
+       ==================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 style="font-size:20px;letter-spacing:.5px;text-transform:uppercase">Why Clients Work With Varnika</h2>
+        <div class="rule"></div>
+      </div>
 
-          <div class="newsletter" style="margin-top:20px">
-            <div class="newsletter__head">
-              <div>
-                <h3>Prefer a Scheduled Call?</h3>
-                <p>Send your availability and we'll confirm a slot that works for you.</p>
-              </div>
-              <svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg>
-            </div>
-            <a class="btn btn--primary btn--block btn--sm" href="mailto:advisory@varnikaconsulting.com?subject=Discovery%20Call%20Request">
-              Email to Schedule <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
-            </a>
-          </div>
-        </aside>
+      <div class="grid grid--6">
+
+        <article class="card card--center">
+          <div class="card__icon"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-globe"></use></svg></div>
+          <h3>Global Delivery</h3>
+          <p>Seamless support across geographies and time zones with a global mindset.</p>
+        </article>
+
+        <article class="card card--center">
+          <div class="card__icon"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-ship"></use></svg></div>
+          <h3>Maritime Domain Expertise</h3>
+          <p>Deep understanding of maritime and logistics operations, processes and regulations.</p>
+        </article>
+
+        <article class="card card--center">
+          <div class="card__icon"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-users"></use></svg></div>
+          <h3>Vendor-Neutral Consulting</h3>
+          <p>Unbiased advice to help you choose and implement the right solutions for your business.</p>
+        </article>
+
+        <article class="card card--center">
+          <div class="card__icon"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-lightbulb"></use></svg></div>
+          <h3>AI &amp; Digital Transformation</h3>
+          <p>Leverage AI, automation and emerging technologies to drive efficiency and innovation.</p>
+        </article>
+
+        <article class="card card--center">
+          <div class="card__icon"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-chart-line"></use></svg></div>
+          <h3>Measurable Outcomes</h3>
+          <p>Focused on delivering tangible business value and continuous performance improvement.</p>
+        </article>
+
+        <article class="card card--center">
+          <div class="card__icon"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-exchange"></use></svg></div>
+          <h3>End-to-End Partnership</h3>
+          <p>From strategy to execution and optimization – we partner with you at every step.</p>
+        </article>
 
       </div>
     </div>

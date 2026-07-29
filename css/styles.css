@@ -80,7 +80,9 @@ h1, h2, h3, h4, h5 {
   font-weight: 600;
 }
 
-h1 { font-size: clamp(30px, 4.2vw, 46px); font-weight: 600; letter-spacing: -0.5px; }
+/* Capped at 38px so every page's headline holds to the two lines the
+   reference designs use, including "Maritime & Logistics Transformation". */
+h1 { font-size: clamp(26px, 2.85vw, 36px); font-weight: 600; letter-spacing: -0.5px; }
 h2 { font-size: clamp(24px, 3vw, 32px); }
 h3 { font-size: 18px; }
 h4 { font-size: 16px; }
@@ -139,14 +141,14 @@ button { cursor: pointer; border: 0; background: none; }
 .icon-sm { width: 16px; height: 16px; }
 
 /* Section rhythm */
-.section { padding: 62px 0; }
-.section--tight { padding: 44px 0; }
+.section { padding: 46px 0; }
+.section--tight { padding: 32px 0; }
 .section--alt { background: var(--bg-alt); }
 .section--navy { background: var(--navy-800); color: var(--on-dark-soft); }
 .section--navy h2, .section--navy h3 { color: #fff; }
 
 /* Section heading block (eyebrow + title + rule) */
-.section-head { text-align: center; margin-bottom: 34px; }
+.section-head { text-align: center; margin-bottom: 26px; }
 .eyebrow {
   font-family: var(--font-head);
   font-size: 12px; font-weight: 600;
@@ -306,16 +308,18 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 /* ------------------------------ 5. FOOTER ------------------------------- */
 .site-footer {
   background: var(--navy-800); color: var(--on-dark-soft);
-  font-size: 13px; padding-top: 46px;
+  font-size: 12.5px; padding-top: 40px;
 }
 .site-footer a { color: var(--on-dark-soft); }
 .site-footer a:hover { color: var(--orange); }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.45fr 1fr 1.55fr 1fr 1fr 1.2fr;
-  gap: 30px 26px;
-  padding-bottom: 38px;
+  /* Tracks sized so no link label wraps: Industries is a two-up list and
+     the contact column has to hold the full email address on one line. */
+  grid-template-columns: 1.3fr 1.15fr 1.95fr 1fr 0.78fr 1.45fr;
+  gap: 28px 22px;
+  padding-bottom: 34px;
 }
 .footer-brand .logo { margin: 0 0 16px; }
 .footer-brand p { color: var(--on-dark-soft); line-height: 1.75; max-width: 260px; }
@@ -328,10 +332,17 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 /* Two-up link list (matches the reference's wider footer columns) */
 .footer-col--split ul { display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; }
 
-.footer-contact li {
-  display: flex; align-items: flex-start; gap: 10px; margin-bottom: 11px;
+/* Orange chevron bullets on the Services column */
+.footer-col--chev a { display: flex; align-items: baseline; gap: 7px; }
+.footer-col--chev a::before {
+  content: "\203A"; color: var(--orange); font-weight: 700; line-height: 1; flex: none;
 }
-.footer-contact .icon { width: 16px; height: 16px; color: var(--orange); margin-top: 3px; }
+
+.footer-contact li {
+  display: flex; align-items: flex-start; gap: 9px; margin-bottom: 11px;
+  font-size: 12px;
+}
+.footer-contact .icon { width: 15px; height: 15px; color: var(--orange); margin-top: 3px; flex: none; }
 
 .social { display: flex; gap: 9px; margin-top: 18px; }
 .social a {
@@ -357,22 +368,27 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
    layout reads correctly before final assets are dropped in.              */
 .hero {
   position: relative;
-  background-color: var(--navy-800);
   color: #fff;
   overflow: hidden;
+  /* Site-wide base artwork — the same night container terminal on every page.
+     Self-contained SVG, so it always renders. A page that sets --hero-img
+     paints its own photo on top of this via ::before. */
+  background: var(--navy-800) url("../images/hero-port.svg") center / cover no-repeat;
 }
 .hero::before {
   content: ""; position: absolute; inset: 0;
   background-image: var(--hero-img, none);
   background-size: cover; background-position: center;
 }
+/* Navy wash: heavy on the left so headline copy stays legible, lighter on the
+   right so the vessel and cranes read through — as in the reference designs. */
 .hero::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(100deg,
-    var(--navy-900) 0%,
-    rgba(10, 30, 63, 0.94) 34%,
-    rgba(10, 30, 63, 0.72) 56%,
-    rgba(10, 30, 63, 0.86) 100%);
+    rgba(7, 23, 48, 0.93) 0%,
+    rgba(10, 30, 63, 0.84) 30%,
+    rgba(10, 30, 63, 0.44) 56%,
+    rgba(10, 30, 63, 0.62) 100%);
 }
 .hero > .container { position: relative; z-index: 2; }
 
@@ -381,10 +397,13 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 .hero .rule { margin: 0 0 20px; }
 
 .hero-grid {
-  display: grid; grid-template-columns: 1.05fr 0.95fr;
+  display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 40px; align-items: center;
-  padding: 58px 0 62px;
+  padding: 44px 0 48px;
 }
+/* Home hero: the copy needs ~2/3 so the headline holds to two lines and the
+   message-flow diagram stays as compact as the reference. */
+.hero--home .hero-grid { grid-template-columns: minmax(0, 1.95fr) minmax(0, 1fr); }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 26px; }
 
 /* Inline dot-separated service tags (home hero) */
@@ -399,20 +418,27 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 }
 .hero-tags li:last-child::after { display: none; }
 
-/* Icon + label capability tags (solutions / about heroes) */
+/* Icon + label capability tags (about / contact heroes) — one row of four */
 .hero-caps {
-  display: flex; flex-wrap: wrap; gap: 12px 34px; margin-top: 30px;
+  display: flex; flex-wrap: wrap; gap: 12px 22px; margin-top: 28px;
 }
 .hero-caps li {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 12.5px; font-weight: 500; color: #e3ebf7; max-width: 150px;
+  display: flex; align-items: center; gap: 9px;
+  font-size: 11.5px; font-weight: 500; color: #e3ebf7;
+  flex: 1 1 132px; max-width: 168px;
   line-height: 1.35;
 }
-.hero-caps .icon { width: 26px; height: 26px; color: var(--orange); }
+.hero-caps .icon { width: 24px; height: 24px; color: var(--orange); flex: none; }
+
+/* Stacked variant — icon above the label, as on the Solutions hero */
+.hero-caps--stack li { flex-direction: column; align-items: flex-start; gap: 7px; }
+.hero-caps--stack .icon { width: 26px; height: 26px; }
 
 /* Simple centered hero (insights / contact) */
 .hero--compact .hero-grid { grid-template-columns: 1fr; padding: 52px 0 56px; }
-.hero--compact .hero-copy { max-width: 700px; }
+/* Wide enough to hold the Insights filter row and the Services stat row on
+   one line; prose stays narrow via the `.hero p` max-width. */
+.hero--compact .hero-copy { max-width: 880px; }
 
 /* Breadcrumb (industries page) */
 .breadcrumb {
@@ -431,8 +457,16 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   border-top: 1px solid rgba(255, 255, 255, 0.16);
   margin-top: 34px; padding-top: 26px;
 }
-.hero-stats .stat { padding-right: 34px; margin-right: 34px; border-right: 1px solid rgba(255, 255, 255, 0.16); }
-.hero-stats .stat:last-child { border-right: 0; }
+/* Four across in a single row, as in the reference hero */
+.hero-stats .stat {
+  flex: 1 1 auto; gap: 11px;
+  padding-right: 18px; margin-right: 18px;
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+}
+.hero-stats .stat:last-child { border-right: 0; padding-right: 0; margin-right: 0; }
+.hero-stats .stat__icon .icon { width: 32px; height: 32px; }
+.hero-stats .stat__num { font-size: 19px; }
+.hero-stats .stat__label { font-size: 10px; max-width: 106px; }
 
 /* ------------------------------- 7. CARDS ------------------------------- */
 .grid { display: grid; gap: 20px; }
@@ -448,7 +482,7 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 26px 22px;
+  padding: 20px 14px;
   box-shadow: var(--shadow);
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
@@ -457,9 +491,11 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   box-shadow: var(--shadow-md);
   border-color: rgba(232, 98, 44, 0.35);
 }
-.card__icon { color: var(--orange); margin-bottom: 16px; }
-.card h3 { font-size: 16px; margin-bottom: 10px; }
-.card p { font-size: 13px; line-height: 1.7; margin-bottom: 16px; }
+.card__icon { color: var(--orange); margin-bottom: 13px; }
+/* Alternating navy icons, matching the reference card rows */
+.card__icon--navy { color: var(--navy-700); }
+.card h3 { font-size: 15px; margin-bottom: 9px; }
+.card p { font-size: 11.5px; line-height: 1.6; margin-bottom: 12px; }
 .card .learn-more { margin-top: auto; align-self: flex-start; }
 
 /* Centered variant — home "Our Services", industries grid */
@@ -498,43 +534,59 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   display: flex; align-items: center; flex-wrap: wrap;
   border: 1px solid var(--line); border-radius: var(--radius);
   background: #fff; box-shadow: var(--shadow);
-  margin: -30px 0 0; position: relative; z-index: 5;
+  /* sits below the hero — no negative pull, which used to clip it into the
+     dark band above */
+  margin: 0; position: relative; z-index: 5;
   overflow: hidden;
 }
 .logo-strip__label {
-  display: flex; align-items: center; gap: 14px;
-  padding: 20px 26px; flex: 1 1 300px;
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px 18px; flex: 0 1 292px;
   border-right: 1px solid var(--line);
 }
-.logo-strip__label .icon { width: 34px; height: 34px; color: var(--orange); }
+.logo-strip__label .icon { width: 30px; height: 30px; color: var(--orange); flex: none; }
 .logo-strip__label span {
-  font-family: var(--font-head); font-size: 11.5px; font-weight: 600;
-  letter-spacing: 0.8px; text-transform: uppercase; color: var(--navy-700);
+  font-family: var(--font-head); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.6px; text-transform: uppercase; color: var(--navy-700);
   line-height: 1.5;
 }
+/* nowrap keeps all eight marks on a single row, as in the reference */
 .logo-strip__items {
-  display: flex; align-items: center; flex-wrap: wrap;
-  flex: 3 1 620px;
+  display: flex; align-items: center; flex-wrap: nowrap;
+  flex: 1 1 auto; min-width: 0;
 }
+/* `auto` basis: cells size from their own content and share the slack, so a
+   wider lockup never spills past its divider. */
 .logo-strip__items li {
-  flex: 1 1 auto; display: flex; align-items: center; justify-content: center;
-  gap: 8px; padding: 20px 14px; min-width: 108px;
+  flex: 1 1 auto; min-width: 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: 7px; padding: 16px 9px;
   border-right: 1px solid var(--line);
-  font-family: var(--font-head); font-size: 13.5px; font-weight: 500;
+  font-family: var(--font-head); font-size: 12.5px; font-weight: 500;
   color: var(--navy-700); white-space: nowrap;
 }
 .logo-strip__items li:last-child { border-right: 0; }
-.logo-strip__items .icon { width: 21px; height: 21px; color: var(--navy-600); }
+/* Brand logos, /images/logos/*.svg. Three optical sizes:
+   default = single-line wordmark lockups, .lg = stacked lockups
+   (Zoho, aws, X12 ANSI), .ic = icon-only marks that keep an HTML label. */
+.logo-strip__items img { width: auto; height: 20px; flex: none; }
+.logo-strip__items img.lg { height: 29px; }
+.logo-strip__items img.ic { height: 24px; }
 /* REPLACE: swap these <svg> marks for real partner logo files in /images/ */
 
 /* --- Stats --- */
 .stat { display: flex; align-items: center; gap: 13px; }
 .stat__icon { color: var(--orange); flex: none; }
+/* block, or the figure and its caption run together on one line */
 .stat__num {
-  font-family: var(--font-head); font-size: 22px; font-weight: 600;
-  color: var(--heading); line-height: 1.15;
+  display: block;
+  font-family: var(--font-head); font-size: 21px; font-weight: 600;
+  color: var(--heading); line-height: 1.2;
 }
-.stat__label { font-size: 11.5px; line-height: 1.4; color: var(--body); max-width: 130px; }
+.stat__label {
+  display: block;
+  font-size: 11px; line-height: 1.4; color: var(--body); max-width: 132px;
+}
 .section--navy .stat__num, .hero-stats .stat__num { color: #fff; }
 .section--navy .stat__label, .hero-stats .stat__label { color: var(--on-dark-soft); }
 
@@ -575,8 +627,8 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   gap: 0;
 }
 .trust-row li {
-  display: flex; align-items: center; gap: 10px;
-  padding: 14px 26px; flex: 1 1 auto; justify-content: center;
+  display: flex; align-items: center; gap: 9px;
+  padding: 14px 16px; flex: 1 1 auto; justify-content: center;
   border-right: 1px solid var(--line);
   font-family: var(--font-head); font-size: 13px; font-weight: 500; color: var(--navy-700);
   white-space: nowrap;
@@ -629,23 +681,23 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 /* ===== HOME: capability → EDI message-code flow diagram ================= */
 .flow {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 62px 116px;
+  grid-template-columns: minmax(0, 1fr) 44px 82px;
   gap: 0 0; align-items: stretch;
 }
 /* Equal rows so a node whose label wraps to two lines still lines up with
    its dot and message code in the columns to the right. */
 .flow__stack { display: grid; grid-auto-rows: 1fr; gap: 8px; }
 .flow__node {
-  display: flex; align-items: center; gap: 12px;
-  padding: 11px 16px;
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px;
   background: rgba(9, 26, 53, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-sm);
-  font-family: var(--font-head); font-size: 13px; font-weight: 500; color: #fff;
-  position: relative;
+  font-family: var(--font-head); font-size: 12px; font-weight: 500; color: #fff;
+  position: relative; line-height: 1.3;
   transition: border-color 0.2s ease, background 0.2s ease;
 }
-.flow__node .icon { width: 22px; height: 22px; color: #dbe4f1; }
+.flow__node .icon { width: 18px; height: 18px; color: #dbe4f1; }
 .flow__node:hover { border-color: rgba(232, 98, 44, 0.6); }
 /* Highlighted node — "Maritime ERP" in the reference */
 .flow__node--active { border-color: var(--orange); color: var(--orange); }
@@ -680,8 +732,8 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   display: grid; place-items: center;
   border: 1px solid var(--orange); border-radius: var(--radius-pill);
   color: var(--orange); background: rgba(232, 98, 44, 0.08);
-  font-family: var(--font-head); font-size: 11.5px; font-weight: 600;
-  letter-spacing: 0.6px;
+  font-family: var(--font-head); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.4px;
 }
 .flow__caption {
   grid-column: 1 / -1; text-align: right;
@@ -695,8 +747,8 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   margin: 0 auto;
 }
 .orbit__ring {
-  position: absolute; inset: 22%;
-  border: 1.5px solid rgba(232, 98, 44, 0.5);
+  position: absolute; inset: 21%;
+  border: 1.5px solid rgba(96, 156, 224, 0.8);
   border-radius: 50%;
 }
 .orbit__ring--outer {
@@ -711,10 +763,10 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 12px;
 }
-.orbit__center .icon { width: 40px; height: 40px; color: #fff; margin: 0 auto; }
+.orbit__center .icon { width: 36px; height: 36px; color: #fff; margin: 0 auto; }
 .orbit__center strong {
-  font-family: var(--font-head); font-size: 11.5px; font-weight: 600;
-  letter-spacing: 1.2px; color: #fff; line-height: 1.5;
+  font-family: var(--font-head); font-size: 12px; font-weight: 600;
+  letter-spacing: 1px; color: #fff; line-height: 1.55;
 }
 /* Six nodes, positioned by --x/--y set per node in the markup */
 .orbit__node {
@@ -777,20 +829,22 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 .impact-stats {
   display: flex; flex-wrap: wrap; gap: 14px 0; justify-content: space-between;
 }
-.impact-stats .stat { flex: 1 1 150px; justify-content: flex-start; }
+.impact-stats .stat { flex: 1 1 118px; justify-content: flex-start; gap: 10px; }
+.impact-stats .stat__label { max-width: 100px; }
+.impact-stats .stat__icon .icon { width: 32px; height: 32px; }
 .panel h3 { font-size: 19px; }
 .panel .btn { margin-top: 18px; }
 /* REPLACE: /images/illustration-port.svg — line illustration from the reference */
 .panel__art { width: 200px; flex: none; opacity: 0.9; color: var(--navy-600); }
 
 /* ===== INSIGHTS ======================================================== */
-.filter-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.filter-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
 .filter-tag {
-  padding: 8px 17px; border-radius: var(--radius-sm);
+  padding: 7px 12px; border-radius: var(--radius-sm);
   border: 1px solid rgba(255, 255, 255, 0.35);
   background: rgba(255, 255, 255, 0.06);
-  color: #e3ebf7; font-size: 12.5px; font-weight: 500;
-  font-family: var(--font-head);
+  color: #e3ebf7; font-size: 11.5px; font-weight: 500;
+  font-family: var(--font-head); white-space: nowrap;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .filter-tag:hover { border-color: var(--orange); color: #fff; }
@@ -811,7 +865,9 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 .article-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .article-card__media {
   position: relative; aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, var(--navy-700), var(--navy-900));
+  /* Same shared port artwork as the heroes, so thumbnails read as photography
+     until the real /images/insight-*.jpg files are dropped in. */
+  background: var(--navy-800) url("../images/hero-port.svg") center / cover no-repeat;
   overflow: hidden;
 }
 /* REPLACE: article thumbnails — /images/insight-*.jpg */
@@ -871,7 +927,7 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 .newsletter__head .icon { width: 46px; height: 46px; color: var(--orange); flex: none; }
 .newsletter__form { display: flex; flex-wrap: wrap; }
 .newsletter__form input {
-  flex: 1; min-width: 0; padding: 11px 14px;
+  flex: 1; min-width: 0; padding: 10px 11px; font-size: 11.5px;
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-right: 0; border-radius: var(--radius-sm) 0 0 var(--radius-sm);
   background: rgba(255, 255, 255, 0.07); color: #fff; font-size: 12.5px;
@@ -879,7 +935,7 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 .newsletter__form input::placeholder { color: #9fb0c9; }
 .newsletter__form input:focus { outline: 0; border-color: var(--orange); }
 .newsletter__form button {
-  padding: 11px 18px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 10px 14px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   background: var(--orange); color: #fff;
   font-family: var(--font-head); font-size: 11.5px; font-weight: 600;
   letter-spacing: 0.7px; text-transform: uppercase;
@@ -967,6 +1023,108 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 .contact-info p, .contact-info a { font-size: 13px; color: var(--body); margin: 0; }
 .contact-info a:hover { color: var(--orange); }
 
+/* --- Contact hero: detail list with circular outline icons -------------- */
+.contact-list { margin-top: 30px; display: grid; gap: 17px; }
+.contact-list li { display: flex; align-items: center; gap: 14px; }
+.contact-list__icon {
+  width: 44px; height: 44px; flex: none;
+  display: grid; place-items: center; border-radius: 50%;
+  border: 1.5px solid var(--orange); color: var(--orange);
+  background: rgba(232, 98, 44, 0.1);
+}
+.contact-list__icon .icon { width: 20px; height: 20px; }
+.contact-list h4 {
+  color: #fff; font-size: 14px; margin: 0 0 2px; font-weight: 600;
+}
+.contact-list p, .contact-list a {
+  margin: 0; font-size: 13px; color: var(--on-dark-soft);
+}
+.contact-list a:hover { color: var(--orange); }
+
+/* --- White "Send us a message" panel sitting inside the hero ------------ */
+.form-panel {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  box-shadow: var(--shadow-lg);
+  /* The panel lives inside .hero, so reset the inherited light-on-dark
+     colours before anything inside it renders white-on-white. */
+  color: var(--body);
+}
+.form-panel p { color: var(--body); }
+.form-panel h2, .form-panel h3, .form-panel h4, .form-panel label { color: var(--heading); }
+.form-panel input, .form-panel select, .form-panel textarea { color: var(--heading); }
+.form-panel__head {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+}
+.form-panel__head .icon-tile { width: 46px; height: 46px; }
+.form-panel__head .icon-tile .icon { width: 22px; height: 22px; }
+.form-panel__head h2 {
+  font-size: 18px; margin: 0 0 2px;
+  letter-spacing: 0.8px; text-transform: uppercase;
+}
+.form-panel__head p { font-size: 12.5px; margin: 0; }
+.form-panel__head strong { color: var(--navy-700); }
+
+/* Boxed field: label and control share one bordered container, with a
+   muted glyph pinned to the right edge (as in the reference design). */
+.field--box {
+  display: block; position: relative;
+  padding: 7px 38px 7px 13px;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background: #fff;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.field--box:focus-within {
+  border-color: var(--orange); box-shadow: 0 0 0 3px rgba(232, 98, 44, 0.12);
+}
+.field--box.has-error { border-color: #c0392b; }
+.field--box > label {
+  display: block; font-size: 11.5px; font-weight: 600;
+  color: var(--navy-700); font-family: var(--font-head); line-height: 1.5;
+}
+.field--box input,
+.field--box select,
+.field--box textarea {
+  width: 100%; border: 0; padding: 1px 0 0; background: transparent;
+  font-size: 13.5px; border-radius: 0;
+  appearance: none; -webkit-appearance: none;
+}
+.field--box input:focus,
+.field--box select:focus,
+.field--box textarea:focus { outline: 0; box-shadow: none; border: 0; }
+.field--box input::placeholder,
+.field--box textarea::placeholder { color: var(--body-light); }
+.field--box textarea { min-height: 62px; resize: vertical; line-height: 1.55; }
+.field--box .fb-icon {
+  position: absolute; right: 13px; top: 50%; transform: translateY(-50%);
+  width: 17px; height: 17px; color: var(--body-light); pointer-events: none;
+}
+.field--box.field--area .fb-icon { top: auto; bottom: 11px; transform: none; }
+.field--box .error { margin-top: 4px; }
+
+/* Consent row */
+.consent {
+  display: flex; flex-direction: row; flex-wrap: wrap;
+  align-items: flex-start; gap: 9px;
+  margin: 16px 0 4px; font-size: 12.5px;
+}
+.consent label { font-size: 12.5px; font-weight: 400; }
+.consent .error { flex: 1 0 100%; margin: 0; }
+.consent input {
+  width: 15px; height: 15px; margin: 3px 0 0; flex: none;
+  accent-color: var(--orange);
+}
+.consent.has-error label { color: #c0392b; }
+.consent a { text-decoration: underline; }
+
+/* Reassurance footnote under the submit button */
+.form-secure {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: 14px; font-size: 11.5px; color: var(--body-light);
+}
+.form-secure .icon { width: 14px; height: 14px; color: var(--orange); }
+
 /* REPLACE: drop a real Google Maps <iframe> in place of .map-embed */
 .map-embed {
   position: relative; margin-top: 20px;
@@ -1015,7 +1173,18 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 /* aspect-ratio lives on the body, not the <img>, so the frame keeps its
    size (gradient showing through) even after onerror removes the image */
 .browser-mock__body { position: relative; aspect-ratio: 16 / 10; }
-.browser-mock__body img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+/* Label sits behind the screenshot, so it only shows while the real
+   /images/product-*.png files are missing. */
+.browser-mock__body::before {
+  content: "Product screenshot — add the /images/product-*.png files";
+  position: absolute; inset: 0; display: grid; place-content: center;
+  padding: 0 24px; text-align: center;
+  font-size: 12.5px; color: rgba(255, 255, 255, 0.45);
+}
+.browser-mock__body img {
+  position: absolute; inset: 0; z-index: 1;
+  width: 100%; height: 100%; object-fit: cover; object-position: top;
+}
 
 .showcase__points { display: flex; flex-direction: column; gap: 17px; }
 .showcase__points li { display: flex; align-items: flex-start; gap: 12px; font-size: 13.5px; line-height: 1.6; }
@@ -1065,7 +1234,8 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   .nav .header-cta .btn { width: 100%; justify-content: center; }
 
   /* --- Layout collapse --- */
-  .hero-grid { grid-template-columns: 1fr; gap: 34px; }
+  .hero-grid,
+  .hero--home .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 34px; }
   .hero p { max-width: none; }
   .insights-layout { grid-template-columns: 1fr; }
   .contact-layout { grid-template-columns: 1fr; }
@@ -1086,6 +1256,9 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   .footer-brand p { max-width: none; }
   .logo-strip { margin-top: 0; }
   .logo-strip__label { flex: 1 1 100%; border-right: 0; border-bottom: 1px solid var(--line); }
+  /* Release the single-row constraint so the marks wrap instead of overflowing */
+  .logo-strip__items { flex-wrap: wrap; }
+  .logo-strip__items li { flex: 1 1 33%; border-bottom: 1px solid var(--line); }
   .trust-row li { flex: 1 1 44%; border-right: 0; }
   .stats-bar .stat { border-right: 0; }
   .cta-contacts li { border-right: 0; padding-left: 0; flex: 1 1 240px; }

@@ -44,7 +44,7 @@
     ["anchor", '<circle cx="12" cy="5" r="2.2"/><path d="M12 7.2V21M5 12.5H3.6a8.4 8.4 0 0016.8 0H19M8.5 10.5h7"/>'],
     ["truck", '<path d="M2.5 6.5h10.2v10H2.5zM12.7 10h3.6l3.2 3.2v3.3h-6.8z"/><circle cx="6.4" cy="18" r="1.7"/><circle cx="16.6" cy="18" r="1.7"/>'],
     ["container", '<rect x="3" y="7.5" width="18" height="10.5" rx="1"/><path d="M7 7.5v10.5M11 7.5v10.5M15 7.5v10.5M19 7.5v10.5"/>'],
-    ["crane", '<path d="M5.5 21V4.5h14M5.5 8.5L13 4.5M12 4.5v5.5M12 10a2 2 0 002 2h1"/><rect x="9.5" y="14" width="6" height="4.5" rx=".6"/><path d="M12 12v2M3 21h18"/>'],
+    ["crane", '<path d="M3 20.5h18M7 20.5V4.5M4 7.2h16M7 4.5l4.6 2.7"/><path d="M16.8 7.2v5.9"/><rect x="14.6" y="13.1" width="4.4" height="3.6" rx=".6"/>'],
     ["warehouse", '<path d="M3.5 20V9.4L12 5l8.5 4.4V20"/><path d="M3.5 20h17M8 20v-6.5h8V20M8 16.5h8"/>'],
     ["port", '<path d="M3 20h18M5 20V8l7-4 7 4v12"/><path d="M9 20v-4.5h6V20M9 11.5h2M13 11.5h2"/>'],
     ["shipping-line", '<path d="M4 17.5h16l-1.8 3H5.8z"/><path d="M6 17.5v-5.2h12v5.2M9 12.3V8.5h6v3.8M12 8.5V5M9.6 5h4.8"/>'],
@@ -53,8 +53,9 @@
 
     // --- services ---
     ["users", '<circle cx="9" cy="8.5" r="3.2"/><path d="M3 19.5c0-3.2 2.7-5.2 6-5.2s6 2 6 5.2"/><path d="M16.2 6.2a3 3 0 010 5.6M17.5 14.9c2 .8 3.5 2.4 3.5 4.6"/>'],
-    ["exchange", '<path d="M4.5 9.5A7.5 7.5 0 0117 6.3"/><path d="M17.4 3.6v3.1h-3.1"/><path d="M19.5 14.5A7.5 7.5 0 017 17.7"/><path d="M6.6 20.4v-3.1h3.1"/>'],
-    ["brain", '<path d="M9.5 4.5a2.7 2.7 0 00-2.7 2.7 2.6 2.6 0 00-1.6 4.5A2.7 2.7 0 007 16.4a2.6 2.6 0 002.5 3.1h.5v-15z"/><path d="M14.5 4.5a2.7 2.7 0 012.7 2.7 2.6 2.6 0 011.6 4.5 2.7 2.7 0 01-1.8 4.7 2.6 2.6 0 01-2.5 3.1H14v-15z"/><path d="M12 4.5v15"/>'],
+    ["exchange", '<path d="M20.2 11.4a8.2 8.2 0 00-14.1-5.2L3.8 8.4"/><path d="M3.5 4.2v4.4h4.4"/><path d="M3.8 12.6a8.2 8.2 0 0014.1 5.2l2.3-2.2"/><path d="M20.5 19.8v-4.4h-4.4"/>'],
+    // Head-in-profile with a circuit node — reads clearly as "AI" at 24px.
+    ["brain", '<path d="M15.6 20.4v-2.3a6.7 6.7 0 10-7.2 0v2.3"/><path d="M8.4 21.9h7.2"/><circle cx="12" cy="11.4" r="2.1"/><path d="M12 6.6v2.7M12 13.5v2.6M8.6 9.5l1.6 1M13.8 12.3l1.6 1M15.4 9.5l-1.6 1M10.2 12.3l-1.6 1"/>'],
     ["dollar", '<circle cx="12" cy="12" r="8.5"/><path d="M14.6 9.2c-.5-.9-1.5-1.4-2.6-1.4-1.5 0-2.6.8-2.6 2s1 1.7 2.6 2.1c1.7.4 2.8 1 2.8 2.2s-1.2 2.1-2.8 2.1c-1.2 0-2.2-.5-2.7-1.4M12 6.4v11.2"/>'],
     ["rocket", '<path d="M13.8 4.9c2.9-1.6 5.6-1.3 5.6-1.3s.3 2.7-1.3 5.6c-1.3 2.4-4.8 5.3-6.6 6.7l-4.4-4.4c1.4-1.8 4.3-5.3 6.7-6.6z"/><circle cx="14.9" cy="9.1" r="1.5"/><path d="M7.1 11.5l-2.6.6-.9 2.9 2.5.4M12.5 16.9l-.6 2.6-2.9.9-.4-2.5M4.2 19.8l2.6-2.6"/>'],
     ["gear", '<circle cx="12" cy="12" r="3.1"/><path d="M19.6 14.3a1.6 1.6 0 00.3 1.8l.1.1a1.9 1.9 0 11-2.7 2.7l-.1-.1a1.6 1.6 0 00-1.8-.3 1.6 1.6 0 00-1 1.5v.2a1.9 1.9 0 11-3.8 0v-.1a1.6 1.6 0 00-1-1.5 1.6 1.6 0 00-1.8.3l-.1.1a1.9 1.9 0 11-2.7-2.7l.1-.1a1.6 1.6 0 00.3-1.8 1.6 1.6 0 00-1.5-1h-.2a1.9 1.9 0 010-3.8h.1a1.6 1.6 0 001.5-1 1.6 1.6 0 00-.3-1.8l-.1-.1a1.9 1.9 0 112.7-2.7l.1.1a1.6 1.6 0 001.8.3h.1a1.6 1.6 0 001-1.5v-.2a1.9 1.9 0 013.8 0v.1a1.6 1.6 0 001 1.5 1.6 1.6 0 001.8-.3l.1-.1a1.9 1.9 0 112.7 2.7l-.1.1a1.6 1.6 0 00-.3 1.8v.1a1.6 1.6 0 001.5 1h.2a1.9 1.9 0 010 3.8h-.1a1.6 1.6 0 00-1.5 1z"/>'],
@@ -82,16 +83,12 @@
     ["sliders", '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.1"/><circle cx="9" cy="17" r="2.1"/>'],
     ["download", '<path d="M12 3.5v11M8 11l4 4 4-4"/><path d="M4.5 16.5v2.2a1.8 1.8 0 001.8 1.8h11.4a1.8 1.8 0 001.8-1.8v-2.2"/>'],
     ["clock", '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.5 2"/>'],
+    ["send", '<path d="M20.5 3.5L10.8 13.2M20.5 3.5l-6.2 17-3.5-7.3-7.3-3.5z"/>'],
+    ["lock", '<rect x="4.5" y="10.5" width="15" height="9.5" rx="2"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/>'],
+    ["user", '<circle cx="12" cy="8.2" r="3.6"/><path d="M4.8 20c0-3.6 3.2-6 7.2-6s7.2 2.4 7.2 6"/>'],
+    ["building", '<path d="M4.5 20.5V5a1.5 1.5 0 011.5-1.5h7A1.5 1.5 0 0114.5 5v15.5M14.5 9.5h4A1.5 1.5 0 0120 11v9.5M3 20.5h18"/><path d="M7.5 7.5h4M7.5 11h4M7.5 14.5h4M17 13.5v.01M17 17v.01"/>'],
+    ["pencil", '<path d="M4 20l.9-4 11-11a2.2 2.2 0 013.1 3.1l-11 11z"/><path d="M13.5 6.5l4 4"/>'],
 
-    // --- partner / technology logo marks (REPLACE with real logo files) ---
-    ["tech-zoho", '<path d="M3 9.5h5.5L3 14.5h5.5M10.5 9.5H16v5h-5.5zM18 9.5h3v5h-3z"/>'],
-    ["tech-microsoft", '<rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/>'],
-    ["tech-aws", '<path d="M4 10.5c0 1.2 1 1.9 2.1 1.9 1.4 0 2.2-.9 2.2-2.2v-.6M10.5 8.6l1.6 4.5 1.4-3.4 1.4 3.4 1.6-4.5"/><path d="M3.5 16.5c4.5 2.4 12.5 2.4 17-.4M18.5 14.6l1.6.2-.2 1.6"/>'],
-    ["tech-cloud", '<path d="M6.5 18a4 4 0 01-.3-8A5.6 5.6 0 0117 10.6 3.8 3.8 0 0116.6 18z"/><path d="M9.5 14.2h6"/>'],
-    ["tech-openai", '<circle cx="12" cy="12" r="8.3"/><path d="M8.2 9.9l3.8-2.2 3.8 2.2v4.2L12 16.3l-3.8-2.2z"/>'],
-    ["tech-edifact", '<circle cx="12" cy="12" r="8.3" stroke-dasharray="3 2.6"/><path d="M9 12h6M12 9v6"/>'],
-    ["tech-x12", '<path d="M4 7l6 10M10 7L4 17M13 8.6l1.8-1.4V17M18 8.4a1.9 1.9 0 113.1 2.2L18 17h3.4"/>'],
-    ["tech-powerbi", '<rect x="4" y="12" width="4" height="8" rx=".6"/><rect x="10" y="8" width="4" height="12" rx=".6"/><rect x="16" y="4" width="4" height="16" rx=".6"/>'],
   ];
 
   function buildSprite() {
@@ -229,6 +226,7 @@
   var FOOTER_COLS = [
     {
       title: "Services",
+      chev: true, // orange "›" bullets, as in the reference footer
       links: [
         ["Business Consulting", "services.html#business-consulting"],
         ["Maritime ERP Advisory", "services.html#maritime-erp"],
@@ -274,8 +272,6 @@
         ["Articles", "insights.html"],
         ["Whitepapers", "insights.html"],
         ["Downloads", "insights.html"],
-        ["About Us", "about.html"],
-        ["Careers", "about.html"],
       ],
     },
   ];
@@ -283,7 +279,8 @@
   function footerHTML() {
     var cols = FOOTER_COLS.map(function (col) {
       return (
-        '<div class="footer-col' + (col.split ? " footer-col--split" : "") + '">' +
+        '<div class="footer-col' + (col.split ? " footer-col--split" : "") +
+          (col.chev ? " footer-col--chev" : "") + '">' +
           "<h4>" + col.title + "</h4>" +
           "<ul>" +
             col.links.map(function (l) {
@@ -458,6 +455,12 @@
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 
   function fieldError(input) {
+    // Checkboxes validate on checked state — an unchecked box still has a value.
+    if (input.type === "checkbox") {
+      return input.hasAttribute("required") && !input.checked
+        ? input.getAttribute("data-msg-required") || "Please tick this box to continue."
+        : "";
+    }
     var value = (input.value || "").trim();
     if (input.hasAttribute("required") && !value) {
       return input.getAttribute("data-msg-required") || "This field is required.";
@@ -498,6 +501,9 @@
       // Re-validate a field once it has been touched.
       inputs.forEach(function (input) {
         input.addEventListener("blur", function () {
+          showFieldError(input, fieldError(input));
+        });
+        input.addEventListener("change", function () {
           showFieldError(input, fieldError(input));
         });
         input.addEventListener("input", function () {
