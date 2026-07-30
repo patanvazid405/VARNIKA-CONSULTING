@@ -405,27 +405,55 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
      is thrown away entirely if the variable fails to resolve, which would
      take the artwork with it. */
   background-color: var(--navy-800);
-  background-image: url("../images/hero-port.svg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
+/* Photograph layer, painted over the generated artwork once the real file
+   exists. Empty by default so a missing file just shows the artwork. */
 .hero::before {
   content: ""; position: absolute;
   top: 0; right: 0; bottom: 0; left: 0; /* fallback for `inset` */
   inset: 0;
-  background-image: var(--hero-img, none);
   background-size: cover; background-position: center;
 }
+
+/* ---- Per-page imagery -------------------------------------------------
+   Declared here rather than via inline custom properties: a url() that is
+   substituted out of a custom property resolves against THIS stylesheet, not
+   the page, so an inline `--hero-art: url('images/x.svg')` silently pointed at
+   /css/images/x.svg. Keying off a class keeps every path in one place and
+   correct under any base path (e.g. a GitHub Pages project subdirectory).
+
+   .hero--<page>          generated scene, always present
+   .hero--<page>::before  the client's photograph; drop the file in and it
+                          takes over with no code change.                    */
+.hero--home       { background-image: url("../images/hero-port.svg"); }
+.hero--services   { background-image: url("../images/hero-terminal.svg"); }
+.hero--industries { background-image: url("../images/hero-fleet.svg"); }
+.hero--solutions  { background-image: url("../images/hero-network.svg"); }
+.hero--about      { background-image: url("../images/hero-dusk.svg"); }
+.hero--insights   { background-image: url("../images/hero-analytics.svg"); }
+.hero--contact    { background-image: url("../images/hero-quay.svg"); }
+
+.hero--home::before       { background-image: url("../images/hero-container-ship.jpg"); }
+.hero--services::before   { background-image: url("../images/hero-terminal-cranes.jpg"); }
+.hero--industries::before { background-image: url("../images/hero-port-terminal.jpg"); }
+.hero--solutions::before  { background-image: url("../images/hero-vessel-night.jpg"); }
+.hero--about::before      { background-image: url("../images/hero-fleet-night.jpg"); }
+.hero--insights::before   { background-image: url("../images/hero-vessel-dusk.jpg"); }
+.hero--contact::before    { background-image: url("../images/hero-harbour.jpg"); }
 /* Navy wash: heavy on the left so headline copy stays legible, lighter on the
    right so the vessel and cranes read through — as in the reference designs. */
 .hero::after {
   content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; inset: 0;
+  /* Light touch: the artwork carries its own left-hand vignette, so a heavy
+     wash here just flattens the vessels, cranes and network mesh. */
   background: linear-gradient(100deg,
-    rgba(7, 23, 48, 0.93) 0%,
-    rgba(10, 30, 63, 0.84) 30%,
-    rgba(10, 30, 63, 0.44) 56%,
-    rgba(10, 30, 63, 0.62) 100%);
+    rgba(7, 23, 48, 0.58) 0%,
+    rgba(10, 30, 63, 0.42) 30%,
+    rgba(10, 30, 63, 0.12) 58%,
+    rgba(10, 30, 63, 0.32) 100%);
 }
 .hero > .container { position: relative; z-index: 2; }
 

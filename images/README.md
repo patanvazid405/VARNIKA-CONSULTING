@@ -1,30 +1,60 @@
 # Image assets
 
-Drop final artwork here using these exact filenames and the site picks them up
-with no code changes. Until then every reference degrades gracefully: hero
-photos fall back to the navy gradient, article thumbnails fall back to a navy
-panel (the `<img>` removes itself via `onerror`).
+## Generated artwork (present now)
 
-## Hero backgrounds
-Set on each page via the inline `--hero-img` custom property.
-Recommended: 2000x1000px, JPG, ~250KB, dark/night container-terminal imagery
-so the white headline text keeps contrast.
+`tools/generate-artwork.py` produces every scene below: a night container
+terminal with vessels, gantry cranes, city glow and the cyan digital-network
+overlay from the client's reference image. Regenerate with:
 
-| File | Used on |
+    python tools/generate-artwork.py
+
+Output is deterministic, so re-running yields byte-identical files. Tune the
+per-variant dials (`ships`, `cranes`, `mesh`, `glyphs`, `horizon`, `warmth`,
+`vignette`) in the `HEROES` / `THUMBS` tables at the bottom of that script.
+
+| Scene | Page | Character |
+|---|---|---|
+| `hero-port.svg`      | index      | full terminal, balanced |
+| `hero-terminal.svg`  | services   | crane-forward |
+| `hero-fleet.svg`     | industries | vessels at the quay |
+| `hero-network.svg`   | solutions  | dense mesh, the integration story |
+| `hero-dusk.svg`      | about      | calmer, warmer harbour |
+| `hero-analytics.svg` | insights   | data-glyph forward |
+| `hero-quay.svg`      | contact    | evening quayside, even wash |
+
+Thumbnails for the six insight cards: `insight-erp.svg`, `insight-edi.svg`,
+`insight-digital.svg`, `insight-ai.svg`, `insight-finance.svg`,
+`insight-operations.svg`.
+
+**These are stand-ins, not photography.** They exist so the site reads as
+designed before real assets land.
+
+## Dropping in real photographs
+
+Each hero has a photo layer sitting above the generated scene. Save a file at
+the name below and it takes over automatically - no code change:
+
+| File | Page |
 |---|---|
 | `hero-container-ship.jpg` | index.html |
+| `hero-terminal-cranes.jpg`| services.html |
 | `hero-port-terminal.jpg`  | industries.html |
 | `hero-vessel-night.jpg`   | solutions.html |
-| `hero-terminal-cranes.jpg`| services.html |
-| `hero-vessel-dusk.jpg`    | insights.html |
 | `hero-fleet-night.jpg`    | about.html |
+| `hero-vessel-dusk.jpg`    | insights.html |
 | `hero-harbour.jpg`        | contact.html |
 
-## Article thumbnails (insights.html)
-Recommended: 800x450px (16:9), JPG.
+Recommended: 2000x1000px, JPG, ~250KB, dark/night imagery so the white
+headline keeps contrast. The left third carries the copy, so keep the subject
+right of centre.
 
-`insight-erp.jpg`, `insight-edi.jpg`, `insight-digital.jpg`,
-`insight-ai.jpg`, `insight-finance.jpg`, `insight-operations.jpg`
+Article thumbnails work the same way - save `insight-erp.jpg` and friends at
+800x450px and they replace the generated versions.
+
+Both layers are wired in `css/styles.css` under "Per-page imagery", keyed off
+a `.hero--<page>` class. They are declared there rather than inline because a
+`url()` substituted out of a CSS custom property resolves against the
+stylesheet, not the page - inline values silently resolved to `/css/images/`.
 
 ## Product showcase (solutions.html)
 The "Inside the Varnika Freight ERP" tabbed section (`#product-showcase`).
@@ -108,10 +138,10 @@ back to the built-in light lockup, which is fine.
 ### The tagline
 "YOUR PARTNER IN MARITIME EXCELLENCE" is in the lockup, with the hairlines
 either side, at 7px — slightly larger than true proportion so it stays legible.
-It is hidden in two places where it does not fit: under 400px (it alone is
-~175px wide, which overruns a small phone header) and between 1101–1160px
-(where the horizontal nav and CTA need the room). It always shows in the
-footer.
+On phones the flanking hairlines are dropped and the type tightens to 6.5px
+(6px under 400px) so it still fits a 320px header — it is never hidden on
+mobile. It is dropped from the header only between 1101–1160px, where the
+horizontal nav and the CTA need the room. It always shows in the footer.
 
 ## Other illustrations
 Still inline SVG in the markup rather than files here:
