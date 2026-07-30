@@ -1,17 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 152" role="img" aria-label="Varnika Consulting">
-<!-- left arm of the V, navy, with a curved outer sweep -->
-<path d="M4 8h42l60 134H90C66 100 38 44 4 8Z" fill="#16274d"/>
-<!-- wing flourish sweeping off the top-left -->
-<path d="M4 8c26 10 44 28 56 54-16-18-34-38-56-42Z" fill="#16274d"/>
-<!-- right arm of the V, orange and broad -->
-<path d="M128 8h48l-58 134h-24Z" fill="#e8720c"/>
-<!-- feather strokes across the orange -->
-<g fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round">
-  <path d="M137 30c10-5 20-8 30-9"/>
-  <path d="M132 45c10-5 20-8 30-9"/>
-  <path d="M127 60c10-5 19-8 28-9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Varnika Consulting">
+<!-- left arm: a broad wing stroke, outer edge bowing out to the left -->
+<path d="M8 14L128 8C168 110 214 206 256 290H206C120 200 40 96 8 14Z" fill="#16274d"/>
+<!-- right arm: slender orange feather tapering to the vertex -->
+<path d="M292 12L390 28C368 114 328 204 286 288H250C272 200 284 106 292 12Z" fill="#e8720c"/>
+<!-- feather barbs, curving with the leaf -->
+<g fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round">
+  <path d="M309 56C330 41 352 33 372 32"/>
+  <path d="M302 88C324 72 345 64 365 63"/>
+  <path d="M296 120C317 104 338 96 358 95"/>
 </g>
-<!-- white gap, then the navy wave sweeping right across the base -->
-<path d="M0 112c40-13 80-11 116-2 34 9 62 5 84-10-4 8-9 15-15 21-24 14-52 16-82 8-34-9-70-11-103 1Z" fill="#ffffff"/>
-<path d="M0 122c40-13 80-11 116-2 36 9 66 3 84-16-14 30-40 46-78 46-30 0-70-8-122-28Z" fill="#16274d"/>
+<!-- separating band, then the wave sweeping off to a fine point on the right -->
+<path d="M0 234C74 210 148 206 216 220C284 234 346 228 400 194V210C346 246 284 252 216 238C148 224 74 228 0 252Z" fill="#ffffff"/>
+<path d="M0 250C74 226 148 222 216 236C284 250 346 244 400 208C376 266 318 297 244 297C164 297 70 282 0 250Z" fill="#16274d"/>
 </svg>

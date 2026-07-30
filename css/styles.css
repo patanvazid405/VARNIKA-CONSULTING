@@ -224,32 +224,58 @@ button { cursor: pointer; border: 0; background: none; }
 }
 
 /* --- Logo --- */
-.logo { display: flex; align-items: center; gap: 11px; margin-right: auto; }
-.logo__mark { width: 46px; height: 34px; flex: none; }
+.logo { display: flex; align-items: center; gap: 12px; margin-right: auto; }
+
+/* The client's own logo file, when present, replaces the composed lockup
+   entirely. Hidden by default — the browser still fetches it, so its onload
+   handler can flip .logo--has-full only if the file actually exists. */
+.logo__full { display: none; height: 46px; width: auto; }
+.logo--has-full .logo__full { display: block; }
+.logo--has-full .logo__mark,
+.logo--has-full .logo__text { display: none; }
+
+.logo__mark { width: 52px; height: 39px; flex: none; }
 .logo__text { display: flex; flex-direction: column; line-height: 1; }
 .logo__name {
-  font-family: var(--font-head); font-size: 21px; font-weight: 700;
+  font-family: var(--font-head); font-size: 22px; font-weight: 700;
   letter-spacing: 1.6px; color: var(--navy-800);
 }
 /* "CONSULTING" is orange in the supplied lockup, on light and dark alike */
 .logo__sub {
-  font-size: 8.5px; font-weight: 600; letter-spacing: 4.6px;
-  color: var(--orange); margin-top: 3px;
+  font-size: 9px; font-weight: 600; letter-spacing: 4.8px;
+  color: var(--orange); margin-top: 4px;
+}
+/* Tagline with the hairlines either side, as in the brand lockup. Set a shade
+   larger than true proportion so it stays legible at header size. */
+.logo__tag {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-head);
+  font-size: 7px; font-weight: 600; letter-spacing: 0.9px;
+  text-transform: uppercase; color: var(--navy-700);
+  margin-top: 5px; white-space: nowrap;
+}
+.logo__tag::before,
+.logo__tag::after {
+  content: ""; height: 1px; width: 9px; flex: none;
+  background: currentColor; opacity: 0.6;
 }
 .logo--light .logo__name { color: #fff; }
 .logo--light .logo__sub { color: var(--orange); }
+.logo--light .logo__tag { color: var(--on-dark-soft); }
 
 /* --- Primary nav --- */
 .nav { display: flex; align-items: center; gap: 4px; }
 .nav__link {
   position: relative; display: flex; align-items: center; gap: 5px;
-  padding: 24px 14px;
-  font-family: var(--font-head); font-size: 14px; font-weight: 500;
+  padding: 24px 10px;
+  font-family: var(--font-head); font-size: 13.5px; font-weight: 500;
   color: var(--navy-700);
+  /* two-word items must not wrap now the logo lockup is wider */
+  white-space: nowrap;
 }
 .nav__link:hover { color: var(--orange); }
 .nav__link::after {
-  content: ""; position: absolute; left: 14px; right: 14px; bottom: 18px;
+  content: ""; position: absolute; left: 10px; right: 10px; bottom: 18px;
   height: 2px; background: var(--orange); border-radius: 2px;
   transform: scaleX(0); transform-origin: left; transition: transform 0.22s ease;
 }
@@ -285,6 +311,7 @@ button { cursor: pointer; border: 0; background: none; }
 
 /* --- Header CTA + hamburger --- */
 .header-cta { flex: none; }
+.header-cta .btn { padding: 12px 20px; font-size: 12.5px; }
 /* The CTA is rendered twice by main.js — once in the bar, once inside the
    drawer list. Hide the in-drawer copy at desktop widths. */
 .nav .header-cta { display: none; }
@@ -1208,6 +1235,14 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 
 /* ----------------------------- 10. RESPONSIVE --------------------------- */
 
+/* Between the hamburger breakpoint and ~1160px the horizontal nav plus the CTA
+   leave no room for the tagline, so drop it from the header there only. It
+   stays in the footer at every width, and returns on mobile once the nav
+   collapses to the hamburger. */
+@media (min-width: 1101px) and (max-width: 1160px) {
+  .site-header .logo__tag { display: none; }
+}
+
 @media (max-width: 1180px) {
   /* Keep all five figures on one row — the stat's min-content (icon + label)
      otherwise exceeds its flex-basis and pushes the last one onto its own line. */
@@ -1223,7 +1258,10 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   .grid--5 { grid-template-columns: repeat(3, 1fr); }
 }
 
-@media (max-width: 1024px) {
+/* Hamburger up to 1100px: the seven-item horizontal nav plus the logo lockup
+   and the CTA do not fit below that, so the bar overflowed between 1025 and
+   ~1080 where the drawer had not yet taken over. */
+@media (max-width: 1100px) {
   /* --- Mobile navigation drawer --- */
   .nav-toggle { display: flex; }
   .header-cta { display: none; }
@@ -1372,6 +1410,12 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
     white-space: normal; text-align: center;
     padding: 12px 16px; font-size: 12px; line-height: 1.35;
   }
+  /* The tagline is ~175px wide on its own — with the mark and the hamburger
+     that overruns a 320px header, so compact the lockup and drop it here. */
+  .logo__tag { display: none; }
+  .logo__mark { width: 44px; height: 33px; }
+  .logo__name { font-size: 19px; letter-spacing: 1.2px; }
+  .logo__sub { font-size: 8px; letter-spacing: 4px; }
 }
 
 /* ---------------------- 11. OLDER-BROWSER FALLBACKS --------------------- */

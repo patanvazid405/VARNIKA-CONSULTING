@@ -87,15 +87,31 @@ and `.logo__sub`. That keeps it crisp at any size and lets it recolour for the
 dark footer.
 
 **These are interpretations of the supplied logo, not the original artwork.**
-The real mark has a more elaborate bird/wing form on the left; this is a
-simplified V that reads correctly at 46px. To use the genuine logo, overwrite
-both files with the official vector (a white-filled version for the `-light`
-one) — no code changes needed. If you only have a raster (PNG/JPG), save it as
-`logo-mark.png` and change the two `src` values in `logoMark()` in
-`js/main.js`.
+The real mark has a more elaborate bird/wing form; this is a simplified V that
+reads correctly at 52px. Hand-tracing from a screenshot will not be exact.
 
-The tagline "YOUR PARTNER IN MARITIME EXCELLENCE" is deliberately omitted from
-the header lockup — at 35px tall it would be illegible.
+### Use your real logo — the easy way
+
+Save your logo file as **`images/logo-full.png`** and it replaces the whole
+composed lockup automatically. No code changes. The site renders the built-in
+lockup until that file exists, then swaps to yours the moment it does.
+
+| File | Where it's used | Notes |
+|---|---|---|
+| `logo-full.png`       | header (white background) | your full-colour logo as supplied |
+| `logo-full-light.png` | footer (navy background)  | needs white/light text to be legible |
+
+`.svg` works too — change the extension in `logo()` in `js/main.js`.
+If you only supply `logo-full.png`, the header uses it and the footer falls
+back to the built-in light lockup, which is fine.
+
+### The tagline
+"YOUR PARTNER IN MARITIME EXCELLENCE" is in the lockup, with the hairlines
+either side, at 7px — slightly larger than true proportion so it stays legible.
+It is hidden in two places where it does not fit: under 400px (it alone is
+~175px wide, which overruns a small phone header) and between 1101–1160px
+(where the horizontal nav and CTA need the room). It always shows in the
+footer.
 
 ## Other illustrations
 Still inline SVG in the markup rather than files here:

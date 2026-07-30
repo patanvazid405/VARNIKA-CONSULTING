@@ -145,13 +145,27 @@
     return '<img class="logo__mark" src="' + file + '" alt="" width="46" height="35">';
   }
 
+  /* Renders the composed lockup (mark + wordmark + tagline) by default, and
+     automatically swaps to the client's own artwork the moment it exists:
+
+         images/logo-full.png        used in the header
+         images/logo-full-light.png  used in the footer (navy background)
+
+     A display:none <img> is still fetched, so onload only fires when the file
+     is really there — no flash, no code change needed to switch over.
+     .svg works too: change the extension below. */
   function logo(light) {
+    var full = light ? "images/logo-full-light.png" : "images/logo-full.png";
     return (
       '<a class="logo' + (light ? " logo--light" : "") + '" href="index.html" aria-label="Varnika Consulting — home">' +
+        '<img class="logo__full" src="' + full + '" alt="Varnika Consulting" ' +
+          "onload=\"this.closest('.logo').classList.add('logo--has-full')\" " +
+          'onerror="this.remove()">' +
         logoMark(light) +
         '<span class="logo__text">' +
           '<span class="logo__name">VARNIKA</span>' +
           '<span class="logo__sub">CONSULTING</span>' +
+          '<span class="logo__tag">Your Partner in Maritime Excellence</span>' +
         "</span>" +
       "</a>"
     );
@@ -355,7 +369,8 @@
     });
 
     // Reset drawer state when resizing back up to desktop.
-    var mq = window.matchMedia("(min-width: 1025px)");
+    // Must match the hamburger breakpoint in styles.css (max-width: 1100px)
+    var mq = window.matchMedia("(min-width: 1101px)");
     (mq.addEventListener ? mq.addEventListener.bind(mq, "change") : mq.addListener.bind(mq))(
       function (e) { if (e.matches) setOpen(false); }
     );
