@@ -1084,6 +1084,12 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 }
 .contact-list a:hover { color: var(--orange); }
 
+/* Footnote under the contact list, e.g. the worldwide-service line */
+.hero-note {
+  margin-top: 16px; font-size: 12.5px; line-height: 1.6;
+  color: var(--on-dark-soft); max-width: 340px;
+}
+
 /* --- White "Send us a message" panel sitting inside the hero ------------ */
 .form-panel {
   background: #fff;
@@ -1361,6 +1367,12 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 @media (max-width: 640px) {
   :root { --gutter: 18px; }
 
+  /* Phone header: the hairlines cost ~30px the lockup can't spare, so drop
+     them and tighten the tagline rather than hiding it. Most phones are
+     360-414px wide, so it has to survive here. */
+  .logo__tag { font-size: 6.5px; letter-spacing: 0.35px; gap: 0; }
+  .logo__tag::before, .logo__tag::after { display: none; }
+
   /* Two columns x four rows — still even, and each cell stays wide enough
      for the longest label ("Google Cloud"). */
   .logo-strip__items { grid-template-columns: repeat(2, 1fr); }
@@ -1410,12 +1422,10 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
     white-space: normal; text-align: center;
     padding: 12px 16px; font-size: 12px; line-height: 1.35;
   }
-  /* The tagline is ~175px wide on its own — with the mark and the hamburger
-     that overruns a 320px header, so compact the lockup and drop it here. */
-  .logo__tag { display: none; }
-  .logo__mark { width: 44px; height: 33px; }
-  .logo__name { font-size: 19px; letter-spacing: 1.2px; }
-  .logo__sub { font-size: 8px; letter-spacing: 4px; }
+  .logo__mark { width: 42px; height: 32px; }
+  .logo__name { font-size: 18px; letter-spacing: 1.1px; }
+  .logo__sub { font-size: 7.5px; letter-spacing: 3.6px; }
+  .logo__tag { font-size: 6px; letter-spacing: 0.2px; }
 }
 
 /* ---------------------- 11. OLDER-BROWSER FALLBACKS --------------------- */

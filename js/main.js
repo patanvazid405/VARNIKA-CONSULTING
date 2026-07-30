@@ -306,8 +306,9 @@
           '<div class="footer-grid">' +
             '<div class="footer-brand">' +
               logo(true) +
-              "<p>Helping maritime and logistics organizations transform operations, " +
-              "integrate technology and achieve measurable business impact.</p>" +
+              "<p>Helping maritime and logistics organizations improve operational " +
+              "efficiency, modernize technology and achieve measurable business " +
+              "outcomes through business consulting and digital transformation.</p>" +
               '<div class="social">' +
                 '<a href="#" aria-label="Varnika Consulting on LinkedIn">' + icon("linkedin") + "</a>" +
                 '<a href="mailto:advisory@varnikaconsulting.com" aria-label="Email Varnika Consulting">' + icon("mail") + "</a>" +
@@ -319,9 +320,12 @@
               "<h4>Contact Us</h4>" +
               '<ul class="footer-contact">' +
                 "<li>" + icon("mail") + '<a href="mailto:advisory@varnikaconsulting.com">advisory@varnikaconsulting.com</a></li>' +
-                "<li>" + icon("phone") + '<a href="tel:+919874512345">+91 98745 12345</a></li>' +
+                // Plain text, not a tel: link, until the real number is supplied.
+                "<li>" + icon("phone") + "<span>+91 XXXX XXXXX</span></li>" +
                 "<li>" + icon("globe") + '<a href="index.html">www.varnikaconsulting.com</a></li>' +
-                "<li>" + icon("map-pin") + "<span>Global Delivery</span></li>" +
+                "<li>" + icon("map-pin") +
+                  "<span><strong style=\"color:#fff;font-weight:600\">Global Presence</strong><br>" +
+                  "Bengaluru, Karnataka, India<br>Nellore, Andhra Pradesh, India</span></li>" +
               "</ul>" +
             "</div>" +
           "</div>" +
