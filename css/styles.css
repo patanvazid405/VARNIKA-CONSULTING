@@ -231,12 +231,13 @@ button { cursor: pointer; border: 0; background: none; }
   font-family: var(--font-head); font-size: 21px; font-weight: 700;
   letter-spacing: 1.6px; color: var(--navy-800);
 }
+/* "CONSULTING" is orange in the supplied lockup, on light and dark alike */
 .logo__sub {
-  font-size: 8.5px; font-weight: 500; letter-spacing: 4.6px;
-  color: var(--navy-500); margin-top: 3px;
+  font-size: 8.5px; font-weight: 600; letter-spacing: 4.6px;
+  color: var(--orange); margin-top: 3px;
 }
 .logo--light .logo__name { color: #fff; }
-.logo--light .logo__sub { color: var(--on-dark-soft); }
+.logo--light .logo__sub { color: var(--orange); }
 
 /* --- Primary nav --- */
 .nav { display: flex; align-items: center; gap: 4px; }
@@ -299,7 +300,7 @@ button { cursor: pointer; border: 0; background: none; }
 .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
 
 .nav-scrim {
-  position: fixed; inset: var(--header-h) 0 0; z-index: 90;
+  position: fixed; top: var(--header-h); right: 0; bottom: 0; left: 0; inset: var(--header-h) 0 0; z-index: 90;
   background: rgba(7, 23, 48, 0.5);
   opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s;
 }
@@ -372,18 +373,27 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   overflow: hidden;
   /* Site-wide base artwork — the same night container terminal on every page.
      Self-contained SVG, so it always renders. A page that sets --hero-img
-     paints its own photo on top of this via ::before. */
-  background: var(--navy-800) url("../images/hero-port.svg") center / cover no-repeat;
+     paints its own photo on top of this via ::before.
+     Longhands, not the `background` shorthand: a shorthand containing var()
+     is thrown away entirely if the variable fails to resolve, which would
+     take the artwork with it. */
+  background-color: var(--navy-800);
+  background-image: url("../images/hero-port.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .hero::before {
-  content: ""; position: absolute; inset: 0;
+  content: ""; position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0; /* fallback for `inset` */
+  inset: 0;
   background-image: var(--hero-img, none);
   background-size: cover; background-position: center;
 }
 /* Navy wash: heavy on the left so headline copy stays legible, lighter on the
    right so the vessel and cranes read through — as in the reference designs. */
 .hero::after {
-  content: ""; position: absolute; inset: 0;
+  content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; inset: 0;
   background: linear-gradient(100deg,
     rgba(7, 23, 48, 0.93) 0%,
     rgba(10, 30, 63, 0.84) 30%,
@@ -748,16 +758,16 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   margin: 0 auto;
 }
 .orbit__ring {
-  position: absolute; inset: 21%;
+  position: absolute; top: 21%; right: 21%; bottom: 21%; left: 21%; inset: 21%;
   border: 1.5px solid rgba(96, 156, 224, 0.8);
   border-radius: 50%;
 }
 .orbit__ring--outer {
-  inset: 16%;
+  top: 16%; right: 16%; bottom: 16%; left: 16%; inset: 16%;
   border: 1.5px dotted rgba(255, 255, 255, 0.22);
 }
 .orbit__center {
-  position: absolute; inset: 26%;
+  position: absolute; top: 26%; right: 26%; bottom: 26%; left: 26%; inset: 26%;
   display: grid; place-content: center; text-align: center; gap: 8px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(22, 48, 90, 0.95), rgba(7, 23, 48, 0.9));
@@ -867,8 +877,13 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 .article-card__media {
   position: relative; aspect-ratio: 16 / 9;
   /* Same shared port artwork as the heroes, so thumbnails read as photography
-     until the real /images/insight-*.jpg files are dropped in. */
-  background: var(--navy-800) url("../images/hero-port.svg") center / cover no-repeat;
+     until the real /images/insight-*.jpg files are dropped in. Longhands so a
+     failed var() can't discard the image (see .hero). */
+  background-color: var(--navy-800);
+  background-image: url("../images/hero-port.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 /* REPLACE: article thumbnails — /images/insight-*.jpg */
@@ -1139,7 +1154,7 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   color: var(--body-light); font-size: 12.5px;
 }
 .map-embed .icon { width: 34px; height: 34px; color: var(--orange); margin: 0 auto; }
-.map-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.map-embed iframe { position: absolute; top: 0; right: 0; bottom: 0; left: 0; inset: 0; width: 100%; height: 100%; border: 0; }
 
 /* --- Product showcase (solutions.html) --------------------------------
    Tabbed browser-mockup preview. Screenshots are optional: onerror removes
@@ -1178,12 +1193,12 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
    /images/product-*.png files are missing. */
 .browser-mock__body::before {
   content: "Product screenshot — add the /images/product-*.png files";
-  position: absolute; inset: 0; display: grid; place-content: center;
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0; inset: 0; display: grid; place-content: center;
   padding: 0 24px; text-align: center;
   font-size: 12.5px; color: rgba(255, 255, 255, 0.45);
 }
 .browser-mock__body img {
-  position: absolute; inset: 0; z-index: 1;
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0; inset: 0; z-index: 1;
   width: 100%; height: 100%; object-fit: cover; object-position: top;
 }
 
@@ -1293,7 +1308,7 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   }
   .orbit__ring, .orbit__pin { display: none; }
   .orbit__center {
-    position: static; inset: auto; grid-column: 1 / -1;
+    position: static; top: auto; right: auto; bottom: auto; left: auto; inset: auto; grid-column: 1 / -1;
     width: 186px; height: 186px; margin: 2px auto 6px;
     border: 1px solid rgba(96, 156, 224, 0.8);
   }
@@ -1358,6 +1373,27 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
     padding: 12px 16px; font-size: 12px; line-height: 1.35;
   }
 }
+
+/* ---------------------- 11. OLDER-BROWSER FALLBACKS --------------------- */
+/* `aspect-ratio` is unsupported on iOS < 15, Chrome < 88 and Samsung Internet
+   < 15. Without it these boxes collapse to zero height and their artwork
+   disappears — which is what "images not showing on my phone" looks like.
+   Padding-based ratios reserve the height instead. */
+@supports not (aspect-ratio: 16 / 9) {
+  .article-card__media { height: 0; padding-top: 56.25%; }   /* 16:9  */
+  .map-embed          { height: 0; padding-top: 62.5%;  }    /* 16:10 */
+  .browser-mock__body { height: 0; padding-top: 62.5%;  }    /* 16:10 */
+  .orbit              { min-height: 380px; }                 /* square-ish */
+}
+@supports not (aspect-ratio: 16 / 9) {
+  @media (max-width: 760px) {
+    /* the small-screen orbit is a plain grid, so it needs no reserved height */
+    .orbit { min-height: 0; }
+  }
+}
+
+/* Safari needs the prefix for the frosted core-values panel */
+.values-panel { -webkit-backdrop-filter: blur(2px); }
 
 /* Users who prefer reduced motion get no transforms */
 @media (prefers-reduced-motion: reduce) {

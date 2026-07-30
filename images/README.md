@@ -72,11 +72,33 @@ Accuracy notes, worst first:
 - **`zoho.svg`, `google-cloud.svg`, `power-bi.svg`** — geometry and brand
   colours are accurate; these are the closest of the set.
 
+## Company logo — `logo-mark.svg` / `logo-mark-light.svg`
+The "V" mark used in the header and footer. Two files because the mark is
+mostly navy and the footer sits on navy:
+
+| File | Used on |
+|---|---|
+| `logo-mark.svg`       | white header (navy + orange mark) |
+| `logo-mark-light.svg` | navy footer (white + orange mark) |
+
+The **wordmark is HTML text**, not part of these files — "VARNIKA" in
+Poppins 700 and "CONSULTING" letter-spaced in orange, styled by `.logo__name`
+and `.logo__sub`. That keeps it crisp at any size and lets it recolour for the
+dark footer.
+
+**These are interpretations of the supplied logo, not the original artwork.**
+The real mark has a more elaborate bird/wing form on the left; this is a
+simplified V that reads correctly at 46px. To use the genuine logo, overwrite
+both files with the official vector (a white-filled version for the `-light`
+one) — no code changes needed. If you only have a raster (PNG/JPG), save it as
+`logo-mark.png` and change the two `src` values in `logoMark()` in
+`js/main.js`.
+
+The tagline "YOUR PARTNER IN MARITIME EXCELLENCE" is deliberately omitted from
+the header lockup — at 35px tall it would be illegible.
+
 ## Other illustrations
 Still inline SVG in the markup rather than files here:
-
-- **Company logo** — `logoMark()` in `js/main.js`. Replace the inline SVG with
-  `<img src="images/logo-varnika.svg" class="logo__mark" alt="">`.
 - **Port illustration** — the inline `.panel__art` SVG in `industries.html`.
 - **Google Map** — the `.map-embed` placeholder in `contact.html`; paste your
   Maps embed `<iframe>` inside it.

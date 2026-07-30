@@ -136,24 +136,19 @@
     { key: "contact", label: "Contact Us", href: "contact.html" },
   ];
 
-  /* The wave + star logo mark. Inlined so it scales crisply on both
-     the white header and the navy footer.
-     REPLACE: swap for /images/logo-varnika.svg once final art is supplied. */
-  function logoMark() {
-    return (
-      '<svg class="logo__mark" viewBox="0 0 60 44" aria-hidden="true">' +
-        '<path d="M2 27c8-9 17-13 27-13s19 4 27 11" fill="none" stroke="#16305a" stroke-width="3.4" stroke-linecap="round"/>' +
-        '<path d="M4 34c8-7 16-10 25-10s18 3 26 9" fill="none" stroke="#e8622c" stroke-width="3.4" stroke-linecap="round"/>' +
-        '<path d="M12 22c6-6 13-9 21-9" fill="none" stroke="#2e6fb7" stroke-width="3" stroke-linecap="round"/>' +
-        '<path d="M41 2l2.1 4.6L48 7.3l-3.6 3.4.9 4.9-4.3-2.4-4.3 2.4.9-4.9L34 7.3l4.9-.7z" fill="#e8622c"/>' +
-      "</svg>"
-    );
+  /* The Varnika "V" mark. Kept as a file so the client can drop their
+     official vector straight over images/logo-mark.svg. The wordmark stays
+     as HTML text so it can recolour for the navy footer (.logo--light). */
+  function logoMark(light) {
+    // The mark is largely navy, so the footer needs the white-on-navy variant.
+    var file = light ? "images/logo-mark-light.svg" : "images/logo-mark.svg";
+    return '<img class="logo__mark" src="' + file + '" alt="" width="46" height="35">';
   }
 
   function logo(light) {
     return (
       '<a class="logo' + (light ? " logo--light" : "") + '" href="index.html" aria-label="Varnika Consulting — home">' +
-        logoMark() +
+        logoMark(light) +
         '<span class="logo__text">' +
           '<span class="logo__name">VARNIKA</span>' +
           '<span class="logo__sub">CONSULTING</span>' +
@@ -547,6 +542,18 @@
   /* =======================================================================
      6. BOOT
      ======================================================================= */
+  /* Safari before 12 only honours xlink:href on <use>, so every icon would be
+     blank there. Mirror href onto xlink:href once the sprite is in place —
+     harmless on modern browsers, which prefer href. */
+  function shimUseHref() {
+    var XLINK = "http://www.w3.org/1999/xlink";
+    document.querySelectorAll("use[href]").forEach(function (u) {
+      if (!u.getAttributeNS(XLINK, "href")) {
+        u.setAttributeNS(XLINK, "xlink:href", u.getAttribute("href"));
+      }
+    });
+  }
+
   function init() {
     buildSprite();
 
@@ -557,6 +564,7 @@
     if (headerHost) headerHost.innerHTML = headerHTML(active);
     if (footerHost) footerHost.innerHTML = footerHTML();
 
+    shimUseHref();
     initNav();
     initFilters();
     initShowcase();
