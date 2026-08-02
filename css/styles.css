@@ -229,7 +229,7 @@ button { cursor: pointer; border: 0; background: none; }
 /* The client's own logo file, when present, replaces the composed lockup
    entirely. Hidden by default — the browser still fetches it, so its onload
    handler can flip .logo--has-full only if the file actually exists. */
-.logo__full { display: none; height: 46px; width: auto; }
+.logo__full { display: none; height: 62px; width: auto; }
 .logo--has-full .logo__full { display: block; }
 .logo--has-full .logo__mark,
 .logo--has-full .logo__text { display: none; }
