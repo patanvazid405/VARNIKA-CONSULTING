@@ -1263,6 +1263,118 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   width: 100%; height: 100%; object-fit: cover; object-position: top;
 }
 
+/* --- Mock UI (product showcase) -----------------------------------------
+   Coded stand-ins for the three showcase panels — not screenshots, so
+   nothing here should read as a literal capture of the live product.
+   Sits above .browser-mock__body::before at the same z-index the real
+   screenshot <img> would use. */
+.mock-ui {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 16px 18px; overflow: hidden;
+  background: linear-gradient(160deg, var(--navy-700), var(--navy-900));
+  color: #fff; font-size: 10.5px; line-height: 1.4;
+}
+.mock-ui .icon { width: 12px; height: 12px; flex: none; }
+
+/* Toolbar: search + filter chips + action button */
+.mock-toolbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.mock-search {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.08); border: 1px solid var(--line-dark);
+  border-radius: 999px; padding: 6px 12px; color: var(--on-dark-soft);
+  flex: 1 1 140px; min-width: 0;
+}
+.mock-chip {
+  background: rgba(255,255,255,0.08); border: 1px solid var(--line-dark);
+  border-radius: 999px; padding: 6px 11px; color: var(--on-dark-soft); white-space: nowrap;
+}
+.mock-btn {
+  display: flex; align-items: center; gap: 5px; margin-left: auto;
+  background: var(--orange); color: #fff; border-radius: 999px;
+  padding: 6px 13px; font-weight: 600; white-space: nowrap;
+}
+.mock-btn--ghost { background: rgba(255,255,255,0.08); border: 1px solid var(--line-dark); margin-left: 0; }
+
+/* Stat tiles */
+.mock-stats { display: flex; gap: 10px; }
+.mock-stat {
+  flex: 1; background: rgba(255,255,255,0.06); border: 1px solid var(--line-dark);
+  border-radius: 10px; padding: 8px 12px; display: flex; flex-direction: column; gap: 3px;
+}
+.mock-stat__label { color: var(--on-dark-soft); font-size: 9px; text-transform: uppercase; letter-spacing: 0.4px; }
+.mock-stat__value { font-family: var(--font-head); font-weight: 700; font-size: 15px; }
+
+/* Table */
+.mock-table { flex: 1; display: flex; flex-direction: column; min-height: 0; border-top: 1px solid var(--line-dark); }
+.mock-table__row {
+  display: grid; grid-template-columns: 1.6fr 1fr 0.8fr 0.9fr 0.9fr 0.9fr;
+  gap: 8px; align-items: center; padding: 7px 4px; border-bottom: 1px solid var(--line-dark);
+}
+.mock-table__row--head { color: var(--on-dark-soft); text-transform: uppercase; font-size: 8.5px; letter-spacing: 0.4px; border-bottom-color: rgba(255,255,255,0.28); }
+.mock-table__row:not(.mock-table__row--head):hover { background: rgba(255,255,255,0.04); }
+.mock-table__row span:last-child { text-align: right; font-weight: 600; }
+
+/* Status badge */
+.mock-badge {
+  display: inline-block; font-style: normal; font-weight: 600; font-size: 9px;
+  padding: 2.5px 8px; border-radius: 999px;
+}
+.mock-badge--active { background: rgba(56, 189, 130, 0.18); color: #4ade9a; }
+.mock-badge--hold { background: rgba(232, 172, 56, 0.18); color: #f0bd5a; }
+
+/* 360 profile panel */
+.mock-profile__head { display: flex; align-items: center; gap: 12px; }
+.mock-avatar {
+  width: 38px; height: 38px; border-radius: 10px; flex: none;
+  background: rgba(255,255,255,0.08); border: 1px solid var(--line-dark);
+  display: grid; place-items: center;
+}
+.mock-avatar .icon { width: 18px; height: 18px; }
+.mock-profile__head strong { display: block; font-size: 13px; margin-bottom: 3px; }
+.mock-profile__meta { display: flex; align-items: center; gap: 8px; color: var(--on-dark-soft); }
+.mock-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line-dark); flex-wrap: wrap; }
+.mock-tabs span { padding: 7px 10px; color: var(--on-dark-soft); border-bottom: 2px solid transparent; }
+.mock-tabs span.is-active { color: #fff; border-bottom-color: var(--orange); font-weight: 600; }
+.mock-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+.mock-fields label { display: block; color: var(--on-dark-soft); font-size: 9px; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 3px; }
+.mock-fields strong { font-weight: 600; }
+.mock-timeline { margin-top: auto; border-top: 1px solid var(--line-dark); padding-top: 8px; display: flex; flex-direction: column; gap: 6px; }
+.mock-timeline__item { display: flex; align-items: center; gap: 7px; color: var(--on-dark-soft); }
+.mock-timeline__item strong { color: #fff; font-weight: 600; }
+
+/* Guided onboarding stepper */
+.mock-stepper { display: flex; align-items: flex-start; justify-content: space-between; gap: 2px; }
+.mock-stepper span {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px;
+  text-align: center; color: var(--on-dark-soft); position: relative;
+}
+.mock-stepper span::before {
+  content: attr(data-n);
+  width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(255,255,255,0.08); border: 1px solid var(--line-dark);
+  font-weight: 700; font-size: 9.5px; color: #fff;
+}
+.mock-stepper span.is-done::before { content: "\2713"; background: var(--orange); border-color: var(--orange); }
+.mock-stepper span.is-active::before { background: #fff; border-color: #fff; color: var(--navy-900); }
+.mock-stepper span.is-active em { color: #fff; font-weight: 600; }
+.mock-stepper em { font-style: normal; font-size: 8.5px; }
+.mock-form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+.mock-field label { display: block; color: var(--on-dark-soft); font-size: 9px; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 4px; }
+.mock-input {
+  background: rgba(255,255,255,0.06); border: 1px solid var(--line-dark);
+  border-radius: 6px; padding: 7px 10px;
+}
+.mock-form__actions { margin-top: auto; display: flex; justify-content: flex-end; gap: 8px; }
+
+@media (max-width: 640px) {
+  .mock-ui { font-size: 9px; padding: 12px; }
+  .mock-table__row { grid-template-columns: 1.4fr 1fr 0.9fr; }
+  .mock-table__row span:nth-child(4), .mock-table__row span:nth-child(5) { display: none; }
+  .mock-stats { flex-wrap: wrap; }
+  .mock-stepper em { display: none; }
+}
+
 .showcase__points { display: flex; flex-direction: column; gap: 17px; }
 .showcase__points li { display: flex; align-items: flex-start; gap: 12px; font-size: 13.5px; line-height: 1.6; }
 .showcase__points .icon { width: 20px; height: 20px; color: var(--orange); flex: none; margin-top: 1px; }

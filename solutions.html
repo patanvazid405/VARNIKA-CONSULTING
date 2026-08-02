@@ -173,9 +173,11 @@
 
   <!-- ====================================================================
        PRODUCT SHOWCASE — tabbed browser-mockup preview of the Maritime ERP
-       REPLACE: /images/product-customer-listing.png,
-                /images/product-customer-profile.png,
-                /images/product-onboarding-wizard.png — real app screenshots
+       Each panel currently renders a coded .mock-ui illustration (see
+       styles.css) built to match the real feature set described in the
+       copy below it. Swap in real app screenshots when available by
+       replacing the .mock-ui block with an <img src="images/product-*.png">
+       — the browser-mock frame and tab behaviour stay the same either way.
        ==================================================================== -->
   <section class="section section--alt" id="product-showcase">
     <div class="container">
@@ -183,7 +185,7 @@
         <p class="eyebrow">See It In Action</p>
         <h2>Inside the Varnika Freight ERP</h2>
         <div class="rule"></div>
-        <p>A real look at the customer operations module our Maritime ERP Advisory practice implements and configures for freight forwarders, shipping lines and NVOCCs.</p>
+        <p>A look at the kind of customer operations module our Maritime ERP Advisory practice implements and configures for freight forwarders, shipping lines and NVOCCs.</p>
       </div>
 
       <div class="showcase">
@@ -205,7 +207,32 @@
             <div class="browser-mock">
               <div class="browser-mock__bar" aria-hidden="true"><span></span><span></span><span></span></div>
               <div class="browser-mock__body">
-                <img src="images/product-customer-listing.png" alt="Customer Listing screen showing 236 customer accounts with filters, outstanding balances and status" loading="lazy" onerror="this.remove()">
+                <!-- Illustrative UI mock, not a screenshot — see /images/README.md for
+                     dropping in real product screenshots when available. -->
+                <div class="mock-ui" role="img" aria-label="Customer listing screen with search, filters, summary totals and an account table">
+                  <div class="mock-toolbar">
+                    <span class="mock-search"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>Search customers…</span>
+                    <span class="mock-chip">Type: All</span>
+                    <span class="mock-chip">Country: All</span>
+                    <span class="mock-chip">Status: Active</span>
+                    <span class="mock-btn"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>Export</span>
+                  </div>
+                  <div class="mock-stats">
+                    <div class="mock-stat"><span class="mock-stat__label">Total Accounts</span><span class="mock-stat__value">148</span></div>
+                    <div class="mock-stat"><span class="mock-stat__label">Outstanding Balance</span><span class="mock-stat__value">$1.18M</span></div>
+                    <div class="mock-stat"><span class="mock-stat__label">Active Bookings</span><span class="mock-stat__value">37</span></div>
+                  </div>
+                  <div class="mock-table">
+                    <div class="mock-table__row mock-table__row--head">
+                      <span>Customer</span><span>Country</span><span>Type</span><span>Sales Exec</span><span>Status</span><span>Balance</span>
+                    </div>
+                    <div class="mock-table__row"><span>Pacific Star Shipping</span><span>Singapore</span><span>NVOCC</span><span>A. Rao</span><span><i class="mock-badge mock-badge--active">Active</i></span><span>$42,150</span></div>
+                    <div class="mock-table__row"><span>Meridian Freight Forwarders</span><span>Indonesia</span><span>Forwarder</span><span>S. Tan</span><span><i class="mock-badge mock-badge--active">Active</i></span><span>$28,900</span></div>
+                    <div class="mock-table__row"><span>Coastal Line Agencies</span><span>Malaysia</span><span>Agency</span><span>A. Rao</span><span><i class="mock-badge mock-badge--hold">On Hold</i></span><span>$11,420</span></div>
+                    <div class="mock-table__row"><span>TransGlobal Logistics</span><span>Vietnam</span><span>3PL</span><span>M. Reyes</span><span><i class="mock-badge mock-badge--active">Active</i></span><span>$63,780</span></div>
+                    <div class="mock-table__row"><span>Horizon Marine Agencies</span><span>Philippines</span><span>NVOCC</span><span>S. Tan</span><span><i class="mock-badge mock-badge--active">Active</i></span><span>$19,340</span></div>
+                  </div>
+                </div>
               </div>
             </div>
             <ul class="showcase__points">
@@ -219,7 +246,29 @@
             <div class="browser-mock">
               <div class="browser-mock__bar" aria-hidden="true"><span></span><span></span><span></span></div>
               <div class="browser-mock__body">
-                <img src="images/product-customer-profile.png" alt="Customer profile screen with business information, contacts, finance, tax and shipping preference tabs" loading="lazy" onerror="this.remove()">
+                <!-- Illustrative UI mock, not a screenshot. -->
+                <div class="mock-ui mock-ui--profile" role="img" aria-label="360 degree customer profile screen showing business, contact, finance, tax and shipping tabs, with the tax tab open">
+                  <div class="mock-profile__head">
+                    <div class="mock-avatar"><svg class="icon" aria-hidden="true"><use href="#i-building"></use></svg></div>
+                    <div>
+                      <strong>Meridian Freight Forwarders</strong>
+                      <div class="mock-profile__meta"><i class="mock-badge mock-badge--active">Active</i><span>Forwarder &middot; Indonesia</span></div>
+                    </div>
+                  </div>
+                  <div class="mock-tabs">
+                    <span>Business Info</span><span>Contacts</span><span>Finance</span><span class="is-active">Tax</span><span>Shipping</span>
+                  </div>
+                  <div class="mock-fields">
+                    <div><label>NPWP</label><strong>01.234.567.8-901.000</strong></div>
+                    <div><label>PKP Status</label><strong>Confirmed PKP</strong></div>
+                    <div><label>e-Faktur</label><strong>Enabled</strong></div>
+                    <div><label>Withholding Tax</label><strong>PPh 23 &middot; 2%</strong></div>
+                  </div>
+                  <div class="mock-timeline">
+                    <div class="mock-timeline__item"><svg class="icon" aria-hidden="true"><use href="#i-check-circle"></use></svg>Tax profile verified by <strong>A. Rao</strong> &middot; 2 days ago</div>
+                    <div class="mock-timeline__item"><svg class="icon" aria-hidden="true"><use href="#i-pencil"></use></svg>Shipping preference updated &middot; 6 days ago</div>
+                  </div>
+                </div>
               </div>
             </div>
             <ul class="showcase__points">
@@ -233,7 +282,29 @@
             <div class="browser-mock">
               <div class="browser-mock__bar" aria-hidden="true"><span></span><span></span><span></span></div>
               <div class="browser-mock__body">
-                <img src="images/product-onboarding-wizard.png" alt="Eight-step guided wizard for creating a new customer, from basic information through documents to review" loading="lazy" onerror="this.remove()">
+                <!-- Illustrative UI mock, not a screenshot. -->
+                <div class="mock-ui mock-ui--wizard" role="img" aria-label="Eight step guided wizard for creating a new customer, currently on step 3, contacts">
+                  <div class="mock-stepper">
+                    <span class="is-done" data-n="1"><em>Basic Info</em></span>
+                    <span class="is-done" data-n="2"><em>Addresses</em></span>
+                    <span class="is-active" data-n="3"><em>Contacts</em></span>
+                    <span data-n="4"><em>Finance</em></span>
+                    <span data-n="5"><em>Tax</em></span>
+                    <span data-n="6"><em>Shipping</em></span>
+                    <span data-n="7"><em>Documents</em></span>
+                    <span data-n="8"><em>Review</em></span>
+                  </div>
+                  <div class="mock-form">
+                    <div class="mock-field"><label>Contact Name</label><div class="mock-input">Sarah Tan</div></div>
+                    <div class="mock-field"><label>Designation</label><div class="mock-input">Operations Manager</div></div>
+                    <div class="mock-field"><label>Email</label><div class="mock-input">sarah.tan@meridian-ff.com</div></div>
+                    <div class="mock-field"><label>Phone</label><div class="mock-input">+65 6123 4567</div></div>
+                  </div>
+                  <div class="mock-form__actions">
+                    <span class="mock-btn mock-btn--ghost">Save Draft</span>
+                    <span class="mock-btn">Continue <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+                  </div>
+                </div>
               </div>
             </div>
             <ul class="showcase__points">
