@@ -320,23 +320,22 @@
               "<h4>Contact Us</h4>" +
               '<ul class="footer-contact">' +
                 "<li>" + icon("mail") + '<a href="mailto:advisory@varnikaconsulting.com">advisory@varnikaconsulting.com</a></li>' +
-                // Plain text, not a tel: link, until the real number is supplied.
-                "<li>" + icon("phone") + "<span>+91 XXXX XXXXX</span></li>" +
+                "<li>" + icon("phone") + '<a href="tel:+917483503223">+91 74835 03223</a></li>' +
                 "<li>" + icon("globe") + '<a href="index.html">www.varnikaconsulting.com</a></li>' +
                 "<li>" + icon("map-pin") +
                   "<span><strong style=\"color:#fff;font-weight:600\">Global Presence</strong><br>" +
-                  "Bengaluru, Karnataka, India<br>Nellore, Andhra Pradesh, India</span></li>" +
+                  "Bengaluru, Karnataka, India<br>Nellore, Andhra Pradesh, India<br>Midland, Texas, USA</span></li>" +
               "</ul>" +
             "</div>" +
           "</div>" +
         "</div>" +
         '<div class="footer-bottom">' +
           '<div class="container" style="display:flex;justify-content:center;gap:26px;flex-wrap:wrap">' +
-            "<span>&copy; 2024 Varnika Consulting. All Rights Reserved.</span>" +
+            "<span>&copy; 2026 Varnika Consulting. All Rights Reserved.</span>" +
             '<span class="sep">|</span>' +
-            '<a href="#">Privacy Policy</a>' +
+            '<a href="privacy-policy.html">Privacy Policy</a>' +
             '<span class="sep">|</span>' +
-            '<a href="#">Terms of Use</a>' +
+            '<a href="terms-of-use.html">Terms of Use</a>' +
           "</div>" +
         "</div>" +
       "</footer>"
@@ -434,6 +433,22 @@
 
         var empty = document.getElementById("insights-empty");
         if (empty) empty.hidden = shown !== 0;
+      });
+    });
+  }
+
+  /* --- "Popular Topics" sidebar links (insights.html) --------------------
+     Re-uses the real filter-tag buttons rather than duplicating the filter
+     logic, so the top bar's active state stays in sync. */
+  function initTopicLinks() {
+    document.querySelectorAll("[data-filter-target]").forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        var tag = document.querySelector('.filter-tag[data-filter="' + link.getAttribute("data-filter-target") + '"]');
+        if (tag) {
+          tag.click();
+          tag.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
       });
     });
   }
@@ -586,6 +601,7 @@
     shimUseHref();
     initNav();
     initFilters();
+    initTopicLinks();
     initShowcase();
     initForms();
     initYear();
