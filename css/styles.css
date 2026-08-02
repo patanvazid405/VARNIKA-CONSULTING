@@ -444,21 +444,24 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 .hero--insights::before   { background-image: url("../images/hero-vessel-dusk.jpg"); }
 .hero--contact::before    { background-image: url("../images/hero-harbour.jpg"); }
 /* Navy wash: heavy on the left so headline copy stays legible, lighter on the
-   right so the vessel and cranes read through — as in the reference designs. */
+   right so the vessel and cranes read through — as in the reference designs.
+   Every page now shares one bright, busy daytime photo rather than a
+   per-page photo with its own dark vignette, so the wash has to do all the
+   contrast work itself — kept strong across the whole width rather than
+   fading out on the right. */
 .hero::after {
   content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; inset: 0;
-  /* Light touch: the artwork carries its own left-hand vignette, so a heavy
-     wash here just flattens the vessels, cranes and network mesh. */
   background: linear-gradient(100deg,
-    rgba(7, 23, 48, 0.58) 0%,
-    rgba(10, 30, 63, 0.42) 30%,
-    rgba(10, 30, 63, 0.12) 58%,
-    rgba(10, 30, 63, 0.32) 100%);
+    rgba(5, 16, 33, 0.78) 0%,
+    rgba(7, 20, 40, 0.68) 30%,
+    rgba(7, 20, 40, 0.48) 58%,
+    rgba(7, 20, 40, 0.58) 100%);
 }
 .hero > .container { position: relative; z-index: 2; }
 
-.hero h1 { color: #fff; margin-bottom: 18px; }
-.hero p { color: #dbe4f1; max-width: 520px; font-size: 15px; }
+.hero h1 { color: #fff; margin-bottom: 18px; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35); }
+.hero p { color: #dbe4f1; max-width: 520px; font-size: 15px; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35); }
+.hero .eyebrow { color: var(--orange); text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35); }
 .hero .rule { margin: 0 0 20px; }
 
 .hero-grid {
