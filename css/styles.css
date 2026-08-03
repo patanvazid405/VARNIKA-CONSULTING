@@ -474,17 +474,22 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 .hero--home .hero-grid { grid-template-columns: minmax(0, 1.95fr) minmax(0, 1fr); }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 26px; }
 
-/* Inline dot-separated service tags (home hero) */
+/* Capability pills (home hero). A dot-separated inline list looked fine on
+   one line, but wrapped across 2-3 lines at narrower widths it always left
+   an orphaned separator stranded at the end or start of a line — pills
+   wrap cleanly with plain gap spacing and no separator character needed. */
 .hero-tags {
-  display: flex; flex-wrap: wrap; align-items: center;
-  gap: 6px 0; margin-top: 22px; max-width: 560px;
-  font-size: 13.5px; color: #d5e0f0;
+  display: flex; flex-wrap: wrap; gap: 9px; margin-top: 22px; max-width: 580px;
 }
-.hero-tags li { display: flex; align-items: center; }
-.hero-tags li::after {
-  content: "•"; color: var(--orange); margin: 0 9px; font-size: 15px;
+.hero-tags li {
+  display: flex; align-items: center;
+  padding: 6px 14px;
+  font-size: 12.5px; font-weight: 500; color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(2px);
 }
-.hero-tags li:last-child::after { display: none; }
 
 /* Icon + label capability tags (about / contact heroes) — one row of four */
 .hero-caps {
@@ -502,8 +507,10 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 .hero-caps--stack li { flex-direction: column; align-items: flex-start; gap: 7px; }
 .hero-caps--stack .icon { width: 26px; height: 26px; }
 
-/* Simple centered hero (insights / contact) */
-.hero--compact .hero-grid { grid-template-columns: 1fr; padding: 52px 0 56px; }
+/* Simple centered hero (insights / contact). Extra min-height so the shared
+   ship photo gets real presence instead of a thin cropped strip — the
+   content itself is short, but the frame around it shouldn't be. */
+.hero--compact .hero-grid { grid-template-columns: 1fr; padding: 52px 0 56px; min-height: 440px; }
 /* Wide enough to hold the Insights filter row and the Services stat row on
    one line; prose stays narrow via the `.hero p` max-width. */
 .hero--compact .hero-copy { max-width: 880px; }
