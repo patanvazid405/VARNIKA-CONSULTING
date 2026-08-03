@@ -18,7 +18,7 @@ export default function Footer() {
               outcomes through business consulting and digital transformation.
             </p>
             <div className="social">
-              <a href="#" aria-label="Varnika Consulting on LinkedIn"><Icon name="linkedin" /></a>
+              <a href="https://www.linkedin.com/company/varnika-consulting/" target="_blank" rel="noopener" aria-label="Varnika Consulting on LinkedIn"><Icon name="linkedin" /></a>
               <a href="mailto:advisory@varnikaconsulting.com" aria-label="Email Varnika Consulting"><Icon name="mail" /></a>
               <a href="#" aria-label="Varnika Consulting on YouTube"><Icon name="youtube" /></a>
             </div>

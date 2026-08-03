@@ -1527,6 +1527,13 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 @media (max-width: 640px) {
   :root { --gutter: 18px; }
 
+  /* A narrow-but-tall compact hero forces background-size: cover to
+     upscale the shared hero photo well past its native resolution to
+     fill the height, which reads as soft/low-quality on phones. Trimming
+     the forced height here keeps the crop closer to the photo's own
+     aspect ratio, so it's stretched less. */
+  .hero--compact .hero-grid { min-height: 340px; }
+
   /* Phone header: the hairlines cost ~30px the lockup can't spare, so drop
      them and tighten the tagline rather than hiding it. Most phones are
      360-414px wide, so it has to survive here. */

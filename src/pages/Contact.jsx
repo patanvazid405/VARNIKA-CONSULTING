@@ -7,7 +7,7 @@ import { fieldError } from "../lib/validation";
 const CONTACT_LIST = [
   ["mail", "Email Us", <a href="mailto:advisory@varnikaconsulting.com">advisory@varnikaconsulting.com</a>],
   ["phone", "Call Us", <a href="tel:+917483503223">+91 74835 03223</a>],
-  ["linkedin", "Connect on LinkedIn", <a href="#top">Varnika Consulting (Company Page)</a>],
+  ["linkedin", "Connect on LinkedIn", <a href="https://www.linkedin.com/company/varnika-consulting/" target="_blank" rel="noopener">Varnika Consulting (Company Page)</a>],
   ["globe", "Visit Our Website", <a href="/">www.varnikaconsulting.com</a>],
   ["map-pin", "Global Presence", <p>Bengaluru, Karnataka, India<br />Nellore, Andhra Pradesh, India<br />Midland, Texas, USA</p>],
 ];

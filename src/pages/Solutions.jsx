@@ -297,7 +297,7 @@ export default function Solutions() {
                 <li><Icon name="mail" /><a href="mailto:advisory@varnikaconsulting.com" style={{ color: "inherit" }}>advisory@varnikaconsulting.com</a></li>
                 <li><Icon name="phone" /><a href="tel:+917483503223" style={{ color: "inherit" }}>+91 74835 03223</a></li>
                 <li><Icon name="globe" />www.varnikaconsulting.com</li>
-                <li><Icon name="linkedin" />Varnika Consulting (Company Page)</li>
+                <li><Icon name="linkedin" /><a href="https://www.linkedin.com/company/varnika-consulting/" target="_blank" rel="noopener" style={{ color: "inherit" }}>Varnika Consulting (Company Page)</a></li>
               </ul>
             </div>
           </div>
