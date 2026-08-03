@@ -1609,6 +1609,42 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 /* Safari needs the prefix for the frosted core-values panel */
 .values-panel { -webkit-backdrop-filter: blur(2px); }
 
+/* ------------------------- 12. MOTION / POLISH --------------------------- */
+
+/* Scroll-reveal: main.js adds .reveal (never in the markup itself, so a
+   no-JS visitor just sees everything already in place) then .is-visible
+   once the element crosses into view. */
+.reveal {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* Article thumbnail zoom on hover */
+.article-card__media img { transition: transform 0.45s ease; }
+.article-card:hover .article-card__media img { transform: scale(1.06); }
+
+/* Insights filter: cards fade/scale out before leaving the grid instead of
+   vanishing instantly. main.js toggles .is-filtering-out first, then sets
+   [hidden] once the transition finishes. */
+.article-card { transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.25s ease; }
+/* .article-card's own `display: flex` has the same specificity as the
+   browser's built-in [hidden] { display: none }, and author CSS always
+   wins that tie — so filtered-out cards were never actually disappearing
+   without this. */
+.article-card[hidden] { display: none; }
+.article-card.is-filtering-out { opacity: 0; transform: scale(0.96); }
+
+/* Product showcase: replay a fade/rise each time a panel becomes active
+   (a CSS transition can't animate the display:none -> grid jump, but an
+   animation restarts cleanly whenever the class is added). */
+@keyframes showcaseFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.showcase__panel.is-active { animation: showcaseFadeIn 0.45s ease; }
+
 /* Users who prefer reduced motion get no transforms */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1617,6 +1653,7 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
     scroll-behavior: auto !important;
   }
   .card:hover, .article-card:hover, .btn:hover { transform: none; }
+  .reveal { opacity: 1; transform: none; }
 }
 
 /* Print: hide chrome, keep content */

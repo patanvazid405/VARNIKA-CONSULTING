@@ -415,6 +415,8 @@
     var cards = document.querySelectorAll("[data-category]");
     if (!tags.length || !cards.length) return;
 
+    var FADE_MS = 220;
+
     tags.forEach(function (tag) {
       tag.addEventListener("click", function () {
         var value = tag.getAttribute("data-filter");
@@ -427,8 +429,26 @@
         var shown = 0;
         cards.forEach(function (card) {
           var match = value === "all" || card.getAttribute("data-category") === value;
-          card.hidden = !match;
           if (match) shown++;
+
+          if (match && card.hidden) {
+            // Coming back in: unhide immediately, fade/scale in over two
+            // frames so the browser has painted the unhidden state first.
+            card.hidden = false;
+            card.classList.add("is-filtering-out");
+            requestAnimationFrame(function () {
+              requestAnimationFrame(function () {
+                card.classList.remove("is-filtering-out");
+              });
+            });
+          } else if (!match && !card.hidden) {
+            // Going out: fade first, then actually drop out of grid flow.
+            card.classList.add("is-filtering-out");
+            setTimeout(function () {
+              card.hidden = true;
+              card.classList.remove("is-filtering-out");
+            }, FADE_MS);
+          }
         });
 
         var empty = document.getElementById("insights-empty");
@@ -451,6 +471,91 @@
         }
       });
     });
+  }
+
+  /* --- Scroll reveal ------------------------------------------------------
+     Adds .reveal only here at runtime (never in the markup), so a visitor
+     with JS disabled or a slow/failed script load just sees the page fully
+     visible — nothing depends on the observer running to be usable. */
+  function initReveal() {
+    if (!("IntersectionObserver" in window)) return;
+
+    var targets = document.querySelectorAll(
+      ".section-head, .card, .article-card, .industry-strip a, " +
+      ".hero-stats .stat, .stats-bar .stat, .values-panel, .step, .flow__node"
+    );
+    if (!targets.length) return;
+
+    targets.forEach(function (el) { el.classList.add("reveal"); });
+
+    // Stagger siblings that reveal together (e.g. a row of cards) so they
+    // don't all pop in at once, without needing a per-page config.
+    var seen = [];
+    targets.forEach(function (el) {
+      var parent = el.parentElement;
+      var bucket = seen.filter(function (s) { return s.parent === parent; })[0];
+      if (!bucket) { bucket = { parent: parent, count: 0 }; seen.push(bucket); }
+      el.style.setProperty("--reveal-delay", Math.min(bucket.count * 70, 280) + "ms");
+      bucket.count++;
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: "0px 0px -20px 0px" });
+
+    targets.forEach(function (el) { io.observe(el); });
+
+    /* Safety net: this is polish, not content gating, so nothing may stay
+       invisible forever. Whatever the observer hasn't caught within a few
+       seconds (an unusual scroll pattern, a missed callback, anything) gets
+       force-revealed. */
+    setTimeout(function () {
+      targets.forEach(function (el) { el.classList.add("is-visible"); });
+      io.disconnect();
+    }, 2500);
+  }
+
+  /* --- Animated stat counters ---------------------------------------------
+     Runs numbers like "21+" or "100+" up from 0 the first time they scroll
+     into view. Anything without a leading digit ("Global", "Measurable")
+     is left alone — it still gets the .reveal fade via initReveal. */
+  function initCounters() {
+    if (!("IntersectionObserver" in window)) return;
+    var nums = document.querySelectorAll(".stat__num");
+    if (!nums.length) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        io.unobserve(entry.target);
+
+        var el = entry.target;
+        var text = el.textContent.trim();
+        var match = text.match(/^(\d+)(.*)$/);
+        if (!match) return;
+
+        var target = parseInt(match[1], 10);
+        var suffix = match[2];
+        var start = null;
+        var duration = 1100;
+
+        function tick(ts) {
+          if (start === null) start = ts;
+          var progress = Math.min((ts - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.5 });
+
+    nums.forEach(function (el) { io.observe(el); });
   }
 
   /* --- Product showcase tabs (solutions.html) ---------------------------- */
@@ -605,6 +710,8 @@
     initShowcase();
     initForms();
     initYear();
+    initReveal();
+    initCounters();
   }
 
   if (document.readyState === "loading") {
