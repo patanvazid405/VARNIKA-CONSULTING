@@ -1,8 +1,8 @@
-name: Deploy react-migration preview to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [react-migration]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -24,21 +24,18 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: react-app/package-lock.json
 
       - name: Install dependencies
-        working-directory: react-app
         run: npm ci
 
       - name: Build
-        working-directory: react-app
         run: npm run build
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: react-app/dist
+          path: dist
 
   deploy:
     needs: build
