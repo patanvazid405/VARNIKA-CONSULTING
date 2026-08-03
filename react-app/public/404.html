@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Varnika Consulting</title>
+    <!--
+      GitHub Pages has no server-side rewrites, so a direct visit or refresh
+      on a client-routed path like /services 404s before React Router ever
+      runs. This is the standard workaround (rafgraph/spa-github-pages):
+      encode the real path into a query string, redirect to the real
+      index.html, then a matching snippet there restores it via
+      history.replaceState before React mounts.
+    -->
+    <script>
+      var l = window.location;
+      l.replace(
+        l.protocol + "//" + l.hostname + (l.port ? ":" + l.port : "") +
+        l.pathname.split("/").slice(0, 1).join("/") + "/?p=" +
+        encodeURIComponent(l.pathname + l.search + l.hash)
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

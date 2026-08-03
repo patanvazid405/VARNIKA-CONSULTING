@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Varnika Consulting | Transforming Maritime &amp; Logistics Through Technology</title>
+    <meta name="description" content="Varnika Consulting helps maritime and logistics organizations optimize operations, modernize systems, integrate data and accelerate growth through consulting and technology." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="/images/favicon-32.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <!-- Pairs with public/404.html: restores the real path (encoded there
+         as ?p=) before React Router mounts, so a direct visit or refresh on
+         a deep link works the same as a normal navigation would. -->
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var real = params.get("p");
+        if (real) {
+          window.history.replaceState(null, "", real);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
