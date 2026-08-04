@@ -1199,6 +1199,18 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
    the extra right padding reserved for other fields' icons. */
 .field--box.field--select { padding-right: 13px; }
 
+/* Phone field: country-code dropdown + number, side by side. Flat boxes
+   skip the stacked label used elsewhere in .field--box since a single
+   label already sits above the row. */
+.phone-row { display: flex; gap: 8px; }
+.field--box.field--flat { padding: 11px 14px; display: flex; align-items: center; }
+.field--box.field--flat.phone-code { flex: 0 0 74px; padding-right: 24px; }
+.phone-code .custom-select__control { font-size: 13.5px; }
+.field--box.field--flat.phone-number { flex: 1; min-width: 0; }
+.phone-number input { width: 100%; border: 0; padding: 0; background: transparent; font-size: 13.5px; }
+.phone-number input:focus { outline: 0; }
+.phone-number input::placeholder { color: var(--body-light); }
+
 /* Custom dropdown (replaces native <select> so the open option list can be
    styled — browsers render native <select> popups with OS chrome, e.g.
    Windows' blue highlight, that CSS can't override). */

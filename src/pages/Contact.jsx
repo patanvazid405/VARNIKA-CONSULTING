@@ -28,6 +28,8 @@ const ROLE_OPTIONS = [
   "Customs Broker", "Other",
 ];
 
+const PHONE_CODES = ["+91", "+1", "+44", "+971", "+65", "+61", "+49", "+33", "+81", "+86"];
+
 const INITIAL_FIELDS = { name: "", company: "", email: "", phone: "", role: "", message: "", consent: false };
 const REQUIRED_MSG = {
   name: "Please enter your name.",
@@ -51,6 +53,7 @@ export default function Contact() {
   const [fields, setFields] = useState(INITIAL_FIELDS);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(null);
+  const [phoneCode, setPhoneCode] = useState("+91");
 
   function validate(name, value) {
     return fieldError({
@@ -99,6 +102,8 @@ export default function Contact() {
       return;
     }
 
+    const fullPhone = fields.phone ? `${phoneCode} ${fields.phone}`.trim() : "";
+
     setSubmitting(true);
     try {
       let ok;
@@ -111,7 +116,7 @@ export default function Contact() {
             name: fields.name,
             company: fields.company,
             email: fields.email,
-            phone: fields.phone,
+            phone: fullPhone,
             role: fields.role,
             message: fields.message,
           }),
@@ -129,7 +134,7 @@ export default function Contact() {
             name: fields.name,
             company: fields.company,
             email: fields.email,
-            phone: fields.phone,
+            phone: fullPhone,
             role: fields.role,
             message: fields.message,
           }),
@@ -228,12 +233,22 @@ export default function Contact() {
                     <span className="error">{errors.email}</span>
                   </div>
 
-                  <div className={"field field--box" + (errors.phone ? " has-error" : "")}>
+                  <div className={"field" + (errors.phone ? " has-error" : "")}>
                     <label htmlFor="c-phone">Phone</label>
-                    <input id="c-phone" name="phone" type="tel" autoComplete="tel" placeholder="+91 XXXX XXXXX"
-                      value={fields.phone} onChange={(e) => update("phone", e.target.value)} onBlur={() => blurCheck("phone")}
-                      aria-invalid={!!errors.phone} />
-                    <Icon name="phone" className="fb-icon" />
+                    <div className="phone-row">
+                      <div className="field--box field--flat phone-code">
+                        <Select
+                          value={phoneCode}
+                          options={PHONE_CODES}
+                          onChange={setPhoneCode}
+                        />
+                      </div>
+                      <div className="field--box field--flat phone-number">
+                        <input id="c-phone" name="phone" type="tel" autoComplete="tel" placeholder="XXXX XXXXX"
+                          value={fields.phone} onChange={(e) => update("phone", e.target.value)} onBlur={() => blurCheck("phone")}
+                          aria-invalid={!!errors.phone} />
+                      </div>
+                    </div>
                     <span className="error">{errors.phone}</span>
                   </div>
 
