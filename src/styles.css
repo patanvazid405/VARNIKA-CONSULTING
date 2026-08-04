@@ -1194,6 +1194,43 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
 .field--box.field--area .fb-icon { top: auto; bottom: 11px; transform: none; }
 .field--box .error { margin-top: 4px; }
 
+/* The chevron sits inline in .custom-select__control's own flex layout
+   (not absolutely positioned like .fb-icon), so this field doesn't need
+   the extra right padding reserved for other fields' icons. */
+.field--box.field--select { padding-right: 13px; }
+
+/* Custom dropdown (replaces native <select> so the open option list can be
+   styled — browsers render native <select> popups with OS chrome, e.g.
+   Windows' blue highlight, that CSS can't override). */
+.custom-select { position: relative; }
+.custom-select__control {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; border: 0; padding: 1px 0 0; background: transparent;
+  font: inherit; font-size: 13.5px; color: var(--heading); text-align: left;
+  cursor: pointer;
+}
+.custom-select__control:focus { outline: 0; }
+.custom-select__placeholder { color: var(--body-light); }
+.custom-select__chevron {
+  width: 17px; height: 17px; color: var(--body-light); flex: none; margin-left: 8px;
+  transition: transform 0.18s ease;
+}
+.custom-select.is-open .custom-select__chevron { transform: rotate(180deg); }
+.custom-select__list {
+  position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 20;
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md); padding: 6px; margin: 0; list-style: none;
+  max-height: 260px; overflow-y: auto;
+}
+.custom-select__option {
+  padding: 9px 11px; font-size: 13.5px; color: var(--heading);
+  border-radius: 6px; cursor: pointer;
+}
+.custom-select__option:hover,
+.custom-select__option.is-selected {
+  background: rgba(232, 98, 44, 0.1); color: var(--orange);
+}
+
 /* Consent row */
 .consent {
   display: flex; flex-direction: row; flex-wrap: wrap;

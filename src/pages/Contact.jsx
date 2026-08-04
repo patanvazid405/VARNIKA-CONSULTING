@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "../components/Icon";
+import Select from "../components/Select";
 import useDocumentHead from "../hooks/useDocumentHead";
 import useReveal from "../hooks/useReveal";
 import { fieldError } from "../lib/validation";
@@ -236,15 +237,16 @@ export default function Contact() {
                     <span className="error">{errors.phone}</span>
                   </div>
 
-                  <div className={"field field--box field--full" + (errors.role ? " has-error" : "")}>
+                  <div className={"field field--box field--full field--select" + (errors.role ? " has-error" : "")}>
                     <label htmlFor="c-role">What best describes you? <span className="req">*</span></label>
-                    <select id="c-role" name="role" value={fields.role}
-                      onChange={(e) => update("role", e.target.value)} onBlur={() => blurCheck("role")}
-                      aria-invalid={!!errors.role}>
-                      <option value="">Select an option</option>
-                      {ROLE_OPTIONS.map((r) => <option key={r}>{r}</option>)}
-                    </select>
-                    <Icon name="chevron-down" className="fb-icon" />
+                    <Select
+                      id="c-role"
+                      value={fields.role}
+                      options={ROLE_OPTIONS}
+                      onChange={(v) => update("role", v)}
+                      onBlur={() => blurCheck("role")}
+                      invalid={!!errors.role}
+                    />
                     <span className="error">{errors.role}</span>
                   </div>
 
