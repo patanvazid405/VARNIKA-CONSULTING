@@ -1,0 +1,28 @@
+/* Tailwind for new component work only (e.g. the Home redesign) — the rest
+   of the site is styled by styles.css. Deliberately skips Tailwind's
+   preflight reset: the existing stylesheet already resets base elements,
+   and re-resetting risks subtle differences on shared components (Header,
+   Footer, buttons) that every page renders. Utility classes below are
+   emitted inside Tailwind's own `@layer utilities`, which — per the CSS
+   cascade-layers spec — always loses to any unlayered rule in styles.css at
+   equal specificity, so this can't silently override existing site styles. */
+@import "tailwindcss/theme.css";
+@import "tailwindcss/utilities.css";
+
+/* Mirrors the brand tokens already defined in styles.css (:root custom
+   properties) so new Tailwind-based sections use the exact same palette
+   and type scale as the rest of the site instead of Tailwind's defaults. */
+@theme {
+  --color-navy-900: #071730;
+  --color-navy-800: #0a1e3f;
+  --color-navy-700: #0f2444;
+  --color-navy-600: #16305a;
+  --color-navy-500: #24416f;
+  --color-orange: #e8622c;
+  --color-orange-2: #f07830;
+  --color-orange-soft: #fdf0e9;
+  --color-body: #5a6b85;
+  --color-body-light: #7d8ca6;
+  --font-head: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
