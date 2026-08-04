@@ -4,7 +4,11 @@ import Icon from "./Icon";
 // Custom-styled dropdown replacing the native <select> — browsers render the
 // open option list using OS chrome (e.g. Windows' blue highlight) that CSS
 // can't restyle, so this renders our own list to match the site's design.
-export default function Select({ id, value, options, placeholder = "Select an option", onChange, onBlur, invalid }) {
+export default function Select({
+  id, value, options, placeholder = "Select an option", onChange, onBlur, invalid,
+  renderOption = (opt) => opt,
+  wide = false,
+}) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef(null);
 
@@ -58,7 +62,7 @@ export default function Select({ id, value, options, placeholder = "Select an op
         <Icon name="chevron-down" className="custom-select__chevron" />
       </button>
       {open && (
-        <ul className="custom-select__list" role="listbox" tabIndex={-1}>
+        <ul className={"custom-select__list" + (wide ? " custom-select__list--wide" : "")} role="listbox" tabIndex={-1}>
           {options.map((opt) => (
             <li
               key={opt}
@@ -67,7 +71,7 @@ export default function Select({ id, value, options, placeholder = "Select an op
               className={"custom-select__option" + (opt === value ? " is-selected" : "")}
               onClick={() => pick(opt)}
             >
-              {opt}
+              {renderOption(opt)}
             </li>
           ))}
         </ul>

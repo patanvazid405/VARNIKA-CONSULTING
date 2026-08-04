@@ -1232,11 +1232,14 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 20;
   background: #fff; border: 1px solid var(--line); border-radius: var(--radius-sm);
   box-shadow: var(--shadow-md); padding: 6px; margin: 0; list-style: none;
-  max-height: 260px; overflow-y: auto;
+  max-height: 260px; overflow-y: auto; overflow-x: hidden;
 }
+/* For narrow triggers (e.g. the phone country-code box) — let the list be
+   wider than the button that opens it instead of clipping to its width. */
+.custom-select__list--wide { right: auto; left: 0; min-width: 220px; }
 .custom-select__option {
   padding: 9px 11px; font-size: 13.5px; color: var(--heading);
-  border-radius: 6px; cursor: pointer;
+  border-radius: 6px; cursor: pointer; white-space: nowrap;
 }
 .custom-select__option:hover,
 .custom-select__option.is-selected {

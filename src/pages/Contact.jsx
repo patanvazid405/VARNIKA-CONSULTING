@@ -28,7 +28,12 @@ const ROLE_OPTIONS = [
   "Customs Broker", "Other",
 ];
 
-const PHONE_CODES = ["+91", "+1", "+44", "+971", "+65", "+61", "+49", "+33", "+81", "+86"];
+const PHONE_COUNTRIES = {
+  "+91": "India", "+1": "United States", "+44": "United Kingdom", "+971": "UAE",
+  "+65": "Singapore", "+61": "Australia", "+49": "Germany", "+33": "France",
+  "+81": "Japan", "+86": "China",
+};
+const PHONE_CODES = Object.keys(PHONE_COUNTRIES);
 
 const INITIAL_FIELDS = { name: "", company: "", email: "", phone: "", role: "", message: "", consent: false };
 const REQUIRED_MSG = {
@@ -240,6 +245,8 @@ export default function Contact() {
                         <Select
                           value={phoneCode}
                           options={PHONE_CODES}
+                          renderOption={(code) => `${PHONE_COUNTRIES[code]} (${code})`}
+                          wide
                           onChange={setPhoneCode}
                         />
                       </div>
