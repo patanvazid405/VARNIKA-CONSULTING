@@ -63,6 +63,17 @@ CORS_ALLOWED_ORIGINS = [o.strip() for o in os.environ.get(
     "CORS_ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173"
 ).split(",") if o.strip()]
 
+# Vercel gives every deployment (prod + every preview) its own unique
+# subdomain, so a fixed origin list can't keep up. Match any subdomain
+# under the Vercel project instead. Override via env if the project
+# slug changes.
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r for r in [os.environ.get(
+        "CORS_ALLOWED_ORIGIN_REGEX",
+        r"^https://varnika-consulting.*\.vercel\.app$",
+    )] if r
+]
+
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
