@@ -1631,6 +1631,20 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
   }
   .flow__code { padding: 7px 0; }
   .flow__caption { text-align: center; }
+  /* Nodes stretch to fill the grid column by default (needed on desktop to
+     line up with the dot/code columns) — on mobile those columns are gone,
+     so let each node size to its own label instead of spanning edge to edge. */
+  .flow__stack { justify-items: start; }
+  .flow__node { width: auto; max-width: 100%; }
+
+  /* The home hero stacks a long paragraph, tag pills, buttons AND the full
+     flow list on top of each other, making the section very tall. With
+     background-size: cover, that forces the ship photo to zoom in far past
+     what the viewport shows, so almost none of the ship is visible.
+     background-attachment: fixed sizes "cover" against the viewport instead
+     of this (very tall) element, which keeps the zoom sane regardless of
+     how much content is stacked below it. */
+  .hero::before { background-attachment: fixed; }
 }
 
 /* Narrow phones (iPhone SE and similar). Long CTA labels such as
