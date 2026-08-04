@@ -90,32 +90,54 @@ export default function Contact() {
       return;
     }
 
+    const apiUrl = import.meta.env.VITE_API_URL;
     const accessKey = import.meta.env.VITE_WEB3FORMS_KEY;
-    if (!accessKey) {
+
+    if (!apiUrl && !accessKey) {
       setStatus({ type: "err", text: "Form is not configured yet. Please email us directly at advisory@varnikaconsulting.com." });
       return;
     }
 
     setSubmitting(true);
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: accessKey,
-          subject: `New consultation request from ${fields.name} (${fields.company})`,
-          from_name: "Varnika Consulting Website",
-          name: fields.name,
-          company: fields.company,
-          email: fields.email,
-          phone: fields.phone,
-          role: fields.role,
-          message: fields.message,
-        }),
-      });
-      const data = await res.json();
+      let ok;
+      if (apiUrl) {
+        // Django backend
+        const res = await fetch(apiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: fields.name,
+            company: fields.company,
+            email: fields.email,
+            phone: fields.phone,
+            role: fields.role,
+            message: fields.message,
+          }),
+        });
+        ok = res.ok;
+      } else {
+        // Web3Forms fallback
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            access_key: accessKey,
+            subject: `New consultation request from ${fields.name} (${fields.company})`,
+            from_name: "Varnika Consulting Website",
+            name: fields.name,
+            company: fields.company,
+            email: fields.email,
+            phone: fields.phone,
+            role: fields.role,
+            message: fields.message,
+          }),
+        });
+        const data = await res.json();
+        ok = data.success;
+      }
 
-      if (data.success) {
+      if (ok) {
         setStatus({ type: "ok", text: "Thank you — your request has been received. One of our consultants will contact you within 24 business hours." });
         setFields(INITIAL_FIELDS);
         setErrors({});

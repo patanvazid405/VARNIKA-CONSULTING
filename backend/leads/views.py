@@ -6,6 +6,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from .crm import push_to_zoho
 from .models import Lead
 from .serializers import LeadSerializer
 
@@ -39,5 +40,12 @@ def create_lead(request):
         lead.save(update_fields=["email_sent"])
     except Exception:
         logger.exception("Failed to send lead notification email for lead id=%s", lead.id)
+
+    try:
+        if push_to_zoho(lead):
+            lead.crm_synced = True
+            lead.save(update_fields=["crm_synced"])
+    except Exception:
+        logger.exception("Failed to sync lead id=%s to Zoho CRM", lead.id)
 
     return Response(LeadSerializer(lead).data, status=status.HTTP_201_CREATED)

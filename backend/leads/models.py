@@ -22,6 +22,10 @@ class Lead(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     email_sent = models.BooleanField(default=False)
+    # Set True once this lead has been pushed to Zoho CRM (integration TBD —
+    # see leads/crm.py). Lets us backfill/retry leads created before the
+    # integration existed, and tells staff whether a lead is only local.
+    crm_synced = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["-created_at"]
