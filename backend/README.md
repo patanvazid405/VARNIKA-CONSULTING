@@ -55,14 +55,6 @@ EMAIL_HOST_PASSWORD=...
 
 Any SMTP provider works (Gmail app password, SendGrid, Resend, etc.).
 
-## Future: Zoho CRM sync
-
-The client plans to connect Zoho CRM eventually. `leads/crm.py` has a
-`push_to_zoho(lead)` stub already wired into `leads/views.py::create_lead` —
-implement it against the Zoho CRM API when that's ready, and every new lead
-will sync automatically (the `Lead.crm_synced` field tracks which ones have).
-Nothing else needs to change.
-
 ## Deploying
 
 This is a standard Django app — deploy it to Render, Railway, or any host
