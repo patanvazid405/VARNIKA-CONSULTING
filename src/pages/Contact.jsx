@@ -71,7 +71,9 @@ export default function Contact() {
     setErrors((e) => ({ ...e, [name]: validate(name, fields[name]) }));
   }
 
-  function handleSubmit(e) {
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleSubmit(e) {
     e.preventDefault();
     const nextErrors = {};
     let firstBad = null;
@@ -88,9 +90,43 @@ export default function Contact() {
       return;
     }
 
-    setStatus({ type: "ok", text: "Thank you — your request has been received. One of our consultants will contact you within 24 business hours." });
-    setFields(INITIAL_FIELDS);
-    setErrors({});
+    const accessKey = import.meta.env.VITE_WEB3FORMS_KEY;
+    if (!accessKey) {
+      setStatus({ type: "err", text: "Form is not configured yet. Please email us directly at advisory@varnikaconsulting.com." });
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New consultation request from ${fields.name} (${fields.company})`,
+          from_name: "Varnika Consulting Website",
+          name: fields.name,
+          company: fields.company,
+          email: fields.email,
+          phone: fields.phone,
+          role: fields.role,
+          message: fields.message,
+        }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setStatus({ type: "ok", text: "Thank you — your request has been received. One of our consultants will contact you within 24 business hours." });
+        setFields(INITIAL_FIELDS);
+        setErrors({});
+      } else {
+        setStatus({ type: "err", text: "Something went wrong sending your message. Please try again or email advisory@varnikaconsulting.com directly." });
+      }
+    } catch {
+      setStatus({ type: "err", text: "Something went wrong sending your message. Please try again or email advisory@varnikaconsulting.com directly." });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -209,8 +245,8 @@ export default function Contact() {
                   <span className="error">{errors.consent}</span>
                 </div>
 
-                <button className="btn btn--primary btn--block" type="submit" style={{ marginTop: 12 }}>
-                  Request Consultation <Icon name="arrow-right" />
+                <button className="btn btn--primary btn--block" type="submit" style={{ marginTop: 12 }} disabled={submitting}>
+                  {submitting ? "Sending…" : <>Request Consultation <Icon name="arrow-right" /></>}
                 </button>
 
                 <p className="form-secure">
