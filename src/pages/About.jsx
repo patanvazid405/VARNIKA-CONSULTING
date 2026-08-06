@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
+import Card from "../components/Card";
+import CTABand from "../components/CTABand";
+import Reveal from "../components/Reveal";
+import StatRow from "../components/StatRow";
 import useDocumentHead from "../hooks/useDocumentHead";
-import useReveal from "../hooks/useReveal";
 import useCounters from "../hooks/useCounters";
 
 const CAPS = [
@@ -47,119 +49,126 @@ const LOGOS = [
   ["power-bi.svg", "", "Power BI", "ic"],
 ];
 
+const CTA_BADGES = [
+  ["check-circle", "Expert Guidance"],
+  ["gear", "Tailored Solutions"],
+  ["chart-bar", "Measurable Impact"],
+  ["handshake", "Long-term Partnership"],
+];
+
 export default function About() {
   useDocumentHead(
     "About Us | Varnika Consulting",
     "Varnika Consulting is a specialized business and technology consulting firm helping maritime and logistics organizations navigate change and achieve sustainable growth."
   );
-  useReveal();
   useCounters();
 
   return (
     <>
       <section className="hero hero--about">
         <div className="container">
-          <div className="hero-grid">
-            <div className="hero-copy">
-              <p className="eyebrow">About Us</p>
-              <h1>Your Trusted Partner in<br />Maritime &amp; Logistics Transformation</h1>
-              <div className="rule" />
-              <p>
+          <div className="grid gap-12 py-14 lg:py-16 lg:grid-cols-[1.5fr_1fr] items-start">
+            <div>
+              <Reveal className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 ring-1 ring-white/20 backdrop-blur-sm mb-5">
+                <span className="font-head text-[11px] font-semibold uppercase tracking-[2px] text-orange">About Us</span>
+              </Reveal>
+              <Reveal as="h1" delay={1} className="!text-4xl lg:!text-[2.75rem] !font-bold !leading-[1.1] !tracking-tight !mb-5 max-w-xl">
+                Your Trusted Partner in Maritime &amp; Logistics Transformation
+              </Reveal>
+              <Reveal delay={2} className="!max-w-xl !text-[15px] !leading-relaxed !text-white/85 !mb-7">
                 Varnika Consulting is a specialized business and technology consulting firm
                 helping maritime and logistics organizations navigate change, optimize
                 operations and achieve sustainable growth.
-              </p>
-              <ul className="hero-caps">
-                {CAPS.map(([icon, label]) => <li key={label}><Icon name={icon} />{label}</li>)}
-              </ul>
-            </div>
-
-            <div className="values-panel">
-              <p className="eyebrow">Our Core Values</p>
-              <ul>
-                {VALUES.map(([icon, title, copy]) => (
-                  <li key={title}>
-                    <span className="icon-tile"><Icon name={icon} /></span>
-                    <div>
-                      <h4>{title}</h4>
-                      <p>{copy}</p>
-                    </div>
-                  </li>
+              </Reveal>
+              <Reveal delay={3} className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 max-w-lg">
+                {CAPS.map(([icon, label]) => (
+                  <div key={label} className="flex items-center gap-2.5 text-[13.5px] font-medium text-white/90">
+                    <Icon name={icon} className="!w-[18px] !h-[18px] text-orange shrink-0" />
+                    {label}
+                  </div>
                 ))}
-              </ul>
+              </Reveal>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="section section--tight">
-        <div className="container">
-          <div className="stats-bar">
-            {STATS.map(([icon, num, label]) => (
-              <div className="stat" key={label}>
-                <span className="stat__icon"><Icon name={icon} className="icon-lg" /></span>
-                <span><span className="stat__num">{num}</span><span className="stat__label">{label}</span></span>
+            <Reveal delay={2} className="rounded-2xl bg-white/[0.07] backdrop-blur-xl ring-1 ring-white/15 shadow-2xl p-6">
+              <p className="font-head text-[11px] font-semibold uppercase tracking-[2px] text-orange mb-4">Our Core Values</p>
+              <div className="flex flex-col gap-4">
+                {VALUES.map(([icon, title, copy]) => (
+                  <div key={title} className="flex items-start gap-3">
+                    <span className="grid place-items-center w-9 h-9 rounded-lg bg-white/10 text-orange shrink-0">
+                      <Icon name={icon} className="!w-[18px] !h-[18px]" />
+                    </span>
+                    <div>
+                      <h4 className="!text-white !text-[13.5px] !font-semibold !mb-0.5">{title}</h4>
+                      <p className="!text-white/60 !text-[12px] !leading-snug !mb-0">{copy}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 border-b border-slate-200">
+        <div className="container">
+          <StatRow stats={STATS} />
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20">
+        <div className="container">
+          <Reveal className="text-center max-w-2xl mx-auto mb-14">
+            <p className="eyebrow">Why Choose Varnika Consulting?</p>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {WHY.map(([icon, title, copy], i) => (
+              <Card key={title} icon={icon} title={title} copy={copy} delay={i} />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 14 }}>
+      <section className="pb-16">
         <div className="container">
-          <div className="section-head">
-            <h2 style={{ fontSize: 20, letterSpacing: ".5px", textTransform: "uppercase" }}>Why Choose Varnika Consulting?</h2>
-            <div className="rule" />
-          </div>
-
-          <div className="grid grid--6">
-            {WHY.map(([icon, title, copy]) => (
-              <article className="card card--center" key={title}>
-                <div className="card__icon"><Icon name={icon} className="icon-lg" /></div>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--tight" style={{ paddingTop: 0 }}>
-        <div className="container">
-          <div className="logo-strip" style={{ marginTop: 0 }}>
-            <div className="logo-strip__label" style={{ flex: "0 1 220px" }}>
-              <span>Powered by<br />leading technologies</span>
-            </div>
-            <ul className="logo-strip__items">
+          <Reveal className="flex flex-col md:flex-row items-center gap-8 rounded-2xl bg-[#f5f7fb] p-8">
+            <p className="font-head text-[12.5px] font-semibold uppercase tracking-wide text-navy-800 shrink-0 md:pr-8 md:border-r border-slate-200">
+              Powered by<br className="hidden sm:block" /> leading technologies
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 flex-1 w-full">
               {LOGOS.map(([file, alt, label, cls]) => (
-                <li key={file}>
-                  <img className={cls || undefined} src={`/images/logos/${file}`} alt={alt} loading="lazy" />
-                  {label}
-                </li>
+                <div key={file} className="flex items-center justify-center gap-2 grayscale opacity-70 transition-all hover:grayscale-0 hover:opacity-100">
+                  <img
+                    className={cls === "lg" ? "h-6" : cls === "ic" ? "h-5 w-5" : "h-5"}
+                    src={`/images/logos/${file}`}
+                    alt={alt}
+                    loading="lazy"
+                  />
+                  {label && <span className="text-[13px] font-semibold text-navy-700">{label}</span>}
+                </div>
               ))}
-            </ul>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="section section--tight" style={{ paddingTop: 0 }}>
+      <section className="pb-20">
         <div className="container">
-          <div className="cta-bar">
-            <div className="cta-bar__inner">
-              <div className="icon-tile"><Icon name="clipboard" /></div>
-              <div className="cta-bar__text">
-                <h3>Let&rsquo;s work together to solve complex challenges and unlock new opportunities for your business.</h3>
+          <CTABand
+            heading="Let's work together to solve complex challenges and unlock new opportunities for your business."
+            ctaLabel="Schedule a Discovery Call"
+            extra={
+              <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4 justify-center md:justify-start">
+                {CTA_BADGES.map(([icon, label]) => (
+                  <span key={label} className="inline-flex items-center gap-2 text-[12px] text-white/70">
+                    <Icon name={icon} className="!w-4 !h-4 text-orange" />
+                    {label}
+                  </span>
+                ))}
               </div>
-              <Link className="btn btn--primary" to="/contact">Schedule a Discovery Call <Icon name="arrow-right" /></Link>
-
-              <ul className="cta-badges">
-                <li><Icon name="check-circle" />Expert Guidance</li>
-                <li><Icon name="gear" />Tailored Solutions</li>
-                <li><Icon name="chart-bar" />Measurable Impact</li>
-                <li><Icon name="handshake" />Long-term Partnership</li>
-              </ul>
-            </div>
-          </div>
+            }
+          />
         </div>
       </section>
     </>

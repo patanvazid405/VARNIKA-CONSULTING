@@ -1,3 +1,4 @@
+import PageHero from "../components/PageHero";
 import useDocumentHead from "../hooks/useDocumentHead";
 
 export default function PrivacyPolicy() {
@@ -8,18 +9,7 @@ export default function PrivacyPolicy() {
 
   return (
     <>
-      <section className="hero hero--compact">
-        <div className="container">
-          <div className="hero-grid">
-            <div className="hero-copy">
-              <p className="eyebrow">Legal</p>
-              <h1>Privacy Policy</h1>
-              <div className="rule" />
-              <p>Effective date: August 2, 2026</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero eyebrow="Legal" title="Privacy Policy" description="Effective date: August 2, 2026" />
 
       <section className="section">
         <div className="container" style={{ maxWidth: 820, margin: "0 auto" }}>

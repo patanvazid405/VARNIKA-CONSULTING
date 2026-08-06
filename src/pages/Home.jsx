@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
+import Reveal from "../components/Reveal";
 import useDocumentHead from "../hooks/useDocumentHead";
-import useInView from "../hooks/useInView";
 
 const CAPABILITIES = [
   "Business Consulting",
@@ -58,27 +58,6 @@ const LOGOS = [
   ["x12-ansi.svg", "X12 ANSI", "", "lg"],
   ["power-bi.svg", "", "Power BI", "ic"],
 ];
-
-// Fade/slide-up wrapper driven by useInView — mirrors the legacy reveal
-// pattern (staggered by 70ms per sibling, capped at 280ms) but works with
-// any Tailwind-styled child instead of the old hardcoded selector list.
-function Reveal({ as: Tag = "div", delay = 0, className = "", children, ...rest }) {
-  const [ref, inView] = useInView();
-  return (
-    <Tag
-      ref={ref}
-      className={
-        className +
-        " transition-all duration-700 ease-out will-change-transform " +
-        (inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")
-      }
-      style={{ transitionDelay: `${Math.min(delay * 70, 280)}ms` }}
-      {...rest}
-    >
-      {children}
-    </Tag>
-  );
-}
 
 export default function Home() {
   useDocumentHead(
@@ -239,8 +218,8 @@ export default function Home() {
                 <div className="grid place-items-center w-14 h-14 rounded-xl bg-gradient-to-br from-navy-800 to-navy-600 text-white mb-5 transition-transform group-hover:scale-105">
                   <Icon name={s.icon} className="!w-6 !h-6" />
                 </div>
-                <h3 className="!mb-2.5 !text-[17px]">{s.title}</h3>
-                <p className="!text-[13.5px] !mb-4">{s.copy}</p>
+                <h3 className="!mb-2.5 !text-[17px] !text-navy-800">{s.title}</h3>
+                <p className="!text-[13.5px] !mb-4 !text-body">{s.copy}</p>
                 <span className="inline-flex items-center gap-1.5 font-head text-[12.5px] font-semibold uppercase tracking-wide text-orange">
                   Learn more
                   <Icon name="arrow-right" className="!w-3.5 !h-3.5 transition-transform group-hover:translate-x-1" />

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
+import Card from "../components/Card";
+import PageHero from "../components/PageHero";
+import Reveal from "../components/Reveal";
+import StatRow from "../components/StatRow";
 import useDocumentHead from "../hooks/useDocumentHead";
-import useReveal from "../hooks/useReveal";
 import useCounters from "../hooks/useCounters";
 
 const INDUSTRIES = [
@@ -38,98 +41,63 @@ export default function Industries() {
     "Industries We Serve | Varnika Consulting",
     "Industry-specific maritime and logistics solutions for NVOCCs, shipping lines, freight forwarders, ports, terminals, depots, customs brokers and 3PL/4PL providers."
   );
-  useReveal();
   useCounters();
 
   return (
     <>
-      <section className="hero hero--compact hero--industries">
-        <div className="container">
-          <nav className="breadcrumb" aria-label="Breadcrumb">
-            <Link to="/">Home</Link>
-            <Icon name="chevron-right" />
-            <span className="current" aria-current="page">Industries</span>
-          </nav>
+      <PageHero
+        heroClass="hero--industries"
+        breadcrumb="Industries"
+        title="Industries We Serve"
+        description="We understand the unique challenges of the maritime and logistics ecosystem and deliver industry-specific solutions that drive efficiency, compliance and growth."
+      />
 
-          <div className="hero-grid">
-            <div className="hero-copy">
-              <h1>Industries We Serve</h1>
-              <div className="rule" />
-              <p>
-                We understand the unique challenges of the maritime and logistics
-                ecosystem and deliver industry-specific solutions that drive
-                efficiency, compliance and growth.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
+      <section className="py-16 md:py-20">
         <div className="container">
-          <div className="grid grid--5">
-            {INDUSTRIES.map(([id, icon, title, copy]) => (
-              <article className="card card--center card--underline" id={id} key={id}>
-                <div className="card__icon"><Icon name={icon} className="icon-lg" /></div>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-                <Link className="learn-more" to="/contact">Learn more <Icon name="arrow-right" /></Link>
-              </article>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            {INDUSTRIES.map(([id, icon, title, copy], i) => (
+              <Card key={id} id={id} icon={icon} title={title} copy={copy} href="/contact" delay={i} />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="pb-16 md:pb-20">
         <div className="container">
-          <div className="panel">
-            <div className="panel-split">
-              <div>
-                <h3 style={{ textAlign: "center" }}>Our Impact in Numbers</h3>
-                <div className="rule" style={{ marginBottom: 22 }} />
-                <ul className="impact-stats">
-                  {STATS.map(([icon, num, label]) => (
-                    <li className="stat" key={label}>
-                      <span className="stat__icon"><Icon name={icon} className="icon-lg" /></span>
-                      <span><span className="stat__num">{num}</span><span className="stat__label">{label}</span></span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="panel-split__divider" style={{ display: "flex", gap: 22, alignItems: "center", flexWrap: "wrap" }}>
-                <div style={{ flex: "1 1 240px" }}>
-                  <h3>Ready to Transform Your Industry?</h3>
-                  <p style={{ fontSize: 13 }}>
-                    Let us help you overcome challenges and unlock new opportunities
-                    with our domain expertise.
-                  </p>
-                  <Link className="btn btn--primary" to="/contact">Talk to an Expert <Icon name="arrow-right" /></Link>
-                </div>
-
-                <svg className="panel__art" viewBox="0 0 200 110" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M10 92h180" />
-                  <path d="M22 92V18h58M22 34l40-16M62 18v22M62 40a8 8 0 008 8h6" />
-                  <rect x="52" y="56" width="24" height="16" rx="2" />
-                  <path d="M62 48v8" />
-                  <path d="M96 84l6-18h72l6 18" />
-                  <path d="M104 66V52h62v14M120 52V42h30v10M135 42V32" />
-                  <path d="M96 84c6 0 6 6 12 6s6-6 12-6 6 6 12 6 6-6 12-6 6 6 12 6 6-6 12-6" />
-                  <path d="M10 74h26M14 62h18" strokeDasharray="4 5" />
-                </svg>
+          <Reveal className="rounded-3xl border border-slate-200 bg-[#f8fafc] p-8 md:p-10 grid md:grid-cols-2 gap-10 items-center">
+            <div>
+              <h3 className="text-center md:text-left !mb-4">Our Impact in Numbers</h3>
+              <StatRow stats={STATS} />
+            </div>
+            <div className="flex flex-col sm:flex-row items-center gap-8 md:border-l md:border-slate-200 md:pl-10">
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="!mb-2 !text-lg">Ready to Transform Your Industry?</h3>
+                <p className="!text-[13.5px] !mb-4">
+                  Let us help you overcome challenges and unlock new opportunities with our domain expertise.
+                </p>
+                <Link
+                  to="/contact"
+                  className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-orange to-orange-2 px-6 py-3 font-head text-[13px] font-semibold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(232,98,44,0.3)] transition-all hover:shadow-[0_10px_32px_rgba(232,98,44,0.45)] hover:-translate-y-0.5"
+                >
+                  Talk to an Expert
+                  <Icon name="arrow-right" className="!w-4 !h-4 transition-transform group-hover:translate-x-1" />
+                </Link>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="section section--tight" style={{ paddingTop: 0 }}>
+      <section className="pb-16 md:pb-20">
         <div className="container">
-          <ul className="trust-row">
+          <Reveal className="flex flex-wrap justify-center gap-x-10 gap-y-4">
             {TRUST.map(([icon, label]) => (
-              <li key={label}><Icon name={icon} />{label}</li>
+              <span key={label} className="inline-flex items-center gap-2 text-[13px] font-medium text-navy-700">
+                <Icon name={icon} className="!w-4 !h-4 text-orange" />
+                {label}
+              </span>
             ))}
-          </ul>
+          </Reveal>
         </div>
       </section>
     </>

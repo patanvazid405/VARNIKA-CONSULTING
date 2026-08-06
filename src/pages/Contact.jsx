@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Icon from "../components/Icon";
+import Card from "../components/Card";
+import Reveal from "../components/Reveal";
 import Select from "../components/Select";
 import useDocumentHead from "../hooks/useDocumentHead";
-import useReveal from "../hooks/useReveal";
 import { fieldError } from "../lib/validation";
 
 const CONTACT_LIST = [
@@ -53,8 +54,6 @@ export default function Contact() {
     "Contact Us | Varnika Consulting",
     "Talk to Varnika Consulting about maritime and logistics consulting, ERP advisory, EDI integration and digital transformation. Email advisory@varnikaconsulting.com."
   );
-  useReveal();
-
   const [fields, setFields] = useState(INITIAL_FIELDS);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(null);
@@ -166,31 +165,36 @@ export default function Contact() {
     <>
       <section className="hero hero--contact">
         <div className="container">
-          <div className="hero-grid">
-            <div className="hero-copy">
-              <p className="eyebrow">Contact Us</p>
-              <h1>Let&rsquo;s Connect.<br />Let&rsquo;s Create Impact.</h1>
-              <div className="rule" />
-              <p>
+          <div className="grid gap-12 py-14 lg:py-16 lg:grid-cols-[1.15fr_1fr] items-start">
+            <div>
+              <Reveal className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 ring-1 ring-white/20 backdrop-blur-sm mb-5">
+                <span className="font-head text-[11px] font-semibold uppercase tracking-[2px] text-orange">Contact Us</span>
+              </Reveal>
+              <Reveal as="h1" delay={1} className="!text-4xl lg:!text-[2.6rem] !font-bold !leading-[1.1] !tracking-tight !mb-5">
+                Let&rsquo;s Connect.<br />Let&rsquo;s Create Impact.
+              </Reveal>
+              <Reveal delay={2} className="!max-w-lg !text-[15px] !leading-relaxed !text-white/85 !mb-8">
                 Have a question, need expert advice, or want to explore how
                 we can help you transform your operations — we&rsquo;re here to help.
-              </p>
+              </Reveal>
 
-              <ul className="contact-list">
+              <Reveal delay={3} className="flex flex-col gap-5 mb-8">
                 {CONTACT_LIST.map(([icon, title, content]) => (
-                  <li key={title}>
-                    <span className="contact-list__icon"><Icon name={icon} /></span>
+                  <div key={title} className="flex items-start gap-3.5">
+                    <span className="grid place-items-center w-10 h-10 rounded-full border border-orange/60 bg-orange/10 text-orange shrink-0">
+                      <Icon name={icon} className="!w-[18px] !h-[18px]" />
+                    </span>
                     <div>
-                      <h4>{title}</h4>
-                      {content}
+                      <h4 className="!text-white !text-[13.5px] !font-semibold !mb-0.5">{title}</h4>
+                      <div className="text-[13px] text-white/70">{content}</div>
                     </div>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </Reveal>
 
-              <p className="hero-note">
+              <Reveal delay={4} className="!text-[12.5px] !leading-relaxed !text-white/60 !max-w-sm">
                 Serving clients worldwide through remote and on-site consulting engagements.
-              </p>
+              </Reveal>
             </div>
 
             <div className="form-panel">
@@ -305,20 +309,15 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="py-16 md:py-20">
         <div className="container">
-          <div className="section-head">
-            <h2 style={{ fontSize: 20, letterSpacing: ".5px", textTransform: "uppercase" }}>Why Clients Work With Varnika</h2>
-            <div className="rule" />
-          </div>
+          <Reveal className="text-center max-w-2xl mx-auto mb-14">
+            <p className="eyebrow">Why Clients Work With Varnika</p>
+          </Reveal>
 
-          <div className="grid grid--6">
-            {WHY.map(([icon, title, copy]) => (
-              <article className="card card--center" key={title}>
-                <div className="card__icon"><Icon name={icon} className="icon-lg" /></div>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-              </article>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {WHY.map(([icon, title, copy], i) => (
+              <Card key={title} icon={icon} title={title} copy={copy} delay={i} />
             ))}
           </div>
         </div>

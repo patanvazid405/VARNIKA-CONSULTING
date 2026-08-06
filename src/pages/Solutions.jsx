@@ -1,6 +1,8 @@
 import { useState, Fragment } from "react";
-import { Link } from "react-router-dom";
+import Card from "../components/Card";
+import CTABand from "../components/CTABand";
 import Icon from "../components/Icon";
+import Reveal from "../components/Reveal";
 import useDocumentHead from "../hooks/useDocumentHead";
 import useReveal from "../hooks/useReveal";
 
@@ -53,20 +55,25 @@ export default function Solutions() {
         <div className="container">
           <div className="hero-grid">
             <div className="hero-copy">
-              <p className="eyebrow">Our Solutions</p>
-              <h1>End-to-End Solutions for<br />Maritime &amp; Logistics Excellence</h1>
-              <div className="rule" />
-              <p>
+              <Reveal className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 ring-1 ring-white/20 backdrop-blur-sm mb-5 !mt-0">
+                <span className="font-head text-[11px] font-semibold uppercase tracking-[2px] text-orange">Our Solutions</span>
+              </Reveal>
+              <Reveal as="h1" delay={1} className="!text-4xl lg:!text-[2.6rem] !font-bold !leading-[1.1] !tracking-tight !mb-5">
+                End-to-End Solutions for<br />Maritime &amp; Logistics Excellence
+              </Reveal>
+              <Reveal delay={2} className="!max-w-lg !text-[15px] !leading-relaxed !text-white/85 !mb-7">
                 We combine deep domain expertise with technology innovation to deliver
                 solutions that drive efficiency, visibility, compliance and growth across
                 your operations.
-              </p>
-              <ul className="hero-caps hero-caps--stack">
-                <li><Icon name="compass" />Domain Expertise</li>
-                <li><Icon name="network" />Technology Innovation</li>
-                <li><Icon name="handshake" />Tailored Solutions</li>
-                <li><Icon name="chart-line" />Measurable Results</li>
-              </ul>
+              </Reveal>
+              <Reveal delay={3} className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 max-w-md">
+                {[["compass", "Domain Expertise"], ["network", "Technology Innovation"], ["handshake", "Tailored Solutions"], ["chart-line", "Measurable Results"]].map(([icon, label]) => (
+                  <div key={label} className="flex items-center gap-2.5 text-[13.5px] font-medium text-white/90">
+                    <Icon name={icon} className="!w-[18px] !h-[18px] text-orange shrink-0" />
+                    {label}
+                  </div>
+                ))}
+              </Reveal>
             </div>
 
             <div
@@ -97,22 +104,15 @@ export default function Solutions() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="py-16 md:py-20">
         <div className="container">
-          <div className="eyebrow-flanked">
+          <Reveal className="text-center max-w-2xl mx-auto mb-14">
             <p className="eyebrow">Our Solution Areas</p>
-          </div>
+          </Reveal>
 
-          <div className="grid grid--3">
-            {SOLUTION_AREAS.map(([id, icon, title, copy, href]) => (
-              <article className="card card--row" id={id} key={id}>
-                <div className="card__icon"><Icon name={icon} /></div>
-                <div className="card__body">
-                  <h3>{title}</h3>
-                  <p>{copy}</p>
-                  <Link className="learn-more" to={href}>Learn more <Icon name="arrow-right" /></Link>
-                </div>
-              </article>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {SOLUTION_AREAS.map(([id, icon, title, copy, href], i) => (
+              <Card key={id} id={id} icon={icon} title={title} copy={copy} href={href} delay={i} />
             ))}
           </div>
         </div>
@@ -284,23 +284,29 @@ export default function Solutions() {
         </div>
       </section>
 
-      <section className="section section--tight" style={{ paddingTop: 0 }}>
+      <section className="pb-20">
         <div className="container">
-          <div className="cta-bar">
-            <div className="cta-bar__inner">
-              <div className="cta-bar__text">
-                <h3>Let&rsquo;s build smarter, connected and future-ready operations together.</h3>
+          <CTABand
+            icon="clipboard"
+            heading="Let's build smarter, connected and future-ready operations together."
+            ctaLabel="Request Consultation"
+            extra={
+              <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4 justify-center md:justify-start text-[12.5px] text-white/70">
+                <a href="mailto:advisory@varnikaconsulting.com" className="inline-flex items-center gap-2 hover:text-orange transition-colors">
+                  <Icon name="mail" className="!w-4 !h-4 text-orange" />advisory@varnikaconsulting.com
+                </a>
+                <a href="tel:+917483503223" className="inline-flex items-center gap-2 hover:text-orange transition-colors">
+                  <Icon name="phone" className="!w-4 !h-4 text-orange" />+91 74835 03223
+                </a>
+                <span className="inline-flex items-center gap-2">
+                  <Icon name="globe" className="!w-4 !h-4 text-orange" />www.varnikaconsulting.com
+                </span>
+                <a href="https://www.linkedin.com/company/varnika-consulting/" target="_blank" rel="noopener" className="inline-flex items-center gap-2 hover:text-orange transition-colors">
+                  <Icon name="linkedin" className="!w-4 !h-4 text-orange" />Varnika Consulting (Company Page)
+                </a>
               </div>
-              <Link className="btn btn--primary" to="/contact">Request Consultation <Icon name="arrow-right" /></Link>
-
-              <ul className="cta-contacts">
-                <li><Icon name="mail" /><a href="mailto:advisory@varnikaconsulting.com" style={{ color: "inherit" }}>advisory@varnikaconsulting.com</a></li>
-                <li><Icon name="phone" /><a href="tel:+917483503223" style={{ color: "inherit" }}>+91 74835 03223</a></li>
-                <li><Icon name="globe" />www.varnikaconsulting.com</li>
-                <li><Icon name="linkedin" /><a href="https://www.linkedin.com/company/varnika-consulting/" target="_blank" rel="noopener" style={{ color: "inherit" }}>Varnika Consulting (Company Page)</a></li>
-              </ul>
-            </div>
-          </div>
+            }
+          />
         </div>
       </section>
     </>
