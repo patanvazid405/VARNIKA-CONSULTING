@@ -4,6 +4,7 @@
 export const ICONS = {
   "arrow-right": '<path d="M4 12h15M13 6l6 6-6 6"/>',
   "arrow-down": '<path d="M12 4v15M6 13l6 6 6-6"/>',
+  "arrow-up": '<path d="M12 20V5M6 11l6-6 6 6"/>',
   "chevron-down": '<path d="M5 9l7 7 7-7"/>',
   "chevron-right": '<path d="M9 5l7 7-7 7"/>',
   "menu": '<path d="M4 7h16M4 12h16M4 17h16"/>',

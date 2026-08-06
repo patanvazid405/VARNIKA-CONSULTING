@@ -77,7 +77,7 @@ export default function Industries() {
                 </p>
                 <Link
                   to="/contact"
-                  className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-orange to-orange-2 px-6 py-3 font-head text-[13px] font-semibold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(232,98,44,0.3)] transition-all hover:shadow-[0_10px_32px_rgba(232,98,44,0.45)] hover:-translate-y-0.5"
+                  className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-orange to-orange-2 px-6 py-3 font-head text-[13px] font-semibold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(232,98,44,0.3)] transition-all hover:shadow-[0_10px_32px_rgba(232,98,44,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]"
                 >
                   Talk to an Expert
                   <Icon name="arrow-right" className="!w-4 !h-4 transition-transform group-hover:translate-x-1" />

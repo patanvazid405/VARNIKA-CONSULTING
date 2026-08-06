@@ -17,12 +17,22 @@ function useActiveKey() {
 export default function Header() {
   const [navOpen, setNavOpen] = useState(false);
   const [openMenuKey, setOpenMenuKey] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
   const active = useActiveKey();
   const headerRef = useRef(null);
 
   useEffect(() => {
     document.body.classList.toggle("nav-open", navOpen);
   }, [navOpen]);
+
+  // Adds a shadow once the page has scrolled past the header — a small cue
+  // that lifts the header off the content instead of a flat border always.
+  useEffect(() => {
+    function onScroll() { setScrolled(window.scrollY > 8); }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Reset the mobile drawer if the viewport grows back past the hamburger
   // breakpoint (matches the 1100px breakpoint in styles.css).
@@ -66,17 +76,18 @@ export default function Header() {
   return (
     <>
       <a className="skip-link" href="#main">Skip to content</a>
-      <header className="site-header" ref={headerRef}>
+      <header className={"site-header" + (scrolled ? " is-scrolled" : "")} ref={headerRef}>
         <div className="container">
           <Logo />
           <nav aria-label="Primary">
             <ul className="nav" id="primary-nav">
-              {NAV.map((item) => {
+              {NAV.map((item, index) => {
                 const isActive = item.key === active;
                 const hasMenu = !!item.menu;
                 return (
                   <li
                     key={item.key}
+                    style={{ "--i": index }}
                     className={
                       "nav__item" +
                       (isActive ? " nav__item--active" : "") +
@@ -130,8 +141,11 @@ export default function Header() {
             aria-label="Toggle navigation menu"
             onClick={() => setNavOpen((v) => !v)}
           >
-            <Icon name="menu" className="icon-menu" />
-            <Icon name="close" className="icon-close" />
+            <span className="nav-toggle__bars" aria-hidden="true">
+              <span className="nav-toggle__bar" />
+              <span className="nav-toggle__bar" />
+              <span className="nav-toggle__bar" />
+            </span>
           </button>
         </div>
       </header>

@@ -1,5 +1,6 @@
 import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
+import BackToTop from "./BackToTop";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -21,6 +22,7 @@ export default function Layout({ children }) {
       <Header />
       <main id="main">{children}</main>
       <Footer />
+      <BackToTop />
     </>
   );
 }

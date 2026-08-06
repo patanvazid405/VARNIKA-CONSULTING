@@ -23,7 +23,7 @@ export default function Card({ icon, title, copy, href, delay = 0, id }) {
   );
 
   const className =
-    "group block rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl hover:border-orange/30";
+    "group block rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-12px_rgba(232,98,44,0.25)] hover:border-orange/30 active:translate-y-0 active:scale-[0.98]";
 
   if (href) {
     return (

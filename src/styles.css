@@ -105,6 +105,18 @@ button { cursor: pointer; border: 0; background: none; }
   border-radius: 3px;
 }
 
+::selection { background: var(--orange); color: #fff; }
+
+/* Branded scrollbar (Firefox + WebKit) — small detail, shows up constantly */
+html { scrollbar-width: thin; scrollbar-color: var(--navy-500) var(--bg-alt); }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--bg-alt); }
+::-webkit-scrollbar-thumb {
+  background: var(--navy-500); border-radius: 999px;
+  border: 2.5px solid var(--bg-alt);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--orange); }
+
 .container {
   width: 100%;
   max-width: var(--container);
@@ -190,6 +202,7 @@ button { cursor: pointer; border: 0; background: none; }
 }
 .btn .icon { width: 15px; height: 15px; stroke-width: 2; }
 .btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0) scale(0.97); }
 
 .btn--primary { background: var(--orange); color: #fff; box-shadow: 0 4px 14px rgba(232, 98, 44, 0.28); }
 .btn--primary:hover { background: var(--orange-2); color: #fff; box-shadow: 0 6px 20px rgba(232, 98, 44, 0.36); }
@@ -217,6 +230,12 @@ button { cursor: pointer; border: 0; background: none; }
   position: sticky; top: 0; z-index: 100;
   background: #fff;
   border-bottom: 1px solid var(--line);
+  box-shadow: 0 0 0 rgba(15, 36, 68, 0);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.site-header.is-scrolled {
+  border-bottom-color: transparent;
+  box-shadow: 0 6px 24px rgba(15, 36, 68, 0.08);
 }
 .site-header .container {
   display: flex; align-items: center; gap: 20px;
@@ -320,15 +339,35 @@ button { cursor: pointer; border: 0; background: none; }
   align-items: center; justify-content: center;
   border: 1px solid var(--line); border-radius: var(--radius-sm);
   color: var(--navy-800);
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
-.nav-toggle .icon { width: 22px; height: 22px; }
-.nav-toggle .icon-close { display: none; }
-.nav-toggle[aria-expanded="true"] .icon-menu { display: none; }
-.nav-toggle[aria-expanded="true"] .icon-close { display: block; }
+.nav-toggle:hover { border-color: var(--orange); background: var(--orange-soft); }
+
+/* Three-bar hamburger that morphs into an X — a small but very noticeable
+   "someone cared about this" detail vs. a plain icon swap. */
+.nav-toggle__bars {
+  position: relative; width: 18px; height: 13px; flex: none;
+}
+.nav-toggle__bar {
+  position: absolute; left: 0; width: 100%; height: 2px;
+  background: currentColor; border-radius: 2px;
+  transition: transform 0.28s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.2s ease, top 0.28s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.nav-toggle__bar:nth-child(1) { top: 0; }
+.nav-toggle__bar:nth-child(2) { top: 5.5px; }
+.nav-toggle__bar:nth-child(3) { top: 11px; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) {
+  top: 5.5px; transform: rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) {
+  top: 5.5px; transform: rotate(-45deg);
+}
 
 .nav-scrim {
   position: fixed; top: var(--header-h); right: 0; bottom: 0; left: 0; inset: var(--header-h) 0 0; z-index: 90;
   background: rgba(7, 23, 48, 0.5);
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
   opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s;
 }
 body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
@@ -1487,17 +1526,25 @@ body.nav-open .nav-scrim { opacity: 1; visibility: visible; }
     position: fixed; top: var(--header-h); left: 0; right: 0; z-index: 95;
     flex-direction: column; align-items: stretch; gap: 0;
     background: #fff; border-bottom: 1px solid var(--line);
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     padding: 8px 16px 20px;
     max-height: calc(100vh - var(--header-h));
     overflow-y: auto;
-    transform: translateY(-12px); opacity: 0; visibility: hidden;
-    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
-    box-shadow: var(--shadow-md);
+    transform: translateY(-16px) scale(0.99); opacity: 0; visibility: hidden;
+    transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.28s;
+    box-shadow: 0 20px 44px rgba(7, 23, 48, 0.18);
   }
-  body.nav-open .nav { transform: translateY(0); opacity: 1; visibility: visible; }
+  body.nav-open .nav { transform: translateY(0) scale(1); opacity: 1; visibility: visible; }
   .nav__link { padding: 13px 6px; justify-content: space-between; font-size: 15px; }
   .nav__link::after { display: none; }
-  .nav__item { border-bottom: 1px solid var(--line); }
+  .nav__item {
+    border-bottom: 1px solid var(--line);
+    opacity: 0; transform: translateY(-6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition-delay: calc(var(--i, 0) * 35ms);
+  }
+  body.nav-open .nav__item { opacity: 1; transform: translateY(0); }
   .nav__item--active > .nav__link { color: var(--orange); }
 
   /* Dropdown becomes an accordion */

@@ -21,7 +21,7 @@ export default function CTABand({ icon = "clipboard", heading, copy, ctaLabel, c
         </div>
         <Link
           to={ctaHref}
-          className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-orange to-orange-2 px-7 py-3.5 font-head text-[13.5px] font-semibold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(232,98,44,0.35)] transition-all hover:shadow-[0_10px_32px_rgba(232,98,44,0.5)] hover:-translate-y-0.5 shrink-0"
+          className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-orange to-orange-2 px-7 py-3.5 font-head text-[13.5px] font-semibold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(232,98,44,0.35)] transition-all hover:shadow-[0_10px_32px_rgba(232,98,44,0.5)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] shrink-0"
         >
           {ctaLabel}
           <Icon name="arrow-right" className="!w-4 !h-4 transition-transform group-hover:translate-x-1" />
