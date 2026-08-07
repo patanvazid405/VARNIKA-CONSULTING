@@ -179,25 +179,35 @@ export default function Home() {
         <div className="container">
           <Reveal className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex items-center gap-3 shrink-0 md:pr-8 md:border-r border-slate-200">
-              <div className="grid place-items-center w-11 h-11 rounded-xl bg-orange-soft text-orange">
+              <div className="grid place-items-center w-11 h-11 rounded-xl bg-orange-soft text-orange shrink-0">
                 <Icon name="handshake" className="!w-5 !h-5" />
               </div>
               <p className="font-head text-[12.5px] font-semibold uppercase tracking-wide text-navy-800 leading-snug">
                 Trusted by leading organizations<br className="hidden sm:block" />&amp; powered by technology
               </p>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 flex-1 w-full">
-              {LOGOS.map(([file, alt, label, cls]) => (
-                <div key={file} className="flex items-center justify-center gap-2 grayscale opacity-70 transition-all hover:grayscale-0 hover:opacity-100">
-                  <img
-                    className={cls === "lg" ? "h-6" : cls === "ic" ? "h-5 w-5" : "h-5"}
-                    src={`/images/logos/${file}`}
-                    alt={alt}
-                    loading="lazy"
-                  />
-                  {label && <span className="text-[13px] font-semibold text-navy-700">{label}</span>}
-                </div>
-              ))}
+
+            {/* Colored logos throughout (no grayscale) in a continuously
+                scrolling strip — reads as more alive than a static row.
+                Faded mask at both ends hides the seam where the track loops;
+                the list is duplicated once so the loop is seamless. */}
+            <div
+              className="marquee-track flex flex-1 w-full py-1 overflow-hidden"
+              style={{ maskImage: "linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)", WebkitMaskImage: "linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)" }}
+            >
+              <div className="flex items-center gap-14 shrink-0 animate-marquee">
+                {[...LOGOS, ...LOGOS].map(([file, alt, label, cls], i) => (
+                  <div key={file + i} className="flex items-center justify-center gap-2 shrink-0">
+                    <img
+                      className={cls === "lg" ? "h-7" : cls === "ic" ? "h-6 w-6" : "h-6"}
+                      src={`/images/logos/${file}`}
+                      alt={alt}
+                      loading="lazy"
+                    />
+                    {label && <span className="text-[13.5px] font-semibold text-navy-700 whitespace-nowrap">{label}</span>}
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>

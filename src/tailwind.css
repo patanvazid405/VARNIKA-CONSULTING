@@ -26,9 +26,25 @@
   --font-head: "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
   --animate-fade-in-up: fadeInUp 0.25s ease;
+  --animate-marquee: marquee 28s linear infinite;
 }
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Pause the scroll on hover/focus so logos can be read, and always pause
+   for users who've asked for reduced motion. */
+.marquee-track:hover,
+.marquee-track:focus-within {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
 }
