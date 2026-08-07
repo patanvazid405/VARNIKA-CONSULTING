@@ -26,5 +26,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Zoho SalesIQ live chat widget -->
+    <script>
+      window.$zoho = window.$zoho || {};
+      $zoho.salesiq = $zoho.salesiq || { ready: function () {} };
+    </script>
+    <script
+      id="zsiqscript"
+      src="https://salesiq.zohopublic.in/widget?wc=siq239109cb4cd756eefbc1b1a081d49d66d58e535c50650e1c26e9f6aa5f8c622c"
+      defer
+    ></script>
   </body>
 </html>

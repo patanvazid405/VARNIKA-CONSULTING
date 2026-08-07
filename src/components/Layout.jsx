@@ -1,7 +1,6 @@
 import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 import BackToTop from "./BackToTop";
-import ChatWidget from "./ChatWidget";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -18,13 +17,14 @@ export default function Layout({ children }) {
     window.scrollTo(0, 0);
   }, [pathname, hash]);
 
+  // Zoho SalesIQ (index.html) renders its own floating launcher — no
+  // component needed here.
   return (
     <>
       <Header />
       <main id="main">{children}</main>
       <Footer />
       <BackToTop />
-      <ChatWidget />
     </>
   );
 }
