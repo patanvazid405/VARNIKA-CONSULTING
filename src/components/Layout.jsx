@@ -1,6 +1,7 @@
 import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 import BackToTop from "./BackToTop";
+import ChatWidget from "./ChatWidget";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -23,6 +24,7 @@ export default function Layout({ children }) {
       <main id="main">{children}</main>
       <Footer />
       <BackToTop />
+      <ChatWidget />
     </>
   );
 }
