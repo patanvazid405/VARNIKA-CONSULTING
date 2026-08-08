@@ -1,6 +1,5 @@
 import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
-import BackToTop from "./BackToTop";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -18,13 +17,13 @@ export default function Layout({ children }) {
   }, [pathname, hash]);
 
   // Zoho SalesIQ (index.html) renders its own floating launcher — no
-  // component needed here.
+  // component needed here. Back-to-top button removed per client request
+  // (it overlapped the SalesIQ launcher in the bottom-right corner).
   return (
     <>
       <Header />
       <main id="main">{children}</main>
       <Footer />
-      <BackToTop />
     </>
   );
 }
