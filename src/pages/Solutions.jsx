@@ -302,7 +302,7 @@ export default function Solutions() {
                   <Icon name="globe" className="!w-4 !h-4 text-orange" />www.varnikaconsulting.com
                 </span>
                 <a href="https://www.linkedin.com/company/varnika-consulting/" target="_blank" rel="noopener" className="inline-flex items-center gap-2 hover:text-orange transition-colors">
-                  <Icon name="linkedin" className="!w-4 !h-4 text-orange" />Varnika Consulting (Company Page)
+                  <Icon name="linkedin" className="!w-4 !h-4 text-orange" />Varnika Consulting
                 </a>
               </div>
             }

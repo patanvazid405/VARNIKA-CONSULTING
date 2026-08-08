@@ -68,11 +68,15 @@ export default function Home() {
   return (
     <>
       {/* ---------------------------------------------------------------- HERO */}
+      {/* Single column — the flow diagram used to sit beside the copy here,
+          but its glass panel covered exactly the part of the ship photo
+          (bow, hull) that's meant to be the focal point. Moved to its own
+          "Systems We Connect" section below so the ship is fully visible. */}
       <section className="hero hero--home">
         <div className="container">
-          <div className="grid gap-12 py-16 lg:py-20 lg:grid-cols-[1.85fr_1fr] items-center">
+          <div className="py-16 lg:py-20">
             {/* Copy column */}
-            <div>
+            <div className="max-w-2xl">
               <Reveal className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 ring-1 ring-white/20 backdrop-blur-sm mb-6">
                 <Icon name="compass" className="!w-4 !h-4 text-orange" />
                 <span className="font-head text-[11px] font-semibold uppercase tracking-[2px] text-orange">
@@ -119,58 +123,53 @@ export default function Home() {
                 </Link>
               </Reveal>
             </div>
-
-            {/* Flow diagram card */}
-            <Reveal
-              delay={2}
-              as="div"
-              className="rounded-2xl bg-white/[0.07] backdrop-blur-xl ring-1 ring-white/15 shadow-2xl p-5 sm:p-6"
-              aria-label="Systems we connect and the industry-standard messages that flow between them"
-            >
-              <div className="flex flex-col gap-2.5">
-                {FLOW_NODES.map(([icon, label, active], i) => (
-                  <div
-                    key={label}
-                    className={
-                      "relative flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[12.5px] font-semibold font-head transition-colors " +
-                      (active
-                        ? "bg-gradient-to-r from-orange/90 to-orange-2/90 text-white shadow-[0_6px_18px_rgba(232,98,44,0.35)]"
-                        : "bg-white/[0.06] text-white ring-1 ring-white/10 hover:bg-white/[0.1]")
-                    }
-                  >
-                    <span
-                      className={
-                        "grid place-items-center w-7 h-7 rounded-lg shrink-0 " +
-                        (active ? "bg-white/20" : "bg-white/10")
-                      }
-                    >
-                      <Icon name={icon} className="!w-[15px] !h-[15px]" />
-                    </span>
-                    {label}
-                    {i < FLOW_NODES.length - 1 && (
-                      <span className="absolute left-[26px] -bottom-2.5 h-2.5 w-px bg-gradient-to-b from-orange/60 to-transparent" />
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-5 pt-5 border-t border-white/10">
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {FLOW_CODES.map((code) => (
-                    <span
-                      key={code}
-                      className="rounded-full border border-orange/50 bg-orange/10 px-2.5 py-1 font-head text-[10px] font-semibold tracking-wide text-orange"
-                    >
-                      {code}
-                    </span>
-                  ))}
-                </div>
-                <p className="text-[11.5px] leading-snug text-white/60">
-                  Industry Standard Messages Powering Global Trade
-                </p>
-              </div>
-            </Reveal>
           </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------- SYSTEMS FLOW */}
+      <section className="py-16 md:py-20 bg-[#f8fafc]">
+        <div className="container">
+          <Reveal className="text-center max-w-2xl mx-auto mb-12">
+            <p className="eyebrow">Integration Network</p>
+            <h2 className="!mb-0">Systems We Connect</h2>
+            <div className="rule" />
+          </Reveal>
+
+          <Reveal delay={1} className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+            {FLOW_NODES.map(([icon, label, active]) => (
+              <div
+                key={label}
+                className={
+                  "flex items-center gap-3 rounded-xl px-4 py-3.5 text-[13px] font-semibold font-head transition-all " +
+                  (active
+                    ? "bg-gradient-to-r from-orange to-orange-2 text-white shadow-[0_10px_24px_rgba(232,98,44,0.3)]"
+                    : "bg-white text-navy-700 ring-1 ring-slate-200 hover:ring-orange/40 hover:shadow-md")
+                }
+              >
+                <span className={"grid place-items-center w-8 h-8 rounded-lg shrink-0 " + (active ? "bg-white/20" : "bg-orange-soft text-orange")}>
+                  <Icon name={icon} className="!w-4 !h-4" />
+                </span>
+                {label}
+              </div>
+            ))}
+          </Reveal>
+
+          <Reveal delay={2} className="text-center">
+            <div className="flex flex-wrap justify-center gap-2 mb-3">
+              {FLOW_CODES.map((code) => (
+                <span
+                  key={code}
+                  className="rounded-full border border-orange/40 bg-orange-soft px-3 py-1 font-head text-[11px] font-semibold tracking-wide text-orange"
+                >
+                  {code}
+                </span>
+              ))}
+            </div>
+            <p className="text-[13px] text-body-light">
+              Industry Standard Messages Powering Global Trade
+            </p>
+          </Reveal>
         </div>
       </section>
 

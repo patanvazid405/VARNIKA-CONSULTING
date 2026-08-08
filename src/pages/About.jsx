@@ -65,47 +65,53 @@ export default function About() {
 
   return (
     <>
+      {/* Single column — the Core Values glass panel used to sit beside the
+          copy here, but it covered the ship's bow, which is the focal point
+          of the photo. Moved to its own section below instead. */}
       <section className="hero hero--about">
         <div className="container">
-          <div className="grid gap-12 py-14 lg:py-16 lg:grid-cols-[1.5fr_1fr] items-start">
-            <div>
-              <Reveal className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 ring-1 ring-white/20 backdrop-blur-sm mb-5">
-                <span className="font-head text-[11px] font-semibold uppercase tracking-[2px] text-orange">About Us</span>
-              </Reveal>
-              <Reveal as="h1" delay={1} className="!text-4xl lg:!text-[2.75rem] !font-bold !leading-[1.1] !tracking-tight !mb-5 max-w-xl">
-                Your Trusted Partner in Maritime &amp; Logistics Transformation
-              </Reveal>
-              <Reveal delay={2} className="!max-w-xl !text-[15px] !leading-relaxed !text-white/85 !mb-7">
-                Varnika Consulting is a specialized business and technology consulting firm
-                helping maritime and logistics organizations navigate change, optimize
-                operations and achieve sustainable growth.
-              </Reveal>
-              <Reveal delay={3} className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 max-w-lg">
-                {CAPS.map(([icon, label]) => (
-                  <div key={label} className="flex items-center gap-2.5 text-[13.5px] font-medium text-white/90">
-                    <Icon name={icon} className="!w-[18px] !h-[18px] text-orange shrink-0" />
-                    {label}
-                  </div>
-                ))}
-              </Reveal>
-            </div>
-
-            <Reveal delay={2} className="rounded-2xl bg-white/[0.07] backdrop-blur-xl ring-1 ring-white/15 shadow-2xl p-6">
-              <p className="font-head text-[11px] font-semibold uppercase tracking-[2px] text-orange mb-4">Our Core Values</p>
-              <div className="flex flex-col gap-4">
-                {VALUES.map(([icon, title, copy]) => (
-                  <div key={title} className="flex items-start gap-3">
-                    <span className="grid place-items-center w-9 h-9 rounded-lg bg-white/10 text-orange shrink-0">
-                      <Icon name={icon} className="!w-[18px] !h-[18px]" />
-                    </span>
-                    <div>
-                      <h4 className="!text-white !text-[13.5px] !font-semibold !mb-0.5">{title}</h4>
-                      <p className="!text-white/60 !text-[12px] !leading-snug !mb-0">{copy}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          <div className="py-14 lg:py-16 max-w-2xl">
+            <Reveal className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 ring-1 ring-white/20 backdrop-blur-sm mb-5">
+              <span className="font-head text-[11px] font-semibold uppercase tracking-[2px] text-orange">About Us</span>
             </Reveal>
+            <Reveal as="h1" delay={1} className="!text-4xl lg:!text-[2.75rem] !font-bold !leading-[1.1] !tracking-tight !mb-5 max-w-xl">
+              Your Trusted Partner in Maritime &amp; Logistics Transformation
+            </Reveal>
+            <Reveal delay={2} className="!max-w-xl !text-[15px] !leading-relaxed !text-white/85 !mb-7">
+              Varnika Consulting is a specialized business and technology consulting firm
+              helping maritime and logistics organizations navigate change, optimize
+              operations and achieve sustainable growth.
+            </Reveal>
+            <Reveal delay={3} className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 max-w-lg">
+              {CAPS.map(([icon, label]) => (
+                <div key={label} className="flex items-center gap-2.5 text-[13.5px] font-medium text-white/90">
+                  <Icon name={icon} className="!w-[18px] !h-[18px] text-orange shrink-0" />
+                  {label}
+                </div>
+              ))}
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-[#f8fafc]">
+        <div className="container">
+          <Reveal className="text-center max-w-2xl mx-auto mb-12">
+            <p className="eyebrow">What Drives Us</p>
+            <h2 className="!mb-0">Our Core Values</h2>
+            <div className="rule" />
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            {VALUES.map(([icon, title, copy], i) => (
+              <Reveal key={title} delay={i} className="rounded-2xl bg-white ring-1 ring-slate-200 p-5 text-center hover:ring-orange/40 hover:shadow-md transition-all">
+                <span className="grid place-items-center w-11 h-11 rounded-xl bg-orange-soft text-orange mx-auto mb-3">
+                  <Icon name={icon} className="!w-5 !h-5" />
+                </span>
+                <h4 className="!text-navy-800 !text-[14px] !font-semibold !mb-1.5">{title}</h4>
+                <p className="!text-body !text-[12.5px] !leading-snug !mb-0">{copy}</p>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -136,18 +142,23 @@ export default function About() {
             <p className="font-head text-[12.5px] font-semibold uppercase tracking-wide text-navy-800 shrink-0 md:pr-8 md:border-r border-slate-200">
               Powered by<br className="hidden sm:block" /> leading technologies
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 flex-1 w-full">
-              {LOGOS.map(([file, alt, label, cls]) => (
-                <div key={file} className="flex items-center justify-center gap-2 grayscale opacity-70 transition-all hover:grayscale-0 hover:opacity-100">
-                  <img
-                    className={cls === "lg" ? "h-6" : cls === "ic" ? "h-5 w-5" : "h-5"}
-                    src={`/images/logos/${file}`}
-                    alt={alt}
-                    loading="lazy"
-                  />
-                  {label && <span className="text-[13px] font-semibold text-navy-700">{label}</span>}
-                </div>
-              ))}
+            <div
+              className="marquee-track flex flex-1 w-full py-1 overflow-hidden"
+              style={{ maskImage: "linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)", WebkitMaskImage: "linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent)" }}
+            >
+              <div className="flex items-center gap-14 shrink-0 animate-marquee">
+                {[...LOGOS, ...LOGOS].map(([file, alt, label, cls], i) => (
+                  <div key={file + i} className="flex items-center justify-center gap-2 shrink-0">
+                    <img
+                      className={cls === "lg" ? "h-7" : cls === "ic" ? "h-6 w-6" : "h-6"}
+                      src={`/images/logos/${file}`}
+                      alt={alt}
+                      loading="lazy"
+                    />
+                    {label && <span className="text-[13.5px] font-semibold text-navy-700 whitespace-nowrap">{label}</span>}
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>
